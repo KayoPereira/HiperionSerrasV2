@@ -1,0 +1,81 @@
+<div class="modal fade cookie-preferences-modal" id="cookiePreferencesModal" tabindex="-1" aria-labelledby="cookiePreferencesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content cookie-preferences-modal__content">
+      <div class="cookie-preferences-modal__topbar">
+        <p class="cookie-preferences-modal__title mb-0" id="cookiePreferencesModalLabel">Definições de privacidade</p>
+        <p class="cookie-preferences-modal__title mb-0">Política de privacidade</p>
+      </div>
+
+      <button type="button" class="cookie-preferences-modal__close" data-bs-dismiss="modal" aria-label="Fechar modal de cookies">x</button>
+
+      <div class="cookie-preferences-modal__tabs" role="tablist" aria-label="Navegação do modal de cookies">
+        <button class="cookie-preferences-modal__tab is-active" type="button" aria-selected="true">Configurações</button>
+        <button class="cookie-preferences-modal__tab" type="button" aria-selected="false">Política de cookies</button>
+      </div>
+
+      <div class="cookie-preferences-modal__body">
+        <p class="cookie-preferences-modal__description">Gostaríamos da sua permissão para utilizar os seus dados para os seguintes fins:</p>
+
+        <section class="cookie-preferences-modal__section" aria-labelledby="cookie-required-title">
+          <div class="cookie-preferences-modal__section-header">
+            <h3 class="cookie-preferences-modal__section-title" id="cookie-required-title">Necessário</h3>
+          </div>
+          <div class="cookie-preferences-modal__section-content">
+            <p class="mb-0">Estes cookies são necessários para o bom funcionamento do nosso site e não podem ser desligados no nosso sistema.</p>
+            <label class="cookie-toggle" aria-label="Cookies necessários" aria-checked="true" role="switch">
+              <input type="checkbox" checked disabled>
+              <span class="cookie-toggle__slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="cookie-preferences-modal__section" aria-labelledby="cookie-performance-title">
+          <div class="cookie-preferences-modal__section-header">
+            <h3 class="cookie-preferences-modal__section-title" id="cookie-performance-title">Desempenho</h3>
+          </div>
+          <div class="cookie-preferences-modal__section-content">
+            <p class="mb-0">Utilizamos estes cookies para fornecer informações estatísticas sobre o nosso site - eles são usados para medir e melhorar o desempenho.</p>
+            <label class="cookie-toggle" aria-label="Cookies de desempenho" aria-checked="true" role="switch">
+              <input type="checkbox" checked>
+              <span class="cookie-toggle__slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="cookie-preferences-modal__section" aria-labelledby="cookie-functional-title">
+          <div class="cookie-preferences-modal__section-header">
+            <h3 class="cookie-preferences-modal__section-title" id="cookie-functional-title">Funcional</h3>
+          </div>
+          <div class="cookie-preferences-modal__section-content">
+            <p class="mb-0">Utilizamos estes cookies para melhorar a funcionalidade e permitir a personalização, tais como chats ao vivo, videos e o uso de redes sociais.</p>
+            <label class="cookie-toggle" aria-label="Cookies funcionais" aria-checked="true" role="switch">
+              <input type="checkbox" checked>
+              <span class="cookie-toggle__slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="cookie-preferences-modal__section" aria-labelledby="cookie-ads-title">
+          <div class="cookie-preferences-modal__section-header">
+            <h3 class="cookie-preferences-modal__section-title" id="cookie-ads-title">Publicidade</h3>
+          </div>
+          <div class="cookie-preferences-modal__section-content">
+            <p class="mb-0">Estes cookies são definidos através do nosso site pelos nossos parceiros publicitários.</p>
+            <label class="cookie-toggle" aria-label="Cookies de publicidade" aria-checked="true" role="switch">
+              <input type="checkbox" checked>
+              <span class="cookie-toggle__slider"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="cookie-preferences-modal__actions">
+        <button type="button" class="cookie-preferences-modal__full-action">Aceitar todos</button>
+        <div class="cookie-preferences-modal__split-actions">
+          <button type="button" class="cookie-preferences-modal__split-action">Salvar configurações</button>
+          <button type="button" class="cookie-preferences-modal__split-action is-light black-btn" data-bs-dismiss="modal">Negar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

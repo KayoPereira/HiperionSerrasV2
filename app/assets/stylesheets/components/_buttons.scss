@@ -44,3 +44,20 @@
         color: $hiperion-white;
     }
 }
+
+.black-btn {
+    @extend %btn-base;
+    --btn-accent-color: #{$hiperion-black}; 
+    background: transparent !important;
+    color: $hiperion-black !important;
+
+    &:visited {
+        color: $hiperion-black !important;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $hiperion-white !important;
+    }
+}

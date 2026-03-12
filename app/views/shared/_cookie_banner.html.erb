@@ -1,0 +1,29 @@
+<section
+  class="cookie-banner"
+  data-controller="cookie-banner"
+  data-cookie-banner-key-value="hiperion_cookies_accepted"
+  aria-label="Aviso de cookies"
+>
+  <div class="cookie-banner__content">
+    <p class="cookie-banner__text mb-0">
+      Ao clicar em "Aceitar todos os cookies", concorda com o armazenamento de cookies no seu dispositivo para melhorar a navegação no site e ajudar nas nossas iniciativas de marketing.
+      Ao continuar navegando, você concorda com a nossa
+      <%= link_to "Política de Privacidade", root_path(anchor: "politica-de-privacidade"), class: "cookie-banner__link" %>.
+    </p>
+
+    <div class="cookie-banner__actions">
+      <button
+        type="button"
+        class="cookie-banner__settings-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#cookiePreferencesModal"
+      >
+        DEFINIÇÕES DE COOKIES
+      </button>
+
+      <button type="button" class="secondary-btn cookie-banner__button" data-action="cookie-banner#accept">
+        ACEITAR TODOS OS COOKIES
+      </button>
+    </div>
+  </div>
+</section>
