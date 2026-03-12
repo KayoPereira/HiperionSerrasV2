@@ -1,7 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title><%= content_for(:title) || "Hiperion Serras V2" %></title>
+    <% page_title = content_for(:title) || "Hiperion Serras V2" %>
+    <% page_description = content_for(:meta_description) || "A Hiperion Serras oferece soluções em serras industriais com alto desempenho, precisão e durabilidade para diferentes aplicações." %>
+    <% canonical_url = request.original_url %>
+
+    <title><%= page_title %></title>
+    <meta name="description" content="<%= page_description %>">
+    <link rel="canonical" href="<%= canonical_url %>">
+
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= page_title %>">
+    <meta property="og:description" content="<%= page_description %>">
+    <meta property="og:url" content="<%= canonical_url %>">
+    <meta property="og:site_name" content="Hiperion Serras">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= page_title %>">
+    <meta name="twitter:description" content="<%= page_description %>">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -26,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
 
-  <body><%= render "shared/navbar" %>
+  <body class="<%= content_for(:body_class) %>"><%= render "shared/navbar" %>
 <%= render "shared/flashes" %>
 
     <%= yield %>
