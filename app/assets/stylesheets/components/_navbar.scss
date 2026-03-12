@@ -1,12 +1,56 @@
-.navbar-lewagon {
+.navbar-hiperion {
   justify-content: space-between;
-  background: white;
+  background: $hiperion-navy;
+  margin-top: 35px;
+  height: 100px;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-logo {
+  width: 250px;
+  height: 128px;
+}
+
+.item-list {
+  height: 100%;
+  border-bottom: 5px solid transparent;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 5px;
+    background: $hiperion-gold;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .navbar-link {
+    text-decoration: none;
+    color: $hiperion-white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  &:hover {
+    .navbar-link {
+      color: $hiperion-gold;
+    }
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.navbar-hiperion .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-hiperion .navbar-brand img {
   width: 40px;
 }
