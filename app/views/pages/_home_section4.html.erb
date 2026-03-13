@@ -1,0 +1,28 @@
+<section class="services-section" id="servicos" aria-labelledby="services-section-heading">
+  <div class="services-section__grid">
+    <article class="services-section__media" aria-hidden="true">
+      <div class="services-section__image-frame">
+        <%= image_tag "homepage/section5-2x.png",
+              alt: "Especialista da Hiperion Serras apresentando serra circular industrial em ambiente fabril",
+              class: "services-section__image img-fluid",
+              loading: "lazy",
+              width: "900",
+              height: "620" %>
+      </div>
+    </article>
+
+    <article class="services-section__content" aria-labelledby="services-section-heading">
+      <h2 id="services-section-heading" class="services-section__title">
+        Suporte que mantém sua indústria em movimento
+      </h2>
+
+      <p class="services-section__description">
+        Afiação, manutenção, consultoria e suporte especializado para serras circulares e lâminas de serra fita, garantindo mais rendimento, precisão no corte e continuidade produtiva.
+      </p>
+
+      <%= link_to "CONHEÇA NOSSOS SERVIÇOS", root_path(anchor: "servicos"),
+            class: "secondary-btn py-2 services-section__cta",
+            aria: { label: "Conheça nossos serviços" } %>
+    </article>
+  </div>
+</section>
