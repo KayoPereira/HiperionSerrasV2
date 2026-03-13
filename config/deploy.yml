@@ -105,6 +105,6 @@ accessories:
         POSTGRES_DB: hiperion_serras_v2_production
         POSTGRES_USER: hiperion_serras_v2
       secret:
-        - HIPERION_SERRAS_V2_DATABASE_PASSWORD
+        - POSTGRES_PASSWORD
     directories:
       - data:/var/lib/postgresql/data
