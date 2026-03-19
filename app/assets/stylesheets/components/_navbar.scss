@@ -6,9 +6,19 @@
   z-index: 9999;
 }
 
+.navbar-hiperion__container {
+  align-items: center;
+}
+
 .navbar-logo {
   width: 250px;
   height: 128px;
+}
+
+.navbar-hiperion__nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .item-list {
@@ -54,4 +64,113 @@
 
 .navbar-hiperion .navbar-brand img {
   width: 40px;
+}
+
+.navbar-hiperion__toggler {
+  display: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar-hiperion__toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-hiperion__toggler-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 5px 0;
+  background-color: $hiperion-white;
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-logo {
+    width: 210px;
+    height: auto;
+  }
+
+  .item-list .navbar-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-hiperion {
+    margin-top: 0;
+    height: auto;
+    min-height: 88px;
+    padding: 12px 0;
+  }
+
+  .navbar-hiperion__container {
+    align-items: center;
+    justify-content: space-between !important;
+    row-gap: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .navbar-logo {
+    width: 180px;
+  }
+
+  .navbar-hiperion__toggler {
+    display: block;
+  }
+
+  .navbar-hiperion .navbar-collapse {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .navbar-hiperion__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+    padding: 12px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .item-list {
+    height: auto;
+    margin: 0 !important;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .item-list::after {
+    display: none;
+  }
+
+  .item-list .navbar-link,
+  .navbar-hiperion__nav li:last-child .secondary-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+  }
+
+  .navbar-hiperion__nav li:last-child {
+    margin: 8px 0 0 !important;
+  }
+
+  .navbar-hiperion__nav li:last-child .secondary-btn {
+    text-align: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-logo {
+    width: 150px;
+  }
+
+  .navbar-hiperion {
+    min-height: 76px;
+  }
 }

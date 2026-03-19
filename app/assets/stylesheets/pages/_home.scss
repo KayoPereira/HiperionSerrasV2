@@ -9,6 +9,13 @@
 		margin-top: 0;
 		z-index: 20;
 	}
+
+	@media (max-width: 991.98px) {
+		.navbar-hiperion {
+			position: relative;
+			top: 0;
+		}
+	}
 }
 
 // About section
@@ -55,12 +62,51 @@
 	@media (max-width: 991.98px) {
 		padding: 60px 0;
 
+		.container > .d-flex {
+			flex-wrap: wrap;
+			gap: 24px;
+		}
+
+		.container > .d-flex > div:first-child,
+		.container > .d-flex > div:last-child {
+			width: 100%;
+		}
+
+		.container > .d-flex > div:last-child {
+			max-width: 100% !important;
+		}
+
 		&__content {
 			padding-left: 0;
 		}
 
 		&__image-wrapper {
 			margin-bottom: 16px;
+			padding-right: 0;
+		}
+
+		&__image {
+			max-width: 100%;
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		padding: 40px 0;
+
+		&__title {
+			font-size: 1.5rem;
+		}
+
+		&__description {
+			font-size: 0.9rem;
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		padding: 32px 0;
+
+		&__title {
+			font-size: 1.25rem;
 		}
 	}
 }
@@ -104,10 +150,22 @@
 		margin-bottom: 32px;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 991.98px) {
+		> article {
+			width: calc(100% - 32px) !important;
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		padding: 0 16px;
+
+		> article {
+			width: 100% !important;
+			height: auto !important;
+			min-height: 400px;
+		}
+
 		&__content {
-			left: 16px;
-			right: 16px;
 			width: auto;
 			padding: 0 16px;
 		}
@@ -118,6 +176,27 @@
 
 		&__hero {
 			min-height: 400px;
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		padding: 0 12px;
+
+		> article {
+			min-height: 300px;
+		}
+
+		&__content {
+			padding: 0 8px;
+		}
+
+		&__title {
+			font-size: clamp(16px, 4vw, 24px);
+		}
+
+		&__description {
+			font-size: clamp(13px, 2vw, 15px);
+			margin-bottom: 16px;
 		}
 	}
 }
@@ -257,6 +336,39 @@
 			min-height: 360px;
 		}
 	}
+
+	@media (max-width: 767.98px) {
+		margin-top: 40px;
+
+		&__card {
+			min-height: 300px;
+		}
+
+		&__title {
+			font-size: clamp(20px, 4vw, 28px);
+		}
+
+		&__description {
+			font-size: clamp(13px, 2vw, 15px);
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		margin-top: 32px;
+
+		&__card {
+			min-height: 260px;
+			padding: 16px;
+		}
+
+		&__card-title {
+			font-size: clamp(16px, 3vw, 20px);
+		}
+
+		&__card-description {
+			font-size: clamp(12px, 2vw, 14px);
+		}
+	}
 }
 
 // Services/Section 4
@@ -361,6 +473,38 @@
 			padding: 0;
 		}
 	}
+
+	@media (max-width: 767.98px) {
+		margin-top: 40px;
+
+		&__content {
+			padding: 24px 16px 0;
+		}
+
+		&__title {
+			font-size: clamp(20px, 4vw, 28px);
+		}
+
+		&__description {
+			font-size: clamp(13px, 2vw, 15px);
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		margin-top: 32px;
+
+		&__content {
+			padding: 16px 12px 0;
+		}
+
+		&__title {
+			font-size: clamp(18px, 3vw, 24px);
+		}
+
+		&__description {
+			font-size: clamp(12px, 2vw, 14px);
+		}
+	}
 }
 
 // Quote banner/Section 5
@@ -444,6 +588,48 @@
 			padding: 32px 0;
 		}
 	}
+
+	@media (max-width: 767.98px) {
+		margin-top: 40px;
+
+		&__hero {
+			padding: 0 16px;
+			min-height: clamp(240px, 36vw, 280px);
+		}
+
+		&__content {
+			padding: 24px 0;
+		}
+
+		&__title {
+			font-size: clamp(20px, 4vw, 28px);
+		}
+
+		&__description {
+			font-size: clamp(13px, 2vw, 15px);
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		margin-top: 32px;
+
+		&__hero {
+			padding: 0 12px;
+			min-height: clamp(200px, 44vw, 240px);
+		}
+
+		&__content {
+			padding: 16px 0;
+		}
+
+		&__title {
+			font-size: clamp(18px, 3vw, 24px);
+		}
+
+		&__description {
+			font-size: clamp(12px, 2vw, 14px);
+		}
+	}
 }
 
 // Stats/Section 6
@@ -502,6 +688,21 @@
 
 		&__value {
 			margin-bottom: 10px;
+		}
+	}
+
+	@media (max-width: 479.98px) {
+		&__inner {
+			padding: clamp(20px, 2vw, 34px) clamp(12px, 2vw, 24px);
+		}
+
+		&__value {
+			font-size: clamp(32px, 6vw, 48px);
+			margin-bottom: 8px;
+		}
+
+		&__label {
+			font-size: clamp(12px, 2vw, 16px);
 		}
 	}
 }

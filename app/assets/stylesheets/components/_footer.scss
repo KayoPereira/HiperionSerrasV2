@@ -46,6 +46,7 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .hiperion-footer__menu ul,
@@ -68,6 +69,7 @@
   line-height: 1.15;
   text-decoration: none;
   transition: color 0.2s ease;
+  overflow-wrap: anywhere;
 }
 
 .hiperion-footer__menu a:hover,
@@ -145,6 +147,7 @@
   color: $hiperion-white;
   font-size: 15px;
   line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .hiperion-footer__location-city {
@@ -305,11 +308,26 @@
     margin-top: 40px;
   }
 
-  .hiperion-footer__main,
+  .hiperion-footer .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hiperion-footer__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+    padding-top: 28px;
+  }
+
   .hiperion-footer__locations {
     grid-template-columns: 1fr;
     gap: 26px;
     padding-top: 28px;
+  }
+
+  .hiperion-footer__brand,
+  .hiperion-footer__contacts {
+    grid-column: 1 / -1;
   }
 
   .hiperion-footer__locations {
@@ -321,9 +339,29 @@
     font-size: 15px;
   }
 
+  .hiperion-footer__brand {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .hiperion-footer__logo {
+    margin: 0;
+  }
+
+  .hiperion-footer__tagline,
+  .hiperion-footer__brand > .hiperion-footer__title {
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  .hiperion-footer__social {
+    align-self: flex-start;
+  }
+
   .hiperion-footer__title {
     margin-bottom: 12px;
     font-size: 15px;
+    max-width: 34rem;
   }
 
   .hiperion-footer__menu li,
@@ -341,21 +379,40 @@
     font-size: 15px;
   }
 
+  .hiperion-footer__contacts li {
+    align-items: flex-start;
+  }
+
+  .hiperion-footer__contacts a {
+    line-height: 1.35;
+  }
+
+  .hiperion-footer__locations {
+    gap: 32px;
+  }
+
+  .hiperion-footer__location {
+    max-width: 40rem;
+  }
+
   .hiperion-footer__social img {
     width: 30px;
     height: 30px;
   }
 
+  .hiperion-footer__bottom {
+    height: auto;
+  }
+
   .hiperion-footer__bottom-content {
-    height: 50px;
-    min-height: 50px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
-    padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 24px;
+    overflow: visible;
   }
 
   .hiperion-footer__bottom-content p,
@@ -367,5 +424,97 @@
   .hiperion-footer__legal-links {
     flex-wrap: wrap;
     gap: 12px;
+    row-gap: 8px;
+  }
+
+  .hiperion-footer__developed-by {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hiperion-footer .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hiperion-footer__main {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-top: 24px;
+  }
+
+  .hiperion-footer__locations {
+    gap: 26px;
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+
+  .hiperion-footer__logo {
+    width: 170px;
+  }
+
+  .hiperion-footer__tagline {
+    margin: 12px 0 24px;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .hiperion-footer__title,
+  .hiperion-footer__menu a,
+  .hiperion-footer__contacts a,
+  .hiperion-footer__location-city,
+  .hiperion-footer__location p {
+    font-size: 14px;
+  }
+
+  .hiperion-footer__contacts li {
+    gap: 10px;
+  }
+
+  .hiperion-footer__contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hiperion-footer__social {
+    gap: 16px;
+  }
+
+  .hiperion-footer__social a {
+    font-size: 28px;
+  }
+
+  .hiperion-footer__location-city {
+    align-items: flex-start;
+  }
+
+  .hiperion-footer__bottom-content {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .hiperion-footer__legal-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .hiperion-footer__logo {
+    width: 150px;
+  }
+
+  .hiperion-footer__title,
+  .hiperion-footer__menu a,
+  .hiperion-footer__contacts a,
+  .hiperion-footer__location-city,
+  .hiperion-footer__location p,
+  .hiperion-footer__bottom-content p,
+  .hiperion-footer__developed-by span,
+  .hiperion-footer__legal-links a {
+    font-size: 12px;
   }
 }
