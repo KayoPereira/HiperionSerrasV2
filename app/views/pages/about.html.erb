@@ -1,0 +1,35 @@
+<% content_for :title, "Quem Somos | Hiperion Serras" %>
+<% content_for :meta_description, "Conheça a Hiperion Serras: precisão, experiência e confiança no fornecimento de serras industriais de alta performance para corte de metais e madeiras." %>
+<% content_for :body_class, "about-page" %>
+
+<section
+  id="about-us"
+  class="about-banner"
+  aria-label="Banner da página Quem Somos"
+>
+  <div class="about-banner__content">
+    <h1 class="about-banner__title w-100">
+      Precisão que nasce da experiência, confiança que se constrói no corte.
+    </h1>
+    <nav class="about-banner__breadcrumb" aria-label="Navegação estrutural">
+      <ol class="about-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "about-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="about-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="about-banner__breadcrumb-current" itemprop="name">QUEM SOMOS</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<%= render "pages/about_section1" %>
+<%= render "pages/about_section2" %>
+<%= render "pages/about_section3" %>
+<%= render "pages/about_section4" %>
+<%= render "pages/about_section5" %>

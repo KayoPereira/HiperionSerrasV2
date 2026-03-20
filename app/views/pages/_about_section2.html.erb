@@ -1,0 +1,59 @@
+<% tabs = [
+  {
+    label: "Missão",
+    content: "Desenvolver soluções de corte industrial com precisão técnica, estabilidade operacional e alto desempenho, entregando confiabilidade para processos que não admitem erro."
+  },
+  {
+    label: "Visão",
+    content: "Ser referência nacional no fornecimento de serras industriais de alta performance, reconhecida pela excelência técnica, pelo suporte especializado e pela parceria duradoura com a indústria."
+  },
+  {
+    label: "Valores",
+    content: "Precisão como compromisso. Confiança como base. Conhecimento técnico como diferencial. Eficiência no corte como resultado. Parceria com o cliente como propósito."
+  },
+  {
+    label: "Política de qualidade",
+    content: "Garantir que cada produto e serviço entregue atenda ou supere os padrões técnicos exigidos pela indústria, com foco contínuo em melhoria de processos, rastreabilidade e satisfação do cliente."
+  }
+] %>
+
+<section
+  class="about-tabs-section"
+  aria-label="Missão, Visão, Valores e Política de qualidade"
+  data-controller="about-tabs"
+>
+  <nav class="about-tabs-section__nav" aria-label="Abas institucionais">
+    <ul class="about-tabs-section__tab-list" role="tablist">
+      <% tabs.each_with_index do |tab, i| %>
+        <li role="presentation">
+          <button
+            class="about-tabs-section__tab"
+            role="tab"
+            aria-selected="<%= i.zero? ? "true" : "false" %>"
+            aria-controls="about-tab-panel-<%= i %>"
+            id="about-tab-<%= i %>"
+            data-about-tabs-target="tab"
+            data-action="click->about-tabs#select"
+            data-about-tabs-index-param="<%= i %>"
+          >
+            <%= tab[:label] %>
+          </button>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <div class="about-tabs-section__content">
+    <% tabs.each_with_index do |tab, i| %>
+      <div
+        class="about-tabs-section__panel"
+        role="tabpanel"
+        id="about-tab-panel-<%= i %>"
+        aria-labelledby="about-tab-<%= i %>"
+        data-about-tabs-target="panel"
+      >
+        <p class="about-tabs-section__panel-text"><%= tab[:content] %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
