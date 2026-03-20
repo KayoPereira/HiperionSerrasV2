@@ -1,0 +1,429 @@
+.contact-page {
+  .navbar-hiperion {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    z-index: 20;
+  }
+}
+
+.contact-banner {
+  background-image:
+    linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%),
+    image-url("contact/contact_banner-2x.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: clamp(360px, 37.76vw, 725px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-banner__content {
+  text-align: center;
+  padding: 0 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-banner__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(20px, 2vw, 38px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: $hiperion-white;
+  margin-bottom: 20px;
+}
+
+.contact-banner__breadcrumb {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-banner__breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-banner__breadcrumb-link {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $hiperion-white;
+  }
+}
+
+.contact-banner__breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  list-style: none;
+}
+
+.contact-banner__breadcrumb-current {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $hiperion-gold;
+}
+
+@media (max-width: 991.98px) {
+  .contact-banner {
+    height: clamp(320px, 52vw, 520px);
+  }
+
+  .contact-banner__title {
+    font-size: clamp(18px, 4vw, 28px);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .contact-banner {
+    height: clamp(280px, 68vw, 420px);
+  }
+
+  .contact-banner__title {
+    font-size: clamp(16px, 5.5vw, 22px);
+  }
+}
+
+.contact-section {
+  background-color: $hiperion-white;
+  padding: clamp(48px, 7vw, 98px) 0;
+}
+
+.contact-section__grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.35fr);
+  gap: clamp(28px, 4.5vw, 96px);
+  align-items: start;
+}
+
+.contact-section__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(30px, 2.5vw, 50px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: $hiperion-gold;
+  margin-bottom: 22px;
+}
+
+.contact-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+}
+
+.contact-section__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: $hiperion-navy;
+
+  i {
+    width: 24px;
+    text-align: center;
+    color: $hiperion-gold;
+    font-size: 1.25rem;
+  }
+
+  a,
+  span {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(15px, 1.04vw, 20px);
+    line-height: 1.35;
+    font-weight: 600;
+    color: $hiperion-navy;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: darken($hiperion-navy, 6%);
+  }
+}
+
+.contact-section__item--top {
+  align-items: flex-start;
+}
+
+.contact-section__social-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(15px, 0.95vw, 18px);
+  font-weight: 700;
+  color: $hiperion-gold;
+  margin-bottom: 8px;
+}
+
+.contact-section__social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  a {
+    color: $hiperion-navy;
+    font-size: 1.85rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: $hiperion-gold;
+  }
+}
+
+.contact-form__errors {
+  border: 1px solid #d9534f;
+  background-color: #fff1f1;
+  color: #6f1d1b;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+
+  p {
+    font-family: "Montserrat", sans-serif;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form__grid {
+  display: grid;
+  gap: 10px;
+}
+
+.contact-form__grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(14px, 0.88vw, 16px);
+    font-weight: 700;
+    color: $hiperion-navy;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(14px, 0.95vw, 16px);
+    color: $hiperion-navy;
+    background-color: $hiperion-white;
+    border: 2px solid rgba(29, 35, 49, 0.55);
+    min-height: 48px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: $hiperion-gold;
+    box-shadow: 0 0 0 3px rgba(210, 172, 71, 0.2);
+  }
+}
+
+.contact-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2px;
+}
+
+.contact-form__submit {
+  min-width: clamp(140px, 14vw, 280px);
+  height: 52px;
+  background-color: transparent;
+  border: 3px solid $hiperion-gold;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 0.95vw, 18px);
+  font-weight: 700;
+  color: $hiperion-gold;
+  letter-spacing: 0.03em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: $hiperion-gold;
+    color: $hiperion-white;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .contact-section__grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .contact-section__form-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .contact-section {
+    padding: clamp(34px, 9vw, 64px) 0;
+  }
+
+  .contact-form__grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-section__title {
+    margin-bottom: 16px;
+  }
+
+  .contact-form__actions {
+    justify-content: stretch;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+  }
+}
+
+// ── Contact locations section ─────────────────────────────────────────────
+
+.contact-locations {
+  background-color: $hiperion-white;
+  padding: clamp(10px, 2vw, 30px) 0;
+}
+
+.contact-locations__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.contact-locations__label {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(11px, 0.75vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: $hiperion-gold;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.contact-locations__city {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(18px, 1.5vw, 26px);
+  font-weight: 700;
+  color: $hiperion-navy;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  i {
+    color: $hiperion-gold;
+    font-size: 1.2em;
+  }
+}
+
+.contact-locations__address {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 0.95vw, 16px);
+  font-weight: 500;
+  line-height: 1.55;
+  color: $hiperion-navy;
+  font-style: normal;
+  margin-bottom: 18px;
+}
+
+.contact-locations__map-link {
+  display: block;
+  text-decoration: none;
+}
+
+.contact-locations__map-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  &:hover .contact-locations__map-overlay {
+    opacity: 1;
+  }
+}
+
+.contact-locations__map {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 22vw, 380px);
+  border: 0;
+  pointer-events: none;
+}
+
+.contact-locations__map-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(29, 35, 49, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.contact-locations__map-cta {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 1vw, 17px);
+  font-weight: 700;
+  color: $hiperion-white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: $hiperion-gold;
+  padding: 10px 20px;
+
+  i {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .contact-locations__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact-locations__map {
+    height: clamp(220px, 60vw, 300px);
+  }
+}

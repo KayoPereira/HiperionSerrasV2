@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_12_100938) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_19_143000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "contact_messages", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "phone", null: false
+    t.string "email", null: false
+    t.string "state", null: false
+    t.string "city", null: false
+    t.string "referral_source", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_contact_messages_on_created_at"
+    t.index ["email"], name: "index_contact_messages_on_email"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
