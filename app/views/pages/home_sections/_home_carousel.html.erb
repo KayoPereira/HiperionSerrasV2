@@ -1,0 +1,94 @@
+<% slide_content = [
+  {
+    title: "Lâminas de Serra Fita Eberle para Corte Industrial de Alta Performance",
+    description: "Soluções em serra fita para metais, não ferrosos e aplicações industriais que exigem estabilidade e durabilidade no corte.",
+    cta_text: "CONHEÇA NOSSAS LÂMINAS DE SERRA FITA",
+    cta_url: root_path(anchor: "laminas-serra-fita"),
+    cta_aria_label: "Conheça nossas lâminas de serra fita"
+  },
+  {
+    title: "Serras Circulares Industriais para Metais e Não Ferrosos",
+    description: "Soluções técnicas em serra circular para metais, não ferrosos e aplicações que não admitem falhas no processo produtivo.",
+    cta_text: "CONHEÇA NOSSAS SERRAS CIRCULARES",
+    cta_url: root_path(anchor: "laminas-serra-fita"),
+    cta_aria_label: "Conheça nossas serras circulares"
+  },
+  {
+    title: "Serras Circulares para Corte de Madeira Industrial",
+    description: "Serras circulares para aplicações em MDF, madeira maciça, toras e pallets, com estabilidade dimensional e máxima durabilidade.",
+    cta_text: "CONHEÇA NOSSAS SERRAS CIRCULARES",
+    cta_url: root_path(anchor: "laminas-serra-fita"),
+    cta_aria_label: "Conheça nossas serras circulares"
+  },
+  {
+    title: "Serviços Técnicos em Serras Industriais",
+    description: "Afiação, manutenção e suporte especializado para serras circulares e lâminas de serra fita.",
+    cta_text: "CONHEÇA NOSSOS SERVIÇOS",
+    cta_url: root_path(anchor: "servicos"),
+    cta_aria_label: "Conheça nossos serviços"
+  }
+] %>
+
+<%
+  carousel_assets_path = Rails.root.join("app/assets/images/carousel")
+  banner_files = Dir.glob(carousel_assets_path.join("banner-2x-*"))
+    .select { |path| File.file?(path) }
+    .sort_by do |path|
+      match = File.basename(path).match(/banner-2x-(\d+)/)
+      match ? match[1].to_i : Float::INFINITY
+    end
+
+  slide_images = banner_files.map { |path| "carousel/#{File.basename(path)}" }
+  slide_images = ["carousel/banner-2x.png"] if slide_images.empty?
+%>
+
+<section class="hero-carousel" data-controller="carousel" data-carousel-interval-value="10000" aria-roledescription="carrossel" aria-label="Banner principal da Hiperion Serras">
+  <div class="hero-carousel__track">
+    <% slide_images.each_with_index do |image_path, index| %>
+      <% content = slide_content[index] || {} %>
+      <% has_text_content = content[:title].present? || content[:description].present? || content[:cta_text].present? %>
+      <article
+        class="hero-carousel__slide <%= "is-active" if index.zero? %>"
+        data-carousel-target="slide"
+        role="img"
+        aria-label="Lâmina de serra industrial em destaque"
+        aria-hidden="<%= index.zero? ? "false" : "true" %>"
+        style="background-image: linear-gradient(100deg, rgba(9, 19, 39, 0.78) 0%, rgba(9, 19, 39, 0.48) 42%, rgba(9, 19, 39, 0.2) 65%, rgba(9, 19, 39, 0.05) 100%), url('<%= asset_path(image_path) %>');"
+      >
+        <% if has_text_content %>
+          <div class="hero-carousel__content">
+            <% if content[:title].present? %>
+              <% if index.zero? %>
+                <h1 class="hero-carousel__title"><%= content[:title] %></h1>
+              <% else %>
+                <h2 class="hero-carousel__title"><%= content[:title] %></h2>
+              <% end %>
+            <% end %>
+
+            <% if content[:description].present? %>
+              <p class="hero-carousel__description"><%= content[:description] %></p>
+            <% end %>
+
+            <% if content[:cta_text].present? && content[:cta_url].present? %>
+              <%= link_to content[:cta_text], content[:cta_url], class: "secondary-btn", aria: { label: content[:cta_aria_label].presence || content[:cta_text] } %>
+            <% end %>
+          </div>
+        <% end %>
+      </article>
+    <% end %>
+  </div>
+
+  <div class="hero-carousel__controls" role="tablist" aria-label="Seleção de slide">
+    <% slide_images.each_with_index do |_image_path, index| %>
+      <button
+        type="button"
+        class="hero-carousel__dot <%= "is-active" if index.zero? %>"
+        data-carousel-target="dot"
+        data-action="click->carousel#goTo"
+        data-carousel-index-param="<%= index %>"
+        aria-label="Ir para slide <%= index + 1 %> de <%= slide_images.size %>"
+        aria-selected="<%= index.zero? ? "true" : "false" %>"
+      ></button>
+    <% end %>
+  </div>
+</section>
