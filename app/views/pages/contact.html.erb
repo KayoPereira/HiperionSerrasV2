@@ -1,0 +1,145 @@
+<% content_for :title, "Contato | Hiperion Serras" %>
+<% content_for :meta_description, "Entre em contato com a Hiperion Serras para suporte técnico, orientação especializada e soluções em serras industriais de alta performance." %>
+<% content_for :body_class, "contact-page" %>
+
+<section
+	id="contact-hero"
+	class="contact-banner"
+	aria-label="Banner da página de contato"
+>
+	<div class="contact-banner__content">
+		<h1 class="contact-banner__title">
+			Estamos prontos para ouvir voce. Fale com a gente.
+		</h1>
+
+		<nav class="contact-banner__breadcrumb" aria-label="Navegação estrutural">
+			<ol class="contact-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<%= link_to "HOME", root_path, class: "contact-banner__breadcrumb-link", itemprop: "item" %>
+					<meta itemprop="name" content="Home" />
+					<meta itemprop="position" content="1" />
+				</li>
+				<li class="contact-banner__breadcrumb-separator" aria-hidden="true">/</li>
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<span class="contact-banner__breadcrumb-current" itemprop="name">CONTATO</span>
+					<meta itemprop="position" content="2" />
+				</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+
+<section class="contact-section" aria-labelledby="contact-section-heading">
+	<div class="container">
+		<div class="contact-section__grid">
+			<article class="contact-section__info" aria-labelledby="contact-info-heading">
+				<h2 id="contact-info-heading" class="contact-section__title">Contatos</h2>
+
+				<ul class="contact-section__list">
+					<li class="contact-section__item">
+						<i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+						<a href="https://wa.me/5519971994133" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp da Hiperion Serras">(19) 97199.4133</a>
+					</li>
+					<li class="contact-section__item">
+						<i class="fa-solid fa-phone" aria-hidden="true"></i>
+						<a href="tel:+551938315457" aria-label="Ligar para Hiperion Serras no telefone fixo">(19) 3831.5457</a>
+					</li>
+					<li class="contact-section__item">
+						<i class="fa-regular fa-envelope" aria-hidden="true"></i>
+						<a href="mailto:contato@hiperionserras.com.br" aria-label="Enviar email para Hiperion Serras">contato@hiperionserras.com.br</a>
+					</li>
+					<li class="contact-section__item contact-section__item--top">
+						<i class="fa-regular fa-clock" aria-hidden="true"></i>
+						<span>Atendimento de Segunda a Quinta-feira das 7h as 17h e de Sexta-feira das 7h as 16h</span>
+					</li>
+				</ul>
+
+				<div class="contact-section__social">
+					<p class="contact-section__social-title">SIGA A GENTE!</p>
+					<div class="contact-section__social-links">
+						<a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Acompanhar Hiperion Serras no LinkedIn">
+							<i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+						</a>
+						<a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Acompanhar Hiperion Serras no Instagram">
+							<i class="fa-brands fa-instagram" aria-hidden="true"></i>
+						</a>
+						<a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Acompanhar Hiperion Serras no Facebook">
+							<i class="fa-brands fa-facebook" aria-hidden="true"></i>
+						</a>
+					</div>
+				</div>
+			</article>
+
+			<article class="contact-section__form-wrapper" aria-labelledby="contact-form-heading">
+				<h2 id="contact-form-heading" class="contact-section__title">Fale com a gente</h2>
+
+				<%= form_with model: @contact_message, url: contact_messages_path, local: true, class: "contact-form", aria: { label: "Formulario de contato" } do |f| %>
+					<% if @contact_message.errors.any? %>
+						<div class="contact-form__errors" role="alert" aria-live="polite">
+							<p>Verifique os campos abaixo:</p>
+							<ul>
+								<% @contact_message.errors.full_messages.each do |message| %>
+									<li><%= message %></li>
+								<% end %>
+							</ul>
+						</div>
+					<% end %>
+
+					<div class="contact-form__field contact-form__field--full">
+						<%= f.label :full_name, "*Seu nome completo" %>
+						<%= f.text_field :full_name, required: true, autocomplete: "name" %>
+					</div>
+
+					<div class="contact-form__grid contact-form__grid--2">
+						<div class="contact-form__field">
+							<%= f.label :phone, "*Telefone ou Celular" %>
+							<%= f.telephone_field :phone, required: true, autocomplete: "tel",
+								data: { controller: "phone-mask" },
+								placeholder: "(19) 99999-9999",
+								maxlength: 15 %>
+						</div>
+
+						<div class="contact-form__field">
+							<%= f.label :email, "*Seu e-mail" %>
+							<%= f.email_field :email, required: true, autocomplete: "email" %>
+						</div>
+					</div>
+
+					<div class="contact-form__grid contact-form__grid--2">
+						<div class="contact-form__field">
+							<%= f.label :state, "*Estado" %>
+							<%= f.select :state,
+								["SP", "MG", "RJ", "ES", "PR", "SC", "RS", "BA", "GO", "DF", "Outro"],
+								{ prompt: "Selecione" },
+								required: true %>
+						</div>
+
+						<div class="contact-form__field">
+							<%= f.label :city, "*Cidade" %>
+							<%= f.text_field :city, required: true %>
+						</div>
+					</div>
+
+					<div class="contact-form__field contact-form__field--full">
+						<%= f.label :referral_source, "*Como nos encontrou?" %>
+						<%= f.select :referral_source,
+							["Google", "Instagram", "LinkedIn", "Facebook", "Indicacao", "Cliente atual", "Outro"],
+							{ prompt: "Selecione" },
+							required: true %>
+					</div>
+
+					<div class="contact-form__field contact-form__field--full">
+						<%= f.label :message, "*Mensagem" %>
+						<%= f.text_area :message, required: true, rows: 5 %>
+					</div>
+
+					<div class="contact-form__actions">
+						<%= f.submit "ENVIAR", class: "contact-form__submit" %>
+					</div>
+				<% end %>
+			</article>
+		</div>
+	</div>
+</section>
+
+<%= render "pages/contact_sections/contact_locations" %>
