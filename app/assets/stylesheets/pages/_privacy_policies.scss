@@ -1,0 +1,215 @@
+.privacy-policies-page {
+  .navbar-hiperion {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    z-index: 20;
+  }
+}
+
+.privacy-policies-banner {
+  background-image:
+    linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%),
+    image-url("policies/privacy_policies-2x.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: clamp(360px, 37.76vw, 725px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.privacy-policies-banner__content {
+  text-align: center;
+  padding: 0 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.privacy-policies-banner__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(20px, 2vw, 38px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: $hiperion-white;
+  margin-bottom: 20px;
+}
+
+.privacy-policies-banner__breadcrumb {
+  display: flex;
+  justify-content: center;
+}
+
+.privacy-policies-banner__breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.privacy-policies-banner__breadcrumb-link {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $hiperion-white;
+  }
+}
+
+.privacy-policies-banner__breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  list-style: none;
+}
+
+.privacy-policies-banner__breadcrumb-current {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $hiperion-gold;
+}
+
+.privacy-policies-content {
+  background-color: $hiperion-white;
+  padding: clamp(44px, 6vw, 88px) 0;
+}
+
+.privacy-policies-content__article {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.privacy-policies-content__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(26px, 2.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: $hiperion-navy;
+  margin: 0 0 22px;
+}
+
+.privacy-policies-content__block {
+  margin-top: clamp(26px, 3.2vw, 42px);
+}
+
+.privacy-policies-content__subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(20px, 1.8vw, 30px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: $hiperion-gold;
+  margin: 0 0 14px;
+}
+
+.privacy-policies-content__paragraph,
+.privacy-policies-content__list li {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(15px, 1vw, 18px);
+  font-weight: 500;
+  line-height: 1.75;
+  color: $hiperion-navy;
+}
+
+.privacy-policies-content__paragraph {
+  margin: 0 auto 14px;
+  max-width: 940px;
+
+  a {
+    color: $hiperion-gold;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($hiperion-gold, 8%);
+    }
+  }
+}
+
+.privacy-policies-content__list {
+  list-style: disc;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0 auto 14px;
+  max-width: 940px;
+}
+
+.privacy-policies-content__closing,
+.privacy-policies-content__signature {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(15px, 1.05vw, 19px);
+  font-weight: 700;
+  line-height: 1.5;
+  color: $hiperion-navy;
+  margin: 0;
+}
+
+.privacy-policies-content__closing {
+  margin-top: clamp(30px, 3.8vw, 52px);
+}
+
+.privacy-policies-content__signature {
+  margin-top: 6px;
+  color: $hiperion-gold;
+}
+
+@media (max-width: 991.98px) {
+  .privacy-policies-banner {
+    height: clamp(320px, 52vw, 520px);
+  }
+
+  .privacy-policies-banner__title {
+    font-size: clamp(18px, 4vw, 28px);
+  }
+
+  .privacy-policies-content {
+    padding: clamp(36px, 8vw, 72px) 0;
+  }
+
+  .privacy-policies-content__list {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .privacy-policies-banner {
+    height: clamp(280px, 68vw, 420px);
+  }
+
+  .privacy-policies-banner__title {
+    font-size: clamp(16px, 5.5vw, 22px);
+  }
+
+  .privacy-policies-content__article {
+    max-width: 100%;
+  }
+
+  .privacy-policies-content__title {
+    margin-bottom: 18px;
+  }
+
+  .privacy-policies-content__block {
+    margin-top: 24px;
+  }
+
+  .privacy-policies-content__paragraph,
+  .privacy-policies-content__list li {
+    font-size: clamp(14px, 4.1vw, 17px);
+    line-height: 1.7;
+  }
+}

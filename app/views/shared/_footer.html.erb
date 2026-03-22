@@ -86,9 +86,9 @@
     <div class="container hiperion-footer__bottom-content">
       <p>© 2026 - Hiperion Serras - Todos os direitos reservados.</p>
       <nav class="hiperion-footer__legal-links" aria-label="Links legais">
-        <a href="#" class="text-decoration-none">Politica de Privacidade</a>
-        <a href="#" class="text-decoration-none">Politica de Cookies</a>
-        <a href="#" class="text-decoration-none">Termos de Uso</a>
+        <%= link_to "Politica de Privacidade", privacy_policies_path, class: "text-decoration-none" %>
+        <%= link_to "Politica de Cookies", cookies_policies_path, class: "text-decoration-none" %>
+        <%= link_to "Termos de Uso", terms_of_use_path, class: "text-decoration-none" %>
       </nav>
       <div class="hiperion-footer__developed-by">
         <span>Site desenvolvido por:</span>
