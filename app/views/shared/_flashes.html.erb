@@ -1,4 +1,24 @@
-<% if notice %>
+<% if flash[:success_modal].present? %>
+  <div
+    class="success-modal-overlay"
+    data-controller="success-modal"
+    data-action="keydown@window->success-modal#handleKeydown click->success-modal#overlayClick"
+  >
+    <div class="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+      <div class="success-modal__icon" aria-hidden="true">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <p id="success-modal-title" class="success-modal__message">
+        <%= flash[:success_modal] %>
+      </p>
+
+      <button type="button" class="success-modal__button" data-action="success-modal#close">
+        OK!
+      </button>
+    </div>
+  </div>
+<% elsif notice %>
   <div class="alert alert-info alert-dismissible fade show m-1" role="alert" data-controller="flash" data-flash-delay-value="5000">
     <%= notice %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

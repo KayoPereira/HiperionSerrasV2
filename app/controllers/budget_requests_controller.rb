@@ -6,7 +6,7 @@ class BudgetRequestsController < ApplicationController
 
     if @budget_request.save
       if deliver_budget_email
-        redirect_to budget_path, notice: "Solicitacao de orcamento enviada com sucesso. Nossa equipe retornara em breve."
+        redirect_to budget_path, flash: { success_modal: "Solicitação de orçamento enviado com sucesso!" }
       else
         redirect_to budget_path, alert: "Recebemos sua solicitacao, mas houve uma falha temporaria no envio do email. Nossa equipe vai verificar manualmente."
       end
