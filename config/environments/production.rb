@@ -66,7 +66,7 @@ Rails.application.configure do
     address: ENV.fetch("SMTP_ADDRESS", "smtp.gmail.com"),
     port: ENV.fetch("SMTP_PORT", 587).to_i,
     domain: ENV.fetch("SMTP_DOMAIN", "hiperionserras.com.br"),
-    user_name: ENV.fetch("SMTP_USERNAME") || "no-reply@hiperionserras.com.br",
+    user_name: ENV.fetch("SMTP_USERNAME", "no-reply@hiperionserras.com.br"),
     password: Rails.application.credentials.smtp_password,
     authentication: ENV.fetch("SMTP_AUTHENTICATION", "plain").to_sym,
     enable_starttls_auto: ENV.fetch("SMTP_ENABLE_STARTTLS_AUTO", "true") == "true",

@@ -36,8 +36,6 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - HIPERION_SERRAS_V2_DATABASE_PASSWORD
-    - SMTP_USERNAME
-    - SMTP_PASSWORD
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
@@ -59,6 +57,7 @@ env:
     MAILER_FROM_ADDRESS: no-reply@hiperionserras.com.br
     MAILER_TO_ADDRESS: contato@hiperionserras.com.br
     SMTP_ADDRESS: smtp.gmail.com
+    SMTP_USERNAME: no-reply@hiperionserras.com.br
     SMTP_DOMAIN: hiperionserras.com.br
     SMTP_PORT: 587
     SMTP_AUTHENTICATION: plain
