@@ -1,0 +1,14 @@
+NOVO PEDIDO DE ORCAMENTO RECEBIDO - HIPERION SERRAS
+
+A equipe comercial recebeu uma nova solicitacao pelo site.
+
+DADOS DO ORCAMENTO
+- CNPJ: <%= @budget_request.company_tax_id %>
+- Segmento: <%= @budget_request.business_segment %>
+- Nome: <%= @budget_request.full_name %>
+- Telefone: <%= @budget_request.phone %>
+- Email: <%= @budget_request.email %>
+- Como nos encontrou: <%= @budget_request.referral_source %>
+
+MENSAGEM
+<%= @budget_request.message %>
