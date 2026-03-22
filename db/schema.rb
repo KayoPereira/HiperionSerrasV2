@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_19_143000) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_22_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "budget_requests", force: :cascade do |t|
+    t.string "company_tax_id", null: false
+    t.string "business_segment", null: false
+    t.string "full_name", null: false
+    t.string "phone", null: false
+    t.string "email", null: false
+    t.string "referral_source", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_budget_requests_on_created_at"
+    t.index ["email"], name: "index_budget_requests_on_email"
+  end
 
   create_table "contact_messages", force: :cascade do |t|
     t.string "full_name", null: false
