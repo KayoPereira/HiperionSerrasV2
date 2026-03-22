@@ -11,9 +11,7 @@ export default class extends Controller {
   }
 
   overlayClick(event) {
-    if (event.target === this.element) {
-      this.close()
-    }
+    if (event.target === this.element) this.close()
   }
 
   handleKeydown(event) {

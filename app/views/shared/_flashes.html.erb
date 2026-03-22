@@ -1,19 +1,39 @@
 <% if flash[:success_modal].present? %>
   <div
-    class="success-modal-overlay"
+    class="success-modal-overlay position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+    style="background-color: rgba(29, 35, 49, 0.65); z-index: 1100;"
     data-controller="success-modal"
     data-action="keydown@window->success-modal#handleKeydown click->success-modal#overlayClick"
   >
-    <div class="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
-      <div class="success-modal__icon" aria-hidden="true">
-        <i class="fa-solid fa-check"></i>
+    <div
+      class="success-modal bg-white text-center shadow"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-modal-title"
+      style="width: 100%; max-width: 360px; padding: 24px 26px 20px; border: 1px solid rgba(29, 35, 49, 0.12);"
+    >
+      <div
+        class="success-modal__icon rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+        aria-hidden="true"
+        style="width: 64px; height: 64px; border: 3px solid #D2AC47;"
+      >
+        <i class="fa-solid fa-check" style="color: #D2AC47; font-size: 28px; line-height: 1;"></i>
       </div>
 
-      <p id="success-modal-title" class="success-modal__message">
+      <p
+        id="success-modal-title"
+        class="success-modal__message mx-auto"
+        style="max-width: 270px; margin-bottom: 22px; color: #1D2331; font-size: clamp(18px, 1.2vw, 23px); font-weight: 700; line-height: 1.25;"
+      >
         <%= flash[:success_modal] %>
       </p>
 
-      <button type="button" class="success-modal__button" data-action="success-modal#close">
+      <button
+        type="button"
+        class="success-modal__button btn fw-bold text-uppercase"
+        style="width: 100%; max-width: 180px; height: 42px; border: 2px solid #D2AC47; color: #D2AC47; background: transparent;"
+        data-action="success-modal#close"
+      >
         OK!
       </button>
     </div>
