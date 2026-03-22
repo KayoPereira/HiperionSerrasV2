@@ -1,6 +1,4 @@
 class BudgetRequestMailer < ApplicationMailer
-  default from: "no-reply@hiperionserras.com.br"
-
   def new_request
     @budget_request = params[:budget_request]
 
@@ -10,7 +8,7 @@ class BudgetRequestMailer < ApplicationMailer
     end
 
     mail(
-      to: "contato@hiperionserras.com.br",
+      to: ENV.fetch("MAILER_TO_ADDRESS", "contato@hiperionserras.com.br"),
       subject: "[Site] Novo pedido de orcamento de #{@budget_request.full_name}"
     )
   end

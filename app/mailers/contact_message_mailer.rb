@@ -1,6 +1,4 @@
 class ContactMessageMailer < ApplicationMailer
-  default from: "no-reply@hiperionserras.com.br"
-
   def new_message
     @contact_message = params[:contact_message]
 
@@ -10,7 +8,7 @@ class ContactMessageMailer < ApplicationMailer
     end
 
     mail(
-      to: "contato@hiperionserras.com.br",
+      to: ENV.fetch("MAILER_TO_ADDRESS", "contato@hiperionserras.com.br"),
       subject: "[Site] Novo contato de #{@contact_message.full_name}"
     )
   end

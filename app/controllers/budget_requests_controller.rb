@@ -5,8 +5,11 @@ class BudgetRequestsController < ApplicationController
     @budget_request = BudgetRequest.new(budget_request_params)
 
     if @budget_request.save
-      BudgetRequestMailer.with(budget_request: @budget_request).new_request.deliver_now
-      redirect_to budget_path, notice: "Solicitacao de orcamento enviada com sucesso. Nossa equipe retornara em breve."
+      if deliver_budget_email
+        redirect_to budget_path, notice: "Solicitacao de orcamento enviada com sucesso. Nossa equipe retornara em breve."
+      else
+        redirect_to budget_path, alert: "Recebemos sua solicitacao, mas houve uma falha temporaria no envio do email. Nossa equipe vai verificar manualmente."
+      end
     else
       flash.now[:alert] = "Nao foi possivel enviar sua solicitacao. Verifique os campos e tente novamente."
       render "pages/budget", status: :unprocessable_entity
@@ -25,5 +28,13 @@ class BudgetRequestsController < ApplicationController
       :referral_source,
       :message
     )
+  end
+
+  def deliver_budget_email
+    BudgetRequestMailer.with(budget_request: @budget_request).new_request.deliver_now
+    true
+  rescue StandardError => error
+    Rails.logger.error("Budget email delivery failed: #{error.class} - #{error.message}")
+    false
   end
 end
