@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "contact", to: "pages#contact"
   get "budget", to: "pages#budget"
+  get "privacy-policies", to: "pages#privacy_policies", as: :privacy_policies
   resources :contact_messages, only: [ :create ]
   resources :budget_requests, only: [ :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :about, :contact, :budget ]
+  skip_before_action :authenticate_user!, only: [ :home, :about, :contact, :budget, :privacy_policies ]
 
   def home
   end
@@ -13,5 +13,8 @@ class PagesController < ApplicationController
 
   def budget
     @budget_request = BudgetRequest.new
+  end
+
+  def privacy_policies
   end
 end
