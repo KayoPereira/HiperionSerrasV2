@@ -47,6 +47,14 @@
 <%= render "shared/flashes" %>
 
     <%= yield %>
+
+    <% unless request.path == "/" %>
+      <% hide_serra_fita = request.path == "/serras_fita" %>
+      <% hide_serras_circulares = request.path == "/serras_circulares" %>
+      <% hide_servicos = request.path == "/servicos" %>
+      <%= render "shared/products_services_section", hide_serra_fita: hide_serra_fita, hide_serras_circulares: hide_serras_circulares, hide_servicos: hide_servicos %>
+    <% end %>
+
     <%= render "shared/footer" %>
     <%= render "shared/floating_whatsapp" %>
     <%= render "shared/cookie_banner" %>
