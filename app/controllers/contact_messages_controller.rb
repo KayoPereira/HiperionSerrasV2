@@ -6,7 +6,7 @@ class ContactMessagesController < ApplicationController
 
     if @contact_message.save
       if deliver_contact_email
-        redirect_to contact_path, notice: "Mensagem enviada com sucesso. Nossa equipe retornara em breve."
+        redirect_to contact_path, flash: { success_modal: "Mensagem enviada com sucesso!" }
       else
         redirect_to contact_path, alert: "Recebemos sua mensagem, mas houve uma falha temporaria no envio do email. Nossa equipe vai verificar manualmente."
       end
