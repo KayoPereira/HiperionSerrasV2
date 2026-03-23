@@ -1,0 +1,31 @@
+<% heading_id = "others-section-#{title.parameterize}" %>
+
+<section class="others-section" aria-labelledby="<%= heading_id %>">
+  <div class="container">
+    <header class="others-section__header">
+      <h2 id="<%= heading_id %>" class="others-section__title"><%= title %></h2>
+      <p class="others-section__subtitle"><%= subtitle %></p>
+    </header>
+
+    <% if items.any? %>
+      <div class="others-section__grid">
+        <% items.each do |item| %>
+          <article class="others-section__card">
+            <%= link_to item_path.call(item), class: "others-section__link", aria: { label: "#{item_label_prefix} #{item.name}" } do %>
+              <div class="others-section__image-wrapper">
+                <% if item.image.attached? %>
+                  <%= image_tag item.image, class: "others-section__image", alt: item.name %>
+                <% else %>
+                  <div class="others-section__image others-section__image--placeholder" aria-hidden="true"></div>
+                <% end %>
+              </div>
+              <h3 class="others-section__name"><%= item.name %></h3>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="others-section__empty"><%= empty_message %></p>
+    <% end %>
+  </div>
+</section>

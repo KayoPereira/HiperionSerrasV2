@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   get "terms-of-use", to: "pages#terms_of_use", as: :terms_of_use
   resources :contact_messages, only: [ :create ]
   resources :budget_requests, only: [ :create ]
+  resources :services, only: [ :index, :show ]
+
+  scope "painel-servicos-hiperion", as: :secret do
+    resources :services, except: [ :index, :show ]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

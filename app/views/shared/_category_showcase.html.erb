@@ -1,0 +1,26 @@
+<% heading_id = "category-showcase-#{title.parameterize}" %>
+
+<section class="category-showcase" aria-labelledby="<%= heading_id %>">
+  <header class="category-showcase__header">
+    <h2 id="<%= heading_id %>" class="category-showcase__title"><%= title %></h2>
+    <p class="category-showcase__subtitle"><%= subtitle %></p>
+  </header>
+
+  <div class="category-showcase__grid">
+    <% cards.each do |card| %>
+      <article
+        class="category-showcase__card"
+        aria-label="<%= card[:aria_label] %>"
+        style="background-image: linear-gradient(135deg, rgba(9, 19, 39, 0.65) 0%, rgba(9, 19, 39, 0.35) 100%), url('<%= asset_path(card[:image]) %>');"
+      >
+        <div class="category-showcase__card-body">
+          <h3 class="category-showcase__card-title"><%= card[:name] %></h3>
+          <%= link_to card[:cta_text], card[:cta_url],
+                class: "secondary-btn",
+                style: "font-size: 11px;",
+                aria: { label: card[:aria_label] } %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+</section>

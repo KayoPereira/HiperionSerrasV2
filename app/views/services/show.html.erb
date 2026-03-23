@@ -1,0 +1,102 @@
+<% content_for :title, "#{@service.name} | Servicos | Hiperion Serras" %>
+<% content_for :meta_description, @service.description %>
+<% content_for :body_class, "services-page" %>
+
+<section id="services-hero" class="services-banner" aria-label="Banner da pagina de servicos">
+  <div class="services-banner__content">
+    <h1 class="services-banner__title"><%= @service.name %></h1>
+
+    <nav class="services-banner__breadcrumb" aria-label="Navegacao estrutural">
+      <ol class="services-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "services-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="services-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "SERVICOS", services_path, class: "services-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Servicos" />
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="services-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="services-banner__breadcrumb-current" itemprop="name"><%= @service.name.upcase %></span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="service-detail" aria-labelledby="service-detail-heading">
+  <div class="container service-detail__container">
+    <article class="service-detail__content">
+      <h2 id="service-detail-heading" class="service-detail__title"><%= @service.name %></h2>
+      <p class="service-detail__description"><%= @service.description %></p>
+      <div class="service-detail__rich-text trix-content"><%= render_service_details(@service.details) %></div>
+    </article>
+
+    <aside class="service-detail__side">
+      <% if @service.image.attached? %>
+        <div class="service-detail__media">
+          <%= image_tag @service.image, alt: @service.name, class: "service-detail__image" %>
+        </div>
+      <% end %>
+
+      <% if @service.service_faqs.any? %>
+        <section class="service-faq service-faq--side"
+                 aria-labelledby="service-faq-heading"
+                 data-controller="about-faq"
+                 itemscope itemtype="https://schema.org/FAQPage">
+          <h2 id="service-faq-heading" class="service-faq__title">Dúvidas frequentes sobre esse serviço:</h2>
+          <div class="service-faq__list">
+            <% @service.service_faqs.each_with_index do |faq, index| %>
+              <article class="service-faq__item"
+                       data-about-faq-target="item"
+                       itemscope itemprop="mainEntity"
+                       itemtype="https://schema.org/Question">
+                <button
+                  type="button"
+                  class="service-faq__question"
+                  data-about-faq-target="button"
+                  data-action="click->about-faq#toggle"
+                  data-about-faq-index-param="<%= index %>"
+                  aria-expanded="false"
+                  aria-controls="service-faq-answer-<%= @service.id %>-<%= index %>"
+                  id="service-faq-question-<%= @service.id %>-<%= index %>"
+                >
+                  <span class="service-faq__question-text" itemprop="name"><%= faq.question %></span>
+                  <span class="service-faq__icon" aria-hidden="true">+</span>
+                </button>
+
+                <div
+                  class="service-faq__answer"
+                  id="service-faq-answer-<%= @service.id %>-<%= index %>"
+                  role="region"
+                  aria-labelledby="service-faq-question-<%= @service.id %>-<%= index %>"
+                  data-about-faq-target="content"
+                  hidden
+                  itemscope itemprop="acceptedAnswer"
+                  itemtype="https://schema.org/Answer"
+                >
+                  <p class="service-faq__answer-text" itemprop="text"><%= faq.answer %></p>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </aside>
+  </div>
+</section>
+
+<%= render "pages/home_sections/home_section5" %>
+
+<%= render "shared/others_section",
+  title: "Conheça nossos outros serviços",
+  subtitle: "Soluções completas em serras industriais, afiação técnica e manutenção especializada para alta performance",
+  items: @other_services,
+  item_path: ->(service) { service_path(service) },
+  item_label_prefix: "Ver detalhes do serviço",
+  empty_message: "Ainda não há outros serviços disponíveis." %>
