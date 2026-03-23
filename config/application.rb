@@ -16,6 +16,14 @@ module HiperionSerrasV2
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    default_tags = Rails::HTML5::SafeListSanitizer.allowed_tags.to_a
+    default_attributes = Rails::HTML5::SafeListSanitizer.allowed_attributes.to_a
+
+    config.action_view.sanitized_allowed_tags = (default_tags + [ "span" ]).uniq
+    config.action_view.sanitized_allowed_attributes = (default_attributes + [ "style" ]).uniq
+    config.action_text.sanitizer_allowed_tags = (default_tags + [ "span" ]).uniq
+    config.action_text.sanitizer_allowed_attributes = (default_attributes + [ "style" ]).uniq
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.

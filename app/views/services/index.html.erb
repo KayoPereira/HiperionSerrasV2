@@ -1,0 +1,89 @@
+<% content_for :title, "Servicos | Hiperion Serras" %>
+<% content_for :meta_description, "Conheca os servicos tecnicos especializados da Hiperion Serras para Serras Circulares e Laminas de Serra Fita com qualidade, precisao e suporte tecnico dedicado." %>
+<% content_for :body_class, "services-page" %>
+
+<section id="services-hero" class="services-banner" aria-label="Banner da pagina de servicos">
+  <div class="services-banner__content">
+    <h1 class="services-banner__title">
+      Servicos tecnicos especializados em Serras Circulares e Laminas de Serra Fita
+    </h1>
+
+    <nav class="services-banner__breadcrumb" aria-label="Navegacao estrutural">
+      <ol class="services-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "services-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="services-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="services-banner__breadcrumb-current" itemprop="name">SERVICOS</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="services-list" aria-labelledby="services-list-heading">
+  <div class="container">
+    <h2 id="services-list-heading" class="visually-hidden">Lista de servicos</h2>
+
+    <% if user_signed_in? %>
+      <div class="services-list__top-actions">
+        <%= link_to "Novo servico", new_secret_service_path, class: "black-btn" %>
+      </div>
+    <% end %>
+
+    <% if @services.any? %>
+      <div class="services-list__grid">
+        <% @services.each do |service| %>
+          <article class="services-list__card">
+            <%= link_to service_path(service), class: "services-list__link", aria: { label: "Ver detalhes do servico #{service.name}" } do %>
+              <div class="services-list__image-wrapper">
+                <% if service.image.attached? %>
+                  <%= image_tag service.image, class: "services-list__image", alt: service.name %>
+                <% else %>
+                  <div class="services-list__image services-list__image--placeholder" aria-hidden="true"></div>
+                <% end %>
+              </div>
+              <h3 class="services-list__name"><%= service.name %></h3>
+            <% end %>
+
+            <% if user_signed_in? %>
+              <div class="services-list__admin-actions">
+                <%= link_to "Editar", edit_secret_service_path(service), class: "secondary-btn" %>
+                <%= link_to "Excluir",
+                  secret_service_path(service),
+                  data: { turbo_method: :delete, turbo_confirm: "Deseja realmente excluir este servico?" },
+                  class: "black-btn" %>
+              </div>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="services-list__empty">Ainda nao ha servicos disponiveis...</p>
+    <% end %>
+  </div>
+</section>
+
+<%= render "shared/category_showcase",
+  title: "Conheça nossos produtos",
+  subtitle: "Soluções completas em Lâminas de Serra Fita Eberle e Serras Circulares.",
+  cards: [
+    {
+      image: "carousel/banner-2x-0.png",
+      name: "LÂMINAS DE SERRA FITA",
+      cta_text: "CONHEÇA NOSSAS LÂMINAS DE SERRA FITA",
+      cta_url: "#",
+      aria_label: "Saiba mais sobre as lâminas de serra fita da Hiperion Serras"
+    },
+    {
+      image: "carousel/banner-2x-1.png",
+      name: "SERRAS CIRCULARES",
+      cta_text: "CONHEÇA NOSSAS SERRAS CIRCULARES",
+      cta_url: "#",
+      aria_label: "Saiba mais sobre as serras circulares da Hiperion Serras"
+    }
+  ] %>

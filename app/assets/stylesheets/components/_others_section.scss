@@ -1,0 +1,108 @@
+.others-section {
+  background-color: $hiperion-white;
+  padding: clamp(38px, 6vw, 82px) 0;
+  border-top: 1px solid rgba(9, 19, 39, 0.1);
+}
+
+.others-section__header {
+  text-align: center;
+  margin-bottom: clamp(28px, 3.5vw, 48px);
+}
+
+.others-section__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(26px, 2.1vw, 42px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: $hiperion-navy;
+  margin-bottom: 12px;
+}
+
+.others-section__subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 0.95vw, 19px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: $hiperion-navy;
+  margin: 0;
+}
+
+.others-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 30px);
+}
+
+.others-section__card {
+  text-align: center;
+}
+
+.others-section__link {
+  text-decoration: none;
+  display: block;
+}
+
+.others-section__image-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: visible;
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+
+.others-section__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.others-section__image--placeholder {
+  background: linear-gradient(130deg, #b7bec9 0%, #8a95a8 100%);
+}
+
+.others-section__name {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(17px, 1.3vw, 33px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: $hiperion-navy;
+  margin: 18px auto 0;
+  max-width: 95%;
+  transition: color 0.25s ease;
+}
+
+.others-section__link:hover .others-section__image-wrapper,
+.others-section__link:focus-visible .others-section__image-wrapper {
+  transform: scale(1.03);
+}
+
+.others-section__link:hover,
+.others-section__link:focus-visible {
+  position: relative;
+  z-index: 2;
+}
+
+.others-section__link:hover .others-section__name,
+.others-section__link:focus-visible .others-section__name {
+  color: $hiperion-gold;
+}
+
+.others-section__empty {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(15px, 1vw, 19px);
+  color: $hiperion-navy;
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .others-section__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479.98px) {
+  .others-section__grid {
+    grid-template-columns: 1fr;
+  }
+}

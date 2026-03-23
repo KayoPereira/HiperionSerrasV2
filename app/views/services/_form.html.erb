@@ -1,0 +1,62 @@
+<%= form_with model: [:secret, @service], class: "service-admin-form", local: true do |f| %>
+  <% if @service.errors.any? %>
+    <div class="service-admin-form__errors" role="alert" aria-live="polite">
+      <p>Verifique os campos abaixo:</p>
+      <ul>
+        <% @service.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="service-admin-form__field">
+    <%= f.label :name, "Nome" %>
+    <%= f.text_area :name, rows: 2, required: true %>
+  </div>
+
+  <div class="service-admin-form__field">
+    <%= f.label :description, "Descricao" %>
+    <%= f.text_area :description, rows: 3, required: true %>
+  </div>
+
+  <div class="service-admin-form__field">
+    <%= f.label :details, "Detalhes (texto rico)" %>
+    <%= f.rich_text_area :details, required: true %>
+  </div>
+
+  <div class="service-admin-form__field">
+    <%= f.label :image, "Imagem" %>
+    <%= f.file_field :image, accept: "image/*", required: !@service.persisted? || !@service.image.attached? %>
+    <% if @service.image.attached? %>
+      <div class="service-admin-form__image-preview">
+        <%= image_tag @service.image, alt: @service.name %>
+      </div>
+    <% end %>
+  </div>
+
+  <fieldset class="service-admin-form__faq-fieldset" data-controller="service-faqs">
+    <legend>Perguntas frequentes</legend>
+
+    <div class="service-admin-form__faq-list" data-service-faqs-target="list">
+      <%= f.fields_for :service_faqs do |faq_fields| %>
+        <%= render "service_faq_fields", faq_fields: faq_fields %>
+      <% end %>
+    </div>
+
+    <template data-service-faqs-target="template">
+      <%= f.fields_for :service_faqs, ServiceFaq.new, child_index: "NEW_RECORD" do |faq_fields| %>
+        <%= render "service_faq_fields", faq_fields: faq_fields %>
+      <% end %>
+    </template>
+
+    <div class="service-admin-form__faq-actions">
+      <button type="button" class="black-btn" data-action="service-faqs#add">+ Adicionar FAQ</button>
+    </div>
+  </fieldset>
+
+  <div class="service-admin-form__actions">
+    <%= f.submit @service.persisted? ? "Atualizar servico" : "Criar servico", class: "black-btn" %>
+    <%= link_to "Cancelar", services_path, class: "secondary-btn" %>
+  </div>
+<% end %>

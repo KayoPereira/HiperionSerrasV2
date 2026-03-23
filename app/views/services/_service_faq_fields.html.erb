@@ -1,0 +1,17 @@
+<div class="service-admin-form__faq-card">
+  <div class="service-admin-form__field">
+    <%= faq_fields.label :question, "Pergunta" %>
+    <%= faq_fields.text_area :question, rows: 2 %>
+  </div>
+
+  <div class="service-admin-form__field">
+    <%= faq_fields.label :answer, "Resposta" %>
+    <%= faq_fields.text_area :answer, rows: 3 %>
+  </div>
+
+  <%= faq_fields.hidden_field :_destroy %>
+
+  <div class="service-admin-form__destroy-toggle">
+    <button type="button" class="secondary-btn" data-action="service-faqs#remove">Remover FAQ</button>
+  </div>
+</div>
