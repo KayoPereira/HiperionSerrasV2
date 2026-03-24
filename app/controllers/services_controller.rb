@@ -56,6 +56,8 @@ class ServicesController < ApplicationController
   end
 
   def service_params
+    normalize_service_faqs_attribute_keys!
+
     params.require(:service).permit(
       :name,
       :description,
@@ -63,6 +65,35 @@ class ServicesController < ApplicationController
       :image,
       service_faqs_attributes: [ :id, :question, :answer, :_destroy ]
     )
+  end
+
+  def normalize_service_faqs_attribute_keys!
+    service_payload = params[:service]
+    return unless service_payload.respond_to?(:[])
+
+    raw_faqs = service_payload[:service_faqs_attributes]
+    return unless raw_faqs.respond_to?(:to_h)
+
+    faqs_hash = raw_faqs.respond_to?(:to_unsafe_h) ? raw_faqs.to_unsafe_h : raw_faqs.to_h
+    return if faqs_hash.keys.all? { |key| key.to_s.match?(/\A\d+\z/) }
+
+    normalized = {}
+    next_index = 0
+
+    faqs_hash.each do |key, value|
+      key_str = key.to_s
+
+      if key_str.match?(/\A\d+\z/) && !normalized.key?(key_str)
+        normalized[key_str] = value
+        next_index = [ next_index, key_str.to_i + 1 ].max
+      else
+        next_index += 1 while normalized.key?(next_index.to_s)
+        normalized[next_index.to_s] = value
+        next_index += 1
+      end
+    end
+
+    service_payload[:service_faqs_attributes] = normalized
   end
 
   def build_minimum_faq
