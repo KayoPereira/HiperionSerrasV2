@@ -1,0 +1,9 @@
+<% content_for :title, "Editar produto | Hiperion Serras" %>
+<% content_for :meta_description, "Edição interna de produtos da Hiperion Serras." %>
+
+<section class="product-admin" aria-labelledby="product-admin-edit-heading">
+  <div class="container">
+    <h1 id="product-admin-edit-heading" class="product-admin__title">Editar produto</h1>
+    <%= render "form", product: @product %>
+  </div>
+</section>

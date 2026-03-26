@@ -29,3 +29,12 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    enums:
+      product:
+        product_type:
+          circular_saw: "Serra Circular"
+          band_saw: "Serra Fita"
+        application_type:
+          ferrous_and_non_ferrous_metals: "Metais e não ferrosos"
+          wood: "Madeira"

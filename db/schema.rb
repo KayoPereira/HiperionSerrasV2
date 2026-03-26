@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_23_222508) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_26_003653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -80,6 +80,28 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_23_222508) do
     t.index ["email"], name: "index_contact_messages_on_email"
   end
 
+  create_table "product_faqs", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.text "question", null: false
+    t.text "answer", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_faqs_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "product_type", null: false
+    t.text "name", null: false
+    t.text "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "application_type", default: 0, null: false
+    t.string "slug"
+    t.index ["application_type"], name: "index_products_on_application_type"
+    t.index ["product_type"], name: "index_products_on_product_type"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
   create_table "service_faqs", force: :cascade do |t|
     t.bigint "service_id", null: false
     t.text "question", null: false
@@ -110,5 +132,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_23_222508) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "product_faqs", "products"
   add_foreign_key "service_faqs", "services"
 end

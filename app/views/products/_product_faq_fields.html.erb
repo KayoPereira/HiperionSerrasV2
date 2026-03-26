@@ -1,0 +1,24 @@
+<div class="product-admin-form__faq-item" data-service-faqs-target="item">
+  <div class="product-admin-form__faq-fields">
+    <div class="product-admin-form__faq-field">
+      <%= faq_fields.label :question, "Pergunta" %>
+      <%= faq_fields.text_area :question, rows: 2, required: true %>
+    </div>
+
+    <div class="product-admin-form__faq-field">
+      <%= faq_fields.label :answer, "Resposta" %>
+      <%= faq_fields.text_area :answer, rows: 3, required: true %>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="product-admin-form__faq-remove"
+    data-action="service-faqs#remove"
+    aria-label="Remover pergunta frequente"
+  >
+    ✕
+  </button>
+
+  <%= faq_fields.hidden_field :_destroy %>
+</div>

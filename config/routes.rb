@@ -14,9 +14,13 @@ Rails.application.routes.draw do
   resources :contact_messages, only: [ :create ]
   resources :budget_requests, only: [ :create ]
   resources :services, only: [ :index, :show ]
+  get "products/circular-saw", to: "products#circular_saw", as: :circular_saw_products
+  get "products/band-saw", to: "products#band_saw", as: :band_saw_products
+  resources :products, only: [ :show ]
 
   scope "painel-servicos-hiperion", as: :secret do
     resources :services, except: [ :index, :show ]
+    resources :products, except: [ :index, :show ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

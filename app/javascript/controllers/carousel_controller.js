@@ -29,6 +29,15 @@ export default class extends Controller {
 
     const nextIndex = (this.currentIndex + 1) % this.slideTargets.length
     this.show(nextIndex)
+    this.restartAutoplay()
+  }
+
+  prev() {
+    if (!this.hasSlideTarget) return
+
+    const prevIndex = (this.currentIndex - 1 + this.slideTargets.length) % this.slideTargets.length
+    this.show(prevIndex)
+    this.restartAutoplay()
   }
 
   show(index) {

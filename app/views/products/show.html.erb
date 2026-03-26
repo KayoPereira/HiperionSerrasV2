@@ -1,0 +1,196 @@
+<% content_for :title, "#{@product.name} | Produtos | Hiperion Serras" %>
+<% content_for :meta_description, truncate(strip_tags(@product.description&.body&.to_plain_text || @product.name), length: 160) %>
+<% content_for :body_class, @product.circular_saw? ? "circular-saw-page" : "band-saw-page" %>
+
+<% banner_image = @product.images.attached? && @product.images.any? ? url_for(@product.images.first) : nil %>
+<section id="products-hero"
+  class="<%= @product.circular_saw? ? 'circular-saw-banner' : 'band-saw-banner' %>"
+  <% if banner_image %>style="background-image: linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%), url('<%= banner_image %>');"<% end %>
+  aria-label="Banner da pagina de produtos">
+  <div class="<%= @product.circular_saw? ? 'circular-saw-banner__content' : 'band-saw-banner__content' %>">
+    <span class="product-banner__application-label"><%= Product.human_enum_name(:application_type, @product.application_type) %></span>
+    <h1 class="<%= @product.circular_saw? ? 'circular-saw-banner__title' : 'band-saw-banner__title' %>"><%= @product.name %></h1>
+
+    <nav class="<%= @product.circular_saw? ? 'circular-saw-banner__breadcrumb' : 'band-saw-banner__breadcrumb' %>" aria-label="Navegacao estrutural">
+      <ol class="<%= @product.circular_saw? ? 'circular-saw-banner__breadcrumb-list' : 'band-saw-banner__breadcrumb-list' %>" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "#{@product.circular_saw? ? 'circular-saw-banner__breadcrumb-link' : 'band-saw-banner__breadcrumb-link'}", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="<%= @product.circular_saw? ? 'circular-saw-banner__breadcrumb-separator' : 'band-saw-banner__breadcrumb-separator' %>" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to(@product.circular_saw? ? "SERRAS CIRCULARES" : "LAMINAS DE SERRA FITA", @product.circular_saw? ? circular_saw_products_path : band_saw_products_path, class: "#{@product.circular_saw? ? 'circular-saw-banner__breadcrumb-link' : 'band-saw-banner__breadcrumb-link'}", itemprop: "item") %>
+          <meta itemprop="name" content="Produtos" />
+          <meta itemprop="position" content="2" />
+        </li>
+        <li class="<%= @product.circular_saw? ? 'circular-saw-banner__breadcrumb-separator' : 'band-saw-banner__breadcrumb-separator' %>" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="<%= @product.circular_saw? ? 'circular-saw-banner__breadcrumb-current' : 'band-saw-banner__breadcrumb-current' %>" itemprop="name"><%= @product.name.upcase %></span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="product-detail" aria-labelledby="product-detail-heading">
+  <div class="container product-detail__container">
+    <article class="product-detail__content">
+      <h2 id="product-detail-heading" class="product-detail__title"><%= @product.name %></h2>
+      <div class="product-detail__rich-text trix-content"><%= render_product_description(@product.description) if @product.description.present? %></div>
+
+      <% if @product.video_url.present? %>
+        <section class="product-video" aria-labelledby="product-video-heading">
+          <h3 id="product-video-heading" class="product-video__title">Video do produto:</h3>
+          <div class="product-video__wrapper">
+            <iframe
+              class="product-video__iframe"
+              title="Video do produto <%= @product.name %>"
+              src="<%= youtube_embed_url(@product.video_url) %>"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+      <% end %>
+    </article>
+
+    <aside class="product-detail__side">
+      <% if @product.images.attached? && @product.images.any? %>
+        <section class="product-carousel" data-controller="carousel gallery-modal" aria-label="Galeria de imagens do produto <%= @product.name %>">
+          <div class="product-carousel__track">
+            <% @product.images.each_with_index do |image, index| %>
+              <div
+                class="product-carousel__slide <%= "is-active" if index.zero? %>"
+                data-carousel-target="slide"
+                role="img"
+                aria-label="Imagem <%= index + 1 %> do produto"
+                aria-hidden="<%= index.zero? ? "false" : "true" %>"
+                style="cursor: zoom-in;"
+                data-action="click->gallery-modal#open"
+                data-gallery-modal-index-param="<%= index %>"
+              >
+                <%= image_tag image, alt: "#{@product.name} - Imagem #{index + 1}", class: "product-carousel__image" %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @product.images.count > 1 %>
+            <div class="product-carousel__controls" role="tablist" aria-label="Selecao de imagem">
+              <button type="button" class="product-carousel__arrow product-carousel__arrow--prev" aria-label="Imagem anterior" data-action="click->carousel#prev"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+              <div class="product-carousel__dots">
+                <% @product.images.each_with_index do |_image, index| %>
+                  <button type="button" class="product-carousel__dot <%= "is-active" if index.zero? %>" data-carousel-target="dot" data-action="click->carousel#goTo" data-carousel-index-param="<%= index %>" aria-label="Ir para imagem <%= index + 1 %> de <%= @product.images.count %>" aria-selected="<%= index.zero? ? "true" : "false" %>"></button>
+                <% end %>
+              </div>
+              <button type="button" class="product-carousel__arrow product-carousel__arrow--next" aria-label="Proxima imagem" data-action="click->carousel#next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+            </div>
+          <% end %>
+
+          <%# Gallery Modal %>
+          <div class="gallery-modal" data-gallery-modal-target="overlay" hidden>
+            <button type="button" class="gallery-modal__close" data-action="click->gallery-modal#close" aria-label="Fechar galeria">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <div class="gallery-modal__body" data-action="click->gallery-modal#closeOutside">
+              <button type="button" class="gallery-modal__arrow gallery-modal__arrow--prev" data-action="click->gallery-modal#prev" aria-label="Imagem anterior">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+              </button>
+
+              <div class="gallery-modal__slides">
+                <% @product.images.each_with_index do |image, index| %>
+                  <div class="gallery-modal__slide <%= "is-active" if index.zero? %>" data-gallery-modal-target="galleryImage">
+                    <%= image_tag image, alt: "#{@product.name} - Imagem #{index + 1}", class: "gallery-modal__image" %>
+                  </div>
+                <% end %>
+              </div>
+
+              <button type="button" class="gallery-modal__arrow gallery-modal__arrow--next" data-action="click->gallery-modal#next" aria-label="Próxima imagem">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="gallery-modal__dots">
+              <% @product.images.each_with_index do |_image, index| %>
+                <button type="button" class="gallery-modal__dot <%= "is-active" if index.zero? %>" data-gallery-modal-target="galleryDot" data-action="click->gallery-modal#goTo" data-gallery-modal-index-param="<%= index %>" aria-label="Ir para imagem <%= index + 1 %>"></button>
+              <% end %>
+            </div>
+          </div>
+        </section>
+      <% end %>
+
+      <% if @product.product_faqs.any? %>
+        <section class="product-faq product-faq--side"
+                 aria-labelledby="product-faq-heading"
+                 data-controller="about-faq"
+                 itemscope itemtype="https://schema.org/FAQPage">
+          <h2 id="product-faq-heading" class="product-faq__title">Duvidas frequentes sobre esse produto:</h2>
+          <div class="product-faq__list">
+            <% @product.product_faqs.each_with_index do |faq, index| %>
+              <article class="product-faq__item"
+                       data-about-faq-target="item"
+                       itemscope itemprop="mainEntity"
+                       itemtype="https://schema.org/Question">
+                <button
+                  type="button"
+                  class="product-faq__question"
+                  data-about-faq-target="button"
+                  data-action="click->about-faq#toggle"
+                  data-about-faq-index-param="<%= index %>"
+                  aria-expanded="false"
+                  aria-controls="product-faq-answer-<%= @product.id %>-<%= index %>"
+                  id="product-faq-question-<%= @product.id %>-<%= index %>"
+                >
+                  <span class="product-faq__question-text" itemprop="name"><%= faq.question %></span>
+                  <span class="product-faq__icon" aria-hidden="true">+</span>
+                </button>
+
+                <div
+                  class="product-faq__answer"
+                  id="product-faq-answer-<%= @product.id %>-<%= index %>"
+                  role="region"
+                  aria-labelledby="product-faq-question-<%= @product.id %>-<%= index %>"
+                  data-about-faq-target="content"
+                  hidden
+                  itemscope itemprop="acceptedAnswer"
+                  itemtype="https://schema.org/Answer"
+                >
+                  <p class="product-faq__answer-text" itemprop="text"><%= faq.answer %></p>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </aside>
+  </div>
+
+  <% if @product.image_detail.attached? %>
+    <div class="container product-detail__specs" data-controller="image-modal">
+      <h3 class="product-detail__specs-title">Parâmetros técnicos:</h3>
+      <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "product-detail__specs-image", loading: "lazy", data: { action: "click->image-modal#open" } %>
+
+      <div class="image-modal" data-image-modal-target="overlay" hidden>
+        <button type="button" class="image-modal__close" data-action="click->image-modal#close" aria-label="Fechar">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <div class="image-modal__body" data-action="click->image-modal#closeOutside">
+          <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "image-modal__image" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<%= render "pages/home_sections/home_section5" %>
+
+<%= render "shared/others_section",
+  title: "Conheça nossos outros produtos",
+  subtitle: "Soluções completas em Lâminas de Serra Fita Eberle e Serras Circulares da Hiperion Serras",
+  items: @other_products,
+  item_path: ->(product) { product_path(product) },
+  item_label_prefix: "Ver detalhes do produto",
+  empty_message: "Ainda não há outros produtos disponíveis." %>

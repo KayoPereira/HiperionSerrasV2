@@ -1,0 +1,73 @@
+<% content_for :title, "Produtos | Hiperion Serras" %>
+<% content_for :meta_description, @banner_config[:description] %>
+<% content_for :body_class, "products-page" %>
+
+<section id="products-hero" class="products-banner products-banner--<%= @current_type_filter %>" aria-label="Banner da página de produtos">
+  <div class="products-banner__content">
+    <h1 class="products-banner__title">
+      <%= @banner_config[:title] %>
+    </h1>
+
+    <nav class="products-banner__breadcrumb" aria-label="Navegação estrutural">
+      <ol class="products-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "products-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="products-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="products-banner__breadcrumb-current" itemprop="name">PRODUTOS</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="products-list" aria-labelledby="products-list-heading">
+  <div class="container">
+    <h2 id="products-list-heading" class="visually-hidden">Lista de produtos</h2>
+
+    <% if user_signed_in? %>
+      <div class="products-list__top-actions">
+        <%= link_to "Novo produto", new_secret_product_path, class: "black-btn" %>
+      </div>
+    <% end %>
+
+    <% if @products.any? %>
+      <div class="products-list__grid">
+        <% @products.each do |product| %>
+          <article class="products-list__card">
+            <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
+              <div class="products-list__image-wrapper">
+                <% if product.images.attached? && product.images.first %>
+                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.image_detail.attached? %>
+                  <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
+                <% else %>
+                  <div class="products-list__image products-list__image--placeholder" aria-hidden="true"></div>
+                <% end %>
+              </div>
+              <h3 class="products-list__name"><%= product.name %></h3>
+              <span class="products-list__type"><%= Product.human_enum_name(:product_type, product.product_type) %></span>
+              <span class="products-list__application"><%= Product.human_enum_name(:application_type, product.application_type) %></span>
+            <% end %>
+
+            <% if user_signed_in? %>
+              <div class="products-list__admin-actions">
+                <%= link_to "Editar", edit_secret_product_path(product), class: "secondary-btn" %>
+                <%= link_to "Excluir",
+                  secret_product_path(product),
+                  data: { turbo_method: :delete, turbo_confirm: "Deseja realmente excluir este produto?" },
+                  class: "black-btn" %>
+              </div>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="products-list__empty">Ainda não há produtos disponíveis...</p>
+    <% end %>
+  </div>
+</section>

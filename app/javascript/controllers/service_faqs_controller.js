@@ -21,7 +21,7 @@ export default class extends Controller {
   remove(event) {
     event.preventDefault()
 
-    const item = event.currentTarget.closest(".service-admin-form__faq-card")
+    const item = event.currentTarget.closest(".service-admin-form__faq-card") || event.currentTarget.closest(".product-admin-form__faq-item")
     if (!item) return
 
     const destroyInput = item.querySelector('input[name*="[_destroy]"]')
@@ -35,11 +35,11 @@ export default class extends Controller {
   }
 
   currentMaxIndex() {
-    const inputs = this.listTarget.querySelectorAll('textarea[name*="[service_faqs_attributes]"]')
+    const inputs = this.listTarget.querySelectorAll('textarea[name*="_faqs_attributes]"]')
     let maxIndex = -1
 
     inputs.forEach((input) => {
-      const match = input.name.match(/\[service_faqs_attributes\]\[(\d+)\]/)
+      const match = input.name.match(/\[\w+_faqs_attributes\]\[(\d+)\]/)
       if (!match) return
 
       const index = Number.parseInt(match[1], 10)

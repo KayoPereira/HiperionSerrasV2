@@ -1,0 +1,91 @@
+<% content_for :title, "Lâminas de Serra Fita | Hiperion Serras" %>
+<% content_for :meta_description, "Lâminas de Serra Fita Eberle para corte industrial de alta performance. Soluções em serra fita para metais, não ferrosos e aplicações industriais que exigem estabilidade e durabilidade no corte." %>
+<% content_for :body_class, "band-saw-page" %>
+
+<section id="products-hero" class="band-saw-banner" aria-label="Banner da pagina de laminas de serra fita">
+  <div class="band-saw-banner__content">
+    <h1 class="band-saw-banner__title">
+      Laminas de Serra Fita Eberle para Corte Industrial de Alta Performance
+    </h1>
+
+    <nav class="band-saw-banner__breadcrumb" aria-label="Navegacao estrutural">
+      <ol class="band-saw-banner__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <%= link_to "HOME", root_path, class: "band-saw-banner__breadcrumb-link", itemprop: "item" %>
+          <meta itemprop="name" content="Home" />
+          <meta itemprop="position" content="1" />
+        </li>
+        <li class="band-saw-banner__breadcrumb-separator" aria-hidden="true">/</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="band-saw-banner__breadcrumb-current" itemprop="name">LAMINAS DE SERRA FITA</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="products-list" aria-labelledby="products-list-heading">
+  <div class="container">
+    <h2 id="products-list-heading" class="visually-hidden">Lista de laminas de serra fita</h2>
+
+    <% if user_signed_in? %>
+      <div class="products-list__top-actions">
+        <%= link_to "Novo produto", new_secret_product_path, class: "black-btn" %>
+      </div>
+    <% end %>
+
+    <% if @products.any? %>
+      <div class="products-list__grid">
+        <% @products.each do |product| %>
+          <article class="products-list__card">
+            <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
+              <div class="products-list__image-wrapper">
+                <% if product.images.attached? && product.images.first %>
+                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.image_detail.attached? %>
+                  <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
+                <% else %>
+                  <div class="products-list__image products-list__image--placeholder" aria-hidden="true"></div>
+                <% end %>
+              </div>
+              <h3 class="products-list__name"><%= product.name %></h3>
+            <% end %>
+
+            <% if user_signed_in? %>
+              <div class="products-list__admin-actions">
+                <%= link_to "Editar", edit_secret_product_path(product), class: "secondary-btn" %>
+                <%= link_to "Excluir",
+                  secret_product_path(product),
+                  data: { turbo_method: :delete, turbo_confirm: "Deseja realmente excluir este produto?" },
+                  class: "black-btn" %>
+              </div>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="products-list__empty">Ainda nao ha produtos disponiveis...</p>
+    <% end %>
+  </div>
+</section>
+
+<%= render "shared/category_showcase",
+  title: "Conheça nossos produtos e serviços",
+  subtitle: "Explore nossa linha complementar de produtos e soluções técnicas especializadas.",
+  cards: [
+    {
+      image: "carousel/banner-2x-1.png",
+      name: "SERRAS CIRCULARES",
+      cta_text: "CONHEÇA NOSSAS SERRAS CIRCULARES",
+      cta_url: circular_saw_products_path,
+      aria_label: "Saiba mais sobre as serras circulares da Hiperion Serras"
+    },
+    {
+      image: "carousel/banner-2x-2.png",
+      name: "SERVIÇOS TÉCNICOS",
+      cta_text: "CONHEÇA NOSSOS SERVIÇOS",
+      cta_url: services_path,
+      aria_label: "Saiba mais sobre os serviços técnicos da Hiperion Serras"
+    }
+  ] %>

@@ -1,13 +1,19 @@
 .navbar-hiperion {
   justify-content: space-between;
   background: $hiperion-navy;
-  margin-top: 35px;
   height: 100px;
   z-index: 9999;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
 .navbar-hiperion__container {
   align-items: center;
+  padding: 0 24px;
+  width: 100%;
+  margin: 0 !important;
+  height: 100%;
 }
 
 .navbar-logo {
