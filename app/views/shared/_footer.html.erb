@@ -21,8 +21,8 @@
     <section class="hiperion-footer__menu">
       <h3 class="hiperion-footer__title">INSTITUCIONAL</h3>
       <ul>
-        <li><a href="/about">QUEM SOMOS</a></li>
-        <li><a href="/contact">CONTATO</a></li>
+        <li><%= link_to "QUEM SOMOS", about_path %></li>
+        <li><%= link_to "CONTATO", contact_path %></li>
         <li><%= link_to "ORÇAMENTO", budget_path %></li>
       </ul>
     </section>
@@ -30,15 +30,21 @@
     <section class="hiperion-footer__menu">
       <h3 class="hiperion-footer__title">PRODUTOS E SERVIÇOS</h3>
       <ul>
-        <li><a href="<%= band_saw_products_path %>">LÂMINAS DE SERRA FITA</a></li>
         <li><a href="<%= circular_saw_products_path %>">SERRAS CIRCULARES</a></li>
         <li><%= link_to "SERVIÇOS", services_path %></li>
+        <li><a href="<%= band_saw_products_path %>">LÂMINAS DE SERRA FITA</a></li>
       </ul>
     </section>
 
     <section class="hiperion-footer__contacts">
       <h3 class="hiperion-footer__title">CONTATOS</h3>
       <ul>
+        <li>
+          <span class="hiperion-footer__contact-icon" aria-hidden="true">
+            <i class="fa-brands fa-whatsapp"></i>
+          </span>
+          <a href="https://wa.me/5519971994133" target="_blank" rel="noopener noreferrer">(19) 97199.4133</a>
+        </li>
         <li>
           <span class="hiperion-footer__contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" role="img" focusable="false">
@@ -64,21 +70,25 @@
     <section class="hiperion-footer__location hiperion-footer__location--left">
       <h3 class="hiperion-footer__title">CENTRO DE DISTRIBUIÇÃO DE SERRAS CIRCULARES E SERVIÇO DE AFIAÇÃO</h3>
       <p class="hiperion-footer__location-city">
-        <%= image_tag "footer/locale-2x.png", alt: "Localização" %>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
         MOGI GUACU-SP
       </p>
-      <p>Rua Eli Paulo Colombo, 1470 - Jardim Sakaida</p>
-      <p>Mogi Guaçu-SP | CEP: 13.849-702</p>
+      <a href="https://maps.app.goo.gl/3gC1ynHJ4doDNGnN9" target="_blank" rel="noopener noreferrer" class="hiperion-footer__location-link">
+        <p>Rua Eli Paulo Colombo, 1470 - Jardim Sakaida</p>
+        <p>Mogi Guaçu-SP | CEP: 13.849-702</p>
+      </a>
     </section>
 
     <section class="hiperion-footer__location hiperion-footer__location--right">
       <h3 class="hiperion-footer__title">CENTRO DE DISTRIBUIÇÃO DE LÂMINAS DE SERRA FITA</h3>
       <p class="hiperion-footer__location-city">
-        <%= image_tag "footer/locale-2x.png", alt: "Localização" %>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
         POA-SP
       </p>
-      <p>Avenida Getulio Vargas, 692 - Calmon Viana</p>
-      <p>Poa-SP | CEP: 85.600-000</p>
+      <a href="https://maps.app.goo.gl/DbPekvjr4ZcuSFGv5" target="_blank" rel="noopener noreferrer" class="hiperion-footer__location-link">
+        <p>Avenida Getulio Vargas, 692 - Calmon Viana</p>
+        <p>Poa-SP | CEP: 85.600-000</p>
+      </a>
     </section>
   </div>
 
@@ -89,7 +99,6 @@
         <%= link_to "Politica de Privacidade", privacy_policies_path, class: "text-decoration-none" %>
         <%= link_to "Politica de Cookies", cookies_policies_path, class: "text-decoration-none" %>
         <%= link_to "Termos de Uso", terms_of_use_path, class: "text-decoration-none" %>
-        <%= link_to "Entrar", new_user_session_path, class: "text-decoration-none" %>
       </nav>
       <div class="hiperion-footer__developed-by">
         <span>Site desenvolvido por:</span>

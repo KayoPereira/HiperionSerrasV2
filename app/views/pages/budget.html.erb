@@ -1,5 +1,5 @@
-<% content_for :title, "Orcamento | Hiperion Serras" %>
-<% content_for :meta_description, "Solicite um orcamento com a Hiperion Serras para laminas de serra fita, serras circulares e servicos tecnicos especializados para sua operacao." %>
+<% content_for :title, "Orçamento | Hiperion Serras" %>
+<% content_for :meta_description, "Solicite um orçamento com a Hiperion Serras para lâminas de serra fita, serras circulares e serviços técnicos especializados para sua operação." %>
 <% content_for :body_class, "budget-page" %>
 
 <section class="budget-hero" aria-labelledby="budget-hero-heading">
@@ -7,10 +7,10 @@
     <div class="budget-hero__overlay"></div>
     <div class="budget-hero__content">
       <h1 id="budget-hero-heading" class="budget-hero__title">
-        Seu processo merece a escolha certa. Solicite seu orcamento com quem entende do assunto.
+        Seu processo merece a escolha certa. Solicite seu orçamento com quem entende do assunto.
       </h1>
 
-      <nav class="budget-hero__breadcrumb" aria-label="Navegacao estrutural">
+      <nav class="budget-hero__breadcrumb" aria-label="Navegação estrutural">
         <ol class="budget-hero__breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <%= link_to "HOME", root_path, class: "budget-hero__breadcrumb-link", itemprop: "item" %>
@@ -19,7 +19,7 @@
           </li>
           <li class="budget-hero__breadcrumb-separator" aria-hidden="true">/</li>
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <span class="budget-hero__breadcrumb-current" itemprop="name">ORCAMENTO</span>
+            <span class="budget-hero__breadcrumb-current" itemprop="name">ORÇAMENTO</span>
             <meta itemprop="position" content="2" />
           </li>
         </ol>
@@ -29,7 +29,7 @@
 
   <div class="budget-hero__form-panel">
     <div class="budget-hero__form-inner">
-      <h2 class="visually-hidden">Formulario de orcamento</h2>
+      <h2 class="visually-hidden">Formulário de orçamento</h2>
 
       <%= form_with model: @budget_request,
         url: budget_requests_path,
@@ -48,22 +48,29 @@
           </div>
         <% end %>
 
-        <div class="budget-form__field budget-form__field--full">
-          <%= f.label :company_tax_id, "*CNPJ da sua empresa" %>
-          <%= f.text_field :company_tax_id,
-            required: true,
-            inputmode: "numeric",
-            autocomplete: "off",
-            placeholder: "00.000.000/0000-00",
-            maxlength: 18,
-            aria: { describedby: "budget-cnpj-error" },
-            data: {
-              cnpj_mask_target: "input",
-              action: "input->cnpj-mask#handleInput blur->cnpj-mask#validateField"
-            } %>
-          <p id="budget-cnpj-error" class="budget-form__field-error" data-cnpj-mask-target="error" hidden>
-            Digite um CNPJ valido.
-          </p>
+        <div class="budget-form__grid budget-form__grid--2 budget-form__grid--top-aligned">
+          <div class="budget-form__field">
+            <%= f.label :company_tax_id, "*CNPJ da sua empresa" %>
+            <%= f.text_field :company_tax_id,
+              required: true,
+              inputmode: "numeric",
+              autocomplete: "off",
+              placeholder: "00.000.000/0000-00",
+              maxlength: 18,
+              aria: { describedby: "budget-cnpj-error" },
+              data: {
+                cnpj_mask_target: "input",
+                action: "input->cnpj-mask#handleInput blur->cnpj-mask#validateField"
+              } %>
+            <p id="budget-cnpj-error" class="budget-form__field-error" data-cnpj-mask-target="error" hidden>
+              Digite um CNPJ válido.
+            </p>
+          </div>
+
+          <div class="budget-form__field">
+            <%= f.label :company_name, "*Nome da empresa" %>
+            <%= f.text_field :company_name, required: true, maxlength: 120 %>
+          </div>
         </div>
 
         <div class="budget-form__grid budget-form__grid--2 budget-form__grid--top-aligned">
@@ -89,9 +96,20 @@
               data: { controller: "phone-mask" } %>
           </div>
 
-          <div class="budget-form__field">
+          <div class="budget-form__field" data-controller="email-validate">
             <%= f.label :email, "*Seu e-mail" %>
-            <%= f.email_field :email, required: true, autocomplete: "email" %>
+            <%= f.email_field :email,
+              required: true,
+              autocomplete: "email",
+              placeholder: " ",
+              aria: { describedby: "budget-email-error" },
+              data: {
+                email_validate_target: "input",
+                action: "input->email-validate#validate blur->email-validate#validate"
+              } %>
+            <p id="budget-email-error" class="budget-form__field-error" data-email-validate-target="error" hidden>
+              Digite um e-mail válido.
+            </p>
           </div>
         </div>
 

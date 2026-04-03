@@ -13,7 +13,11 @@ export default class extends Controller {
 
     this.tabTargets.forEach((tab, i) => {
       tab.classList.toggle("is-active", i === index)
-      tab.setAttribute("aria-selected", String(i === index))
+      const button = tab.querySelector("button[role='tab']")
+      if (button) {
+        button.classList.toggle("is-active", i === index)
+        button.setAttribute("aria-selected", String(i === index))
+      }
     })
 
     const currentPanel = this.panelTargets.find(p => p.classList.contains("is-active"))

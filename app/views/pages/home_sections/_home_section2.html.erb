@@ -1,20 +1,22 @@
-<section class="features-section d-flex justify-content-center" aria-labelledby="features-section-heading">
-  <article
-    role="img"
-    aria-label="Soluções de serras circulares e lâminas de serra fita para aplicações industriais"
-    style="width: 70%; height: 500px; background-image: linear-gradient(100deg, rgba(9, 19, 39, 0.78) 0%, rgba(9, 19, 39, 0.48) 42%, rgba(9, 19, 39, 0.2) 65%, rgba(9, 19, 39, 0.05) 100%), url('<%= asset_path("homepage/section2-2x.png") %>'); background-size: cover; background-position: center; background-repeat: no-repeat;"
-    class="d-flex justify-content-center algin-items-center"
-  >
-    <div class="features-section__content d-flex flex-column align-items-center justify-content-center">
-      <h2 id="features-section-heading" class="features-section__title text-center text-white" style="font-size: 20px">
+<section class="circular-saws-section" id="serras-circulares" aria-labelledby="circular-saws-heading" style="margin-top: 80px;">
+  <div class="circular-saws-section__grid">
+    <article class="circular-saws-section__intro" aria-label="Serras circulares para diferentes aplicações industriais">
+      <h2 id="circular-saws-heading" class="circular-saws-section__title">
         Lâminas de Serra Fita Eberle
       </h2>
-      <p class="features-section__description text-center" style="font-size: 17px; font-weight: ">
+
+      <p class="circular-saws-section__description">
         Trabalhamos com a qualidade alemã Eberle em lâminas de serra fita para aplicações industriais que exigem precisão, rendimento contínuo e confiabilidade no processo produtivo.
       </p>
+
       <%= link_to "CONHEÇA NOSSAS LÂMINAS DE SERRA FITA", band_saw_products_path,
             class: "secondary-btn py-2",
             aria: { label: "Saiba mais sobre as soluções de corte da Hiperion Serras" } %>
-    </div>
-  </article>
+    </article>
+
+    <article class="circular-saws-section__card circular-saws-section__card--laminas" role="img" aria-label="Lâminas de Serra Fita Eberle para corte industrial">
+      <div class="circular-saws-section__card-content">
+      </div>
+    </article>
+  </div>
 </section>

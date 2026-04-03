@@ -2,7 +2,20 @@
 <% content_for :meta_description, truncate(strip_tags(@product.description&.body&.to_plain_text || @product.name), length: 160) %>
 <% content_for :body_class, @product.circular_saw? ? "circular-saw-page" : "band-saw-page" %>
 
-<% banner_image = @product.images.attached? && @product.images.any? ? url_for(@product.images.first) : nil %>
+<% banner_attachment = if @product.thumbnail.attached?
+  @product.thumbnail
+elsif @product.images.attached? && @product.images.any?
+  @product.images.first
+end %>
+<% banner_image = banner_attachment.present? ? url_for(banner_attachment) : nil %>
+<% detail_images = if @product.images.attached? && @product.images.any?
+  @product.images
+end %>
+<% gallery_images = if @product.gallery.attached? && @product.gallery.any?
+  @product.gallery
+elsif @product.images.attached? && @product.images.any?
+  @product.images
+end %>
 <section id="products-hero"
   class="<%= @product.circular_saw? ? 'circular-saw-banner' : 'band-saw-banner' %>"
   <% if banner_image %>style="background-image: linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%), url('<%= banner_image %>');"<% end %>
@@ -58,64 +71,89 @@
     </article>
 
     <aside class="product-detail__side">
-      <% if @product.images.attached? && @product.images.any? %>
-        <section class="product-carousel" data-controller="carousel gallery-modal" aria-label="Galeria de imagens do produto <%= @product.name %>">
+      <% if detail_images.present? %>
+        <section class="product-carousel" data-controller="carousel gallery-modal" aria-label="Imagens principais do produto <%= @product.name %>">
           <div class="product-carousel__track">
-            <% @product.images.each_with_index do |image, index| %>
-              <div
-                class="product-carousel__slide <%= "is-active" if index.zero? %>"
+            <% detail_images.each_with_index do |image, index| %>
+              <button
+                type="button"
+                class="product-carousel__slide <%= 'is-active' if index.zero? %>"
                 data-carousel-target="slide"
-                role="img"
-                aria-label="Imagem <%= index + 1 %> do produto"
-                aria-hidden="<%= index.zero? ? "false" : "true" %>"
-                style="cursor: zoom-in;"
                 data-action="click->gallery-modal#open"
                 data-gallery-modal-index-param="<%= index %>"
+                aria-label="Abrir imagem <%= index + 1 %> em tela ampliada"
+                aria-hidden="<%= index.zero? ? 'false' : 'true' %>"
               >
                 <%= image_tag image, alt: "#{@product.name} - Imagem #{index + 1}", class: "product-carousel__image" %>
-              </div>
+              </button>
             <% end %>
           </div>
 
-          <% if @product.images.count > 1 %>
-            <div class="product-carousel__controls" role="tablist" aria-label="Selecao de imagem">
-              <button type="button" class="product-carousel__arrow product-carousel__arrow--prev" aria-label="Imagem anterior" data-action="click->carousel#prev"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-              <div class="product-carousel__dots">
-                <% @product.images.each_with_index do |_image, index| %>
-                  <button type="button" class="product-carousel__dot <%= "is-active" if index.zero? %>" data-carousel-target="dot" data-action="click->carousel#goTo" data-carousel-index-param="<%= index %>" aria-label="Ir para imagem <%= index + 1 %> de <%= @product.images.count %>" aria-selected="<%= index.zero? ? "true" : "false" %>"></button>
-                <% end %>
-              </div>
-              <button type="button" class="product-carousel__arrow product-carousel__arrow--next" aria-label="Proxima imagem" data-action="click->carousel#next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+          <% if detail_images.size > 1 %>
+            <button type="button" class="product-carousel__arrow product-carousel__arrow--prev" data-action="click->carousel#prev" aria-label="Imagem anterior">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="product-carousel__arrow product-carousel__arrow--next" data-action="click->carousel#next" aria-label="Próxima imagem">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+
+            <div class="product-carousel__dots">
+              <% detail_images.each_with_index do |_image, index| %>
+                <button
+                  type="button"
+                  class="product-carousel__dot <%= 'is-active' if index.zero? %>"
+                  data-carousel-target="dot"
+                  data-action="click->carousel#goTo"
+                  data-carousel-index-param="<%= index %>"
+                  aria-label="Ir para imagem <%= index + 1 %>"
+                  aria-selected="<%= index.zero? ? 'true' : 'false' %>"
+                ></button>
+              <% end %>
             </div>
           <% end %>
 
-          <%# Gallery Modal %>
           <div class="gallery-modal" data-gallery-modal-target="overlay" hidden>
             <button type="button" class="gallery-modal__close" data-action="click->gallery-modal#close" aria-label="Fechar galeria">
               <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
 
             <div class="gallery-modal__body" data-action="click->gallery-modal#closeOutside">
-              <button type="button" class="gallery-modal__arrow gallery-modal__arrow--prev" data-action="click->gallery-modal#prev" aria-label="Imagem anterior">
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-              </button>
+              <% if detail_images.size > 1 %>
+                <button type="button" class="gallery-modal__arrow gallery-modal__arrow--prev" data-action="click->gallery-modal#prev" aria-label="Imagem anterior">
+                  <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+              <% end %>
 
-              <div class="gallery-modal__slides">
-                <% @product.images.each_with_index do |image, index| %>
-                  <div class="gallery-modal__slide <%= "is-active" if index.zero? %>" data-gallery-modal-target="galleryImage">
-                    <%= image_tag image, alt: "#{@product.name} - Imagem #{index + 1}", class: "gallery-modal__image" %>
+              <div class="gallery-modal__content">
+                <div class="gallery-modal__slides">
+                  <% detail_images.each_with_index do |image, index| %>
+                    <%= image_tag image,
+                      alt: "#{@product.name} - Imagem ampliada #{index + 1}",
+                      class: "gallery-modal__image #{'is-active' if index.zero?}",
+                      data: { gallery_modal_target: 'galleryImage' } %>
+                  <% end %>
+                </div>
+
+                <% if detail_images.size > 1 %>
+                  <div class="gallery-modal__dots">
+                    <% detail_images.each_with_index do |_image, index| %>
+                      <button
+                        type="button"
+                        class="gallery-modal__dot <%= 'is-active' if index.zero? %>"
+                        data-gallery-modal-target="galleryDot"
+                        data-action="click->gallery-modal#goTo"
+                        data-gallery-modal-index-param="<%= index %>"
+                        aria-label="Ir para imagem <%= index + 1 %> da galeria"
+                      ></button>
+                    <% end %>
                   </div>
                 <% end %>
               </div>
 
-              <button type="button" class="gallery-modal__arrow gallery-modal__arrow--next" data-action="click->gallery-modal#next" aria-label="Próxima imagem">
-                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-              </button>
-            </div>
-
-            <div class="gallery-modal__dots">
-              <% @product.images.each_with_index do |_image, index| %>
-                <button type="button" class="gallery-modal__dot <%= "is-active" if index.zero? %>" data-gallery-modal-target="galleryDot" data-action="click->gallery-modal#goTo" data-gallery-modal-index-param="<%= index %>" aria-label="Ir para imagem <%= index + 1 %>"></button>
+              <% if detail_images.size > 1 %>
+                <button type="button" class="gallery-modal__arrow gallery-modal__arrow--next" data-action="click->gallery-modal#next" aria-label="Próxima imagem">
+                  <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
               <% end %>
             </div>
           </div>
@@ -168,26 +206,98 @@
     </aside>
   </div>
 
-  <% if @product.image_detail.attached? %>
-    <div class="container product-detail__specs" data-controller="image-modal">
-      <h3 class="product-detail__specs-title">Parâmetros técnicos:</h3>
-      <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "product-detail__specs-image", loading: "lazy", data: { action: "click->image-modal#open" } %>
+    <% if @product.image_detail.attached? %>
+      <div class="container product-detail__specs" data-controller="image-modal">
+        <h3 class="product-detail__specs-title">Parâmetros técnicos:</h3>
+        <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "product-detail__specs-image", loading: "lazy", data: { action: "click->image-modal#open" } %>
 
-      <div class="image-modal" data-image-modal-target="overlay" hidden>
-        <button type="button" class="image-modal__close" data-action="click->image-modal#close" aria-label="Fechar">
-          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
-        <div class="image-modal__body" data-action="click->image-modal#closeOutside">
-          <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "image-modal__image" %>
+        <div class="image-modal" data-image-modal-target="overlay" hidden>
+          <button type="button" class="image-modal__close" data-action="click->image-modal#close" aria-label="Fechar">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+          <div class="image-modal__body" data-action="click->image-modal#closeOutside">
+            <%= image_tag @product.image_detail, alt: "Parâmetros técnicos - #{@product.name}", class: "image-modal__image" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+    <% if gallery_images.present? %>
+      <div class="container mt-5">
+        <section class="product-gallery" data-controller="gallery-modal" aria-label="Galeria de imagens do produto <%= @product.name %>">
+          <h3 class="product-detail__specs-title">Galeria de imagens:</h3>
+
+          <div class="product-gallery__grid">
+            <% gallery_images.each_with_index do |image, index| %>
+              <button
+                type="button"
+                class="product-gallery__item"
+                data-action="click->gallery-modal#open"
+                data-gallery-modal-index-param="<%= index %>"
+                aria-label="Abrir imagem <%= index + 1 %> da galeria do produto <%= @product.name %>"
+              >
+                <%= image_tag image,
+                  alt: "#{@product.name} - Imagem #{index + 1}",
+                  class: "product-gallery__grid-image" %>
+              </button>
+            <% end %>
+          </div>
+
+          <div class="gallery-modal" data-gallery-modal-target="overlay" hidden>
+            <button type="button" class="gallery-modal__close" data-action="click->gallery-modal#close" aria-label="Fechar galeria">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <div class="gallery-modal__body" data-action="click->gallery-modal#closeOutside">
+              <% if gallery_images.size > 1 %>
+                <button type="button" class="gallery-modal__arrow gallery-modal__arrow--prev" data-action="click->gallery-modal#prev" aria-label="Imagem anterior">
+                  <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+              <% end %>
+
+              <div class="gallery-modal__content">
+                <div class="gallery-modal__slides">
+                  <% gallery_images.each_with_index do |image, index| %>
+                    <%= image_tag image,
+                      alt: "#{@product.name} - Imagem ampliada #{index + 1}",
+                      class: "gallery-modal__image #{'is-active' if index.zero?}",
+                      data: { gallery_modal_target: 'galleryImage' } %>
+                  <% end %>
+                </div>
+
+                <% if gallery_images.size > 1 %>
+                  <div class="gallery-modal__thumbs">
+                    <% gallery_images.each_with_index do |image, index| %>
+                      <button
+                        type="button"
+                        class="gallery-modal__thumb #{'is-active' if index.zero?}"
+                        data-gallery-modal-target="galleryDot"
+                        data-action="click->gallery-modal#goTo"
+                        data-gallery-modal-index-param="<%= index %>"
+                        aria-label="Abrir imagem <%= index + 1 %> da galeria"
+                      >
+                        <%= image_tag image, alt: "Miniatura ampliada #{index + 1} do produto #{@product.name}", class: "gallery-modal__thumb-image" %>
+                      </button>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+
+              <% if gallery_images.size > 1 %>
+                <button type="button" class="gallery-modal__arrow gallery-modal__arrow--next" data-action="click->gallery-modal#next" aria-label="Próxima imagem">
+                  <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </section>
+      </div>
+    <% end %>
 </section>
 
 <%= render "pages/home_sections/home_section5" %>
 
-<%= render "shared/others_section",
+<%# render "shared/others_section",
   title: "Conheça nossos outros produtos",
   subtitle: "Soluções completas em Lâminas de Serra Fita Eberle e Serras Circulares da Hiperion Serras",
   items: @other_products,

@@ -4,21 +4,43 @@ export default class extends Controller {
   static targets = ["overlay", "galleryImage", "galleryDot"]
   static values = { index: Number }
 
+  connect() {
+    this.closeTimer = null
+  }
+
   open(event) {
     const clickedIndex = Number(event.params.index) || 0
     this.indexValue = clickedIndex
     this.showGallerySlide()
+
+    clearTimeout(this.closeTimer)
     this.overlayTarget.hidden = false
+    this.overlayTarget.classList.remove("is-closing")
+    requestAnimationFrame(() => {
+      this.overlayTarget.classList.add("is-open")
+    })
+
     document.body.style.overflow = "hidden"
     this.boundKeydown = this.handleKeydown.bind(this)
     document.addEventListener("keydown", this.boundKeydown)
   }
 
   close() {
-    this.overlayTarget.hidden = true
+    if (this.overlayTarget.hidden) return
+
+    this.overlayTarget.classList.remove("is-open")
+    this.overlayTarget.classList.add("is-closing")
+
+    clearTimeout(this.closeTimer)
+    this.closeTimer = setTimeout(() => {
+      this.overlayTarget.hidden = true
+      this.overlayTarget.classList.remove("is-closing")
+    }, 220)
+
     document.body.style.overflow = ""
     if (this.boundKeydown) {
       document.removeEventListener("keydown", this.boundKeydown)
+      this.boundKeydown = null
     }
   }
 
@@ -63,9 +85,11 @@ export default class extends Controller {
   }
 
   disconnect() {
+    clearTimeout(this.closeTimer)
     document.body.style.overflow = ""
     if (this.boundKeydown) {
       document.removeEventListener("keydown", this.boundKeydown)
+      this.boundKeydown = null
     }
   }
 }

@@ -3,25 +3,33 @@
     icon: "about/section3/diamond.svg",
     title: "Atendimento especializado",
     text: "Acompanhamento técnico próximo, com orientação precisa para cada aplicação de corte industrial, do diagnóstico à melhor solução.",
-    alt: "Ícone de diamante representando atendimento especializado"
+    alt: "Ícone de diamante representando atendimento especializado",
+    icon_class: "",
+    width: "clamp(40px, 8vw, 65px)"
   },
   {
     icon: "about/section3/saw-blade (1).svg",
     title: "Produtos de alta performance",
     text: "Ferramentas desenvolvidas para operações exigentes, garantindo cortes precisos, estabilidade operacional e alto padrão de acabamento.",
-    alt: "Ícone de serra circular representando produtos de alta performance"
+    alt: "Ícone de serra circular representando produtos de alta performance",
+    icon_class: "",
+    width: "clamp(50px, 8vw, 75px)"
   },
   {
     icon: "about/section3/Equalizer_1_.svg",
     title: "Serviços sob medida",
     text: "Soluções técnicas personalizadas que ampliam a vida útil das ferramentas e elevam a eficiência dos processos industriais.",
-    alt: "Ícone de equalizador representando serviços sob medida"
+    alt: "Ícone de equalizador representando serviços sob medida",
+    icon_class: "about-highlights__icon--small",
+    width: "clamp(30px, 6vw, 55px)"
   },
   {
     icon: "about/section3/Camada_x0020_1.svg",
     title: "Atuação consolidada no Sudeste",
     text: "Presença forte e estruturada nos estados de São Paulo, Minas Gerais e Rio de Janeiro, atendendo indústrias com agilidade e consistência.",
-    alt: "Ícone de mapa representando atuação consolidada no Sudeste"
+    alt: "Ícone de mapa representando atuação consolidada no Sudeste",
+    icon_class: "about-highlights__icon--large",
+    width: "clamp(55px, 8vw, 80px)"
   }
 ] %>
 
@@ -32,7 +40,7 @@
     <div class="about-highlights__grid">
       <% highlights.each do |item| %>
         <article class="about-highlights__item">
-          <%= image_tag item[:icon], alt: item[:alt], class: "about-highlights__icon", loading: "lazy" %>
+          <%= image_tag item[:icon], alt: item[:alt], class: "about-highlights__icon #{item[:icon_class]}", loading: "lazy", style: "width: #{item[:width]}" %>
           <h3 class="about-highlights__title"><%= item[:title] %></h3>
           <p class="about-highlights__text"><%= item[:text] %></p>
         </article>

@@ -11,12 +11,11 @@
 
 .contact-banner {
   background-image:
-    linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%),
     image-url("contact/contact_banner-2x.png");
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: clamp(360px, 37.76vw, 725px);
+  height: clamp(280px, 37.76vw, 500px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,11 +30,12 @@
 
 .contact-banner__title {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(20px, 2vw, 38px);
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.3;
   color: $hiperion-white;
   margin-bottom: 20px;
+  letter-spacing: -0.05em;
 }
 
 .contact-banner__breadcrumb {
@@ -54,8 +54,8 @@
 
 .contact-banner__breadcrumb-link {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
@@ -69,14 +69,14 @@
 
 .contact-banner__breadcrumb-separator {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 0.7rem;
+  font-size: 12px;
   list-style: none;
 }
 
 .contact-banner__breadcrumb-current {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $hiperion-gold;
@@ -116,11 +116,12 @@
 
 .contact-section__title {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(30px, 2.5vw, 50px);
+  font-size: 30px;
   line-height: 1.1;
   font-weight: 700;
   color: $hiperion-gold;
   margin-bottom: 22px;
+  letter-spacing: -0.05em;
 }
 
 .contact-section__list {
@@ -137,20 +138,29 @@
   color: $hiperion-navy;
 
   i {
-    width: 24px;
+    width: 32px;
     text-align: center;
     color: $hiperion-gold;
-    font-size: 1.25rem;
+    font-size: clamp(1.5rem, 2vw, 32px);
   }
 
-  a,
-  span {
+  a {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(15px, 1.04vw, 20px);
+    font-size: 25px;
     line-height: 1.35;
-    font-weight: 600;
+    font-weight: 500;
     color: $hiperion-navy;
     text-decoration: none;
+    letter-spacing: -0.05em;
+  }
+
+  span {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 500;
+    color: $hiperion-navy;
+    letter-spacing: -0.05em;
   }
 
   a:hover {
@@ -230,7 +240,7 @@
 
   label {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(14px, 0.88vw, 16px);
+    font-size: 15px;
     font-weight: 700;
     color: $hiperion-navy;
   }
@@ -239,14 +249,15 @@
   select,
   textarea {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(14px, 0.95vw, 16px);
+    font-size: 17px;
+    font-weight: 600;
     color: $hiperion-navy;
     background-color: $hiperion-white;
-    border: 2px solid rgba(29, 35, 49, 0.55);
+    border: 2px solid $hiperion-navy;
     min-height: 48px;
     padding: 10px 12px;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease;
   }
 
   textarea {
@@ -258,7 +269,23 @@
   select:focus,
   textarea:focus {
     border-color: $hiperion-gold;
-    box-shadow: 0 0 0 3px rgba(210, 172, 71, 0.2);
+  }
+
+  input:not(:placeholder-shown),
+  textarea:not(:placeholder-shown) {
+    border-color: $hiperion-gold;
+  }
+
+  input[type="email"]:not(:placeholder-shown):invalid {
+    border-color: #e53935;
+  }
+
+  input[type="email"]:not(:placeholder-shown):valid {
+    border-color: $hiperion-gold;
+  }
+
+  select:valid:not([value=""]) {
+    border-color: $hiperion-gold;
   }
 }
 
@@ -270,14 +297,14 @@
 
 .contact-form__submit {
   min-width: clamp(140px, 14vw, 280px);
-  height: 52px;
+  height: 55px;
   background-color: transparent;
   border: 3px solid $hiperion-gold;
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(14px, 0.95vw, 18px);
+  font-size: 15px;
   font-weight: 700;
   color: $hiperion-gold;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.05em;
   transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
@@ -334,9 +361,9 @@
 
 .contact-locations__label {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(11px, 0.75vw, 14px);
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.05em;
   color: $hiperion-gold;
   margin-bottom: 12px;
   line-height: 1.35;
@@ -344,13 +371,14 @@
 
 .contact-locations__city {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(18px, 1.5vw, 26px);
+  font-size: 25px;
   font-weight: 700;
   color: $hiperion-navy;
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  letter-spacing: -0.05em;
 
   i {
     color: $hiperion-gold;
@@ -360,12 +388,13 @@
 
 .contact-locations__address {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(14px, 0.95vw, 16px);
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.55;
   color: $hiperion-navy;
   font-style: normal;
   margin-bottom: 18px;
+  letter-spacing: -0.05em;
 }
 
 .contact-locations__map-link {

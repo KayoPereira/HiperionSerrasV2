@@ -10,13 +10,13 @@
       <span class="navbar-hiperion__toggler-line"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarHiperionMenu">
+    <div class="collapse navbar-collapse h-100" id="navbarHiperionMenu">
       <ul class="navbar-hiperion__nav list-unstyled mb-0 h-100">
-        <li class="item-list d-flex align-items-center"><a href="/about" class="navbar-link">QUEM SOMOS</a></li>
-        <li class="item-list d-flex align-items-center mx-4"><%= link_to "LÂMINAS DE SERRA FITA", band_saw_products_path, class: "navbar-link" %></li>
+        <li class="item-list d-flex align-items-center mx-4"><%= link_to "QUEM SOMOS", about_path, class: "navbar-link" %></li>
         <li class="item-list d-flex align-items-center mx-4"><%= link_to "SERRAS CIRCULARES", circular_saw_products_path, class: "navbar-link" %></li>
         <li class="item-list d-flex align-items-center mx-4"><%= link_to "SERVIÇOS", services_path, class: "navbar-link" %></li>
-        <li class="item-list d-flex align-items-center mx-4"><a href="/contact" class="navbar-link">CONTATO</a></li>
+        <li class="item-list d-flex align-items-center mx-4"><%= link_to "LÂMINAS DE SERRA FITA", band_saw_products_path, class: "navbar-link" %></li>
+        <li class="item-list d-flex align-items-center mx-4"><%= link_to "CONTATO", contact_path, class: "navbar-link" %></li>
         <li class="d-flex align-items-center mx-4"><%= link_to "ORÇAMENTO", budget_path, class: "secondary-btn" %></li>
       </ul>
     </div>

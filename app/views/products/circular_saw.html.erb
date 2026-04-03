@@ -1,8 +1,8 @@
 <% content_for :title, "Serras Circulares | Hiperion Serras" %>
-<% content_for :meta_description, "Serras Circulares de alta performance para corte industrial. Soluções técnicas em serra circular para metais, não ferrosos e aplicações que não admitem falhas no processo produtivo." %>
+<% content_for :meta_description, "Serras Circulares de alta performance para corte de metais, não ferrosos, madeira, MDF e paletes. Soluções técnicas industriais da Hiperion Serras." %>
 <% content_for :body_class, "circular-saw-page" %>
 
-<section id="products-hero" class="circular-saw-banner" aria-label="Banner da pagina de serras circulares">
+<section id="products-hero" class="circular-saw-banner" aria-label="Banner de serras circulares para metais e não ferrosos">
   <div class="circular-saw-banner__content">
     <h1 class="circular-saw-banner__title">
       Serras Circulares de Alta Performance para Corte Industrial
@@ -25,9 +25,9 @@
   </div>
 </section>
 
-<section class="products-list" aria-labelledby="products-list-heading">
+<section class="products-list" aria-labelledby="metals-products-heading">
   <div class="container">
-    <h2 id="products-list-heading" class="visually-hidden">Lista de serras circulares</h2>
+    <h2 id="metals-products-heading" class="visually-hidden">Serras circulares para metais e não ferrosos</h2>
 
     <% if user_signed_in? %>
       <div class="products-list__top-actions">
@@ -35,14 +35,65 @@
       </div>
     <% end %>
 
-    <% if @products.any? %>
+    <% if @metals_products.any? %>
       <div class="products-list__grid">
-        <% @products.each do |product| %>
+        <% @metals_products.each do |product| %>
           <article class="products-list__card">
             <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>
                   <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.gallery.attached? && product.gallery.first %>
+                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.image_detail.attached? %>
+                  <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
+                <% else %>
+                  <div class="products-list__image products-list__image--placeholder" aria-hidden="true"></div>
+                <% end %>
+              </div>
+              <h3 class="products-list__name"><%= product.name %></h3>
+            <% end %>
+
+            <% if user_signed_in? %>
+              <div class="products-list__admin-actions">
+                <%= link_to "Editar", edit_secret_product_path(product), class: "secondary-btn" %>
+                <%= link_to "Excluir",
+                  secret_product_path(product),
+                  data: { turbo_method: :delete, turbo_confirm: "Deseja realmente excluir este produto?" },
+                  class: "black-btn" %>
+              </div>
+            <% end %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="products-list__empty">Ainda nao ha produtos disponiveis...</p>
+    <% end %>
+  </div>
+</section>
+
+<section class="circular-saw-banner circular-saw-banner--wood" aria-label="Banner de serras circulares para madeira">
+  <div class="circular-saw-banner__content">
+    <h2 class="circular-saw-banner__title">
+      Serras circulares industriais para corte de Madeira, MDF e Paletes
+    </h2>
+  </div>
+</section>
+
+<section class="products-list" aria-labelledby="wood-products-heading">
+  <div class="container">
+    <h2 id="wood-products-heading" class="visually-hidden">Serras circulares para madeira</h2>
+
+    <% if @wood_products.any? %>
+      <div class="products-list__grid">
+        <% @wood_products.each do |product| %>
+          <article class="products-list__card">
+            <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
+              <div class="products-list__image-wrapper">
+                <% if product.images.attached? && product.images.first %>
+                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.gallery.attached? && product.gallery.first %>
+                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name %>
                 <% elsif product.image_detail.attached? %>
                   <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
                 <% else %>

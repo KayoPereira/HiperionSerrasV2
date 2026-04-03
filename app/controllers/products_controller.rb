@@ -3,23 +3,31 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
   def circular_saw
-    @products = Product
-      .where(product_type: :circular_saw)
-      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, image_detail_attachment: :blob)
+    @metals_products = Product
+      .where(product_type: :circular_saw, application_type: :ferrous_and_non_ferrous_metals)
+      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
+      .order(created_at: :desc)
+    @wood_products = Product
+      .where(product_type: :circular_saw, application_type: :wood)
+      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
       .order(created_at: :desc)
   end
 
   def band_saw
-    @products = Product
-      .where(product_type: :band_saw)
-      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, image_detail_attachment: :blob)
+    @metals_products = Product
+      .where(product_type: :band_saw, application_type: :ferrous_and_non_ferrous_metals)
+      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
+      .order(created_at: :desc)
+    @wood_products = Product
+      .where(product_type: :band_saw, application_type: :wood)
+      .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
       .order(created_at: :desc)
   end
 
   def show
     @other_products = Product
       .where.not(id: @product.id)
-      .includes(images_attachments: :blob)
+      .includes(images_attachments: :blob, gallery_attachments: :blob)
       .order(created_at: :desc)
   end
 
@@ -29,9 +37,15 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    creation_params = product_params
+    new_images = creation_params.delete(:images)
+    new_gallery = creation_params.delete(:gallery)
+
+    @product = Product.new(creation_params)
 
     if @product.save
+      @product.images.attach(new_images) if new_images.present?
+      @product.gallery.attach(new_gallery) if new_gallery.present?
       redirect_to circular_saw_products_path, notice: "Produto criado com sucesso."
     else
       build_minimum_faq
@@ -45,12 +59,15 @@ class ProductsController < ApplicationController
 
   def update
     @product.images_attachments.where(id: params[:remove_images]).each(&:purge) if params[:remove_images].present?
+    @product.gallery_attachments.where(id: params[:remove_gallery]).each(&:purge) if params[:remove_gallery].present?
 
     updated_params = product_params
     new_images = updated_params.delete(:images)
+    new_gallery = updated_params.delete(:gallery)
 
     if @product.update(updated_params)
       @product.images.attach(new_images) if new_images.present?
+      @product.gallery.attach(new_gallery) if new_gallery.present?
       redirect_to circular_saw_products_path, notice: "Produto atualizado com sucesso."
     else
       build_minimum_faq
@@ -66,7 +83,16 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    @product = Product.find_by!(slug: params[:id])
+    @product = Product
+      .includes(
+        :product_faqs,
+        :rich_text_description,
+        images_attachments: :blob,
+        gallery_attachments: :blob,
+        thumbnail_attachment: :blob,
+        image_detail_attachment: :blob
+      )
+      .find_by!(slug: params[:id])
   end
 
   def product_params
@@ -78,8 +104,10 @@ class ProductsController < ApplicationController
       :name,
       :description,
       :video_url,
+      :thumbnail,
       :image_detail,
       images: [],
+      gallery: [],
       product_faqs_attributes: [ :id, :question, :answer, :_destroy ]
     )
   end

@@ -17,6 +17,8 @@
                   <%= image_tag item.image, class: "others-section__image", alt: item.name %>
                 <% elsif item.respond_to?(:images) && item.images.attached? %>
                   <%= image_tag item.images.first, class: "others-section__image", alt: item.name %>
+                <% elsif item.respond_to?(:gallery) && item.gallery.attached? %>
+                  <%= image_tag item.gallery.first, class: "others-section__image", alt: item.name %>
                 <% else %>
                   <div class="others-section__image others-section__image--placeholder" aria-hidden="true"></div>
                 <% end %>

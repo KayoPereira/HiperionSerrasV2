@@ -38,19 +38,22 @@
 
 .hero-carousel__title {
 	font-family: "Montserrat", sans-serif;
-	font-size: clamp(28px, 2.1vw, 42px);
+	font-size: 30px;
 	line-height: 1.2;
 	font-weight: 700;
 	color: $hiperion-gold;
 	margin-bottom: 16px;
+	letter-spacing: -0.05em;
 }
 
 .hero-carousel__description {
 	font-family: "Montserrat", sans-serif;
-	font-size: clamp(15px, 0.9vw, 24px);
+	font-size: 20px;
 	line-height: 1.45;
+	font-weight: 500;
 	color: $hiperion-white;
 	margin-bottom: 32px;
+	letter-spacing: -0.05em;
 }
 
 .hero-carousel__controls {

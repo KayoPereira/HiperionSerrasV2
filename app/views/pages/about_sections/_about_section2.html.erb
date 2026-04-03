@@ -25,20 +25,24 @@
   <nav class="about-tabs-section__nav" aria-label="Abas institucionais">
     <ul class="about-tabs-section__tab-list" role="tablist">
       <% tabs.each_with_index do |tab, i| %>
-        <li role="presentation">
-          <button
-            class="about-tabs-section__tab"
-            role="tab"
-            aria-selected="<%= i.zero? ? "true" : "false" %>"
-            aria-controls="about-tab-panel-<%= i %>"
-            id="about-tab-<%= i %>"
-            data-about-tabs-target="tab"
-            data-action="click->about-tabs#select"
-            data-about-tabs-index-param="<%= i %>"
-          >
-            <%= tab[:label] %>
-          </button>
-        </li>
+        <div
+          class="about-tabs-section__tab-wrapper w-100 d-flex justify-content-end"
+          data-about-tabs-target="tab"
+        >
+          <li role="presentation" style="width: 70%;">
+            <button
+              class="about-tabs-section__tab"
+              role="tab"
+              aria-selected="<%= i.zero? ? "true" : "false" %>"
+              aria-controls="about-tab-panel-<%= i %>"
+              id="about-tab-<%= i %>"
+              data-action="click->about-tabs#select"
+              data-about-tabs-index-param="<%= i %>"
+            >
+              <%= tab[:label] %>
+            </button>
+          </li>
+        </div>
       <% end %>
     </ul>
   </nav>

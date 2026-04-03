@@ -5,22 +5,33 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
-  get "about", to: "pages#about"
-  get "contact", to: "pages#contact"
-  get "budget", to: "pages#budget"
-  get "privacy-policies", to: "pages#privacy_policies", as: :privacy_policies
-  get "cookies-policies", to: "pages#cookies_policies", as: :cookies_policies
-  get "terms-of-use", to: "pages#terms_of_use", as: :terms_of_use
+
+  # about
+  get "quem-somos", to: "pages#about", as: :about
+
+  # contact
+  get "contato", to: "pages#contact", as: :contact
+
+  # budget
+  get "orcamento", to: "pages#budget", as: :budget
+
+  # policies
+  get "politicas-de-privacidade", to: "pages#privacy_policies", as: :privacy_policies
+  get "politicas-de-cookies", to: "pages#cookies_policies", as: :cookies_policies
+  get "termos-de-uso", to: "pages#terms_of_use", as: :terms_of_use
+
   resources :contact_messages, only: [ :create ]
   resources :budget_requests, only: [ :create ]
-  resources :services, only: [ :index, :show ]
-  get "products/circular-saw", to: "products#circular_saw", as: :circular_saw_products
-  get "products/band-saw", to: "products#band_saw", as: :band_saw_products
-  resources :products, only: [ :show ]
+
+  # services and products
+  resources :services, only: [ :index, :show ], path: "servicos"
+  get "produtos/serras-circulares", to: "products#circular_saw", as: :circular_saw_products
+  get "produtos/laminas-de-serra-fita", to: "products#band_saw", as: :band_saw_products
+  resources :products, only: [ :show ], path: "produtos"
 
   scope "painel-servicos-hiperion", as: :secret do
-    resources :services, except: [ :index, :show ]
-    resources :products, except: [ :index, :show ]
+    resources :services, except: [ :index, :show ], path: "servicos"
+    resources :products, except: [ :index, :show ], path: "produtos"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

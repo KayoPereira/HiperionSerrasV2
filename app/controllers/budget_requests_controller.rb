@@ -21,6 +21,7 @@ class BudgetRequestsController < ApplicationController
   def budget_request_params
     params.require(:budget_request).permit(
       :company_tax_id,
+      :company_name,
       :business_segment,
       :full_name,
       :phone,

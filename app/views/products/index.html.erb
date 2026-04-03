@@ -43,6 +43,8 @@
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>
                   <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                <% elsif product.gallery.attached? && product.gallery.first %>
+                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name %>
                 <% elsif product.image_detail.attached? %>
                   <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
                 <% else %>

@@ -48,7 +48,7 @@
 
     <%= yield %>
 
-    <% hide_products_services_section = request.path == "/" || request.path.include?("policies") || request.path == terms_of_use_path || action_name == "show" || action_name == "index" || action_name == "circular_saw" || action_name == "band_saw" %>
+    <% hide_products_services_section = request.path == "/" || request.path.include?("policies") || request.path == terms_of_use_path || action_name == "index" || action_name == "circular_saw" || action_name == "band_saw" %>
     <% unless hide_products_services_section %>
       <% hide_serra_fita = request.path == "/serras_fita" %>
       <% hide_serras_circulares = request.path == "/serras_circulares" %>

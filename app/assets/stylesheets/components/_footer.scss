@@ -8,7 +8,7 @@
 .hiperion-footer__main {
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
-  column-gap: 52px;
+  column-gap: 64px;
   padding-top: 64px;
 }
 
@@ -91,14 +91,14 @@
 }
 
 .hiperion-footer__social a {
-  color: $hiperion-gold;
+  color: $hiperion-white;
   font-size: 30px;
   line-height: 1;
   text-decoration: none;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $hiperion-white;
+    color: $hiperion-gold;
   }
 }
 
@@ -113,6 +113,10 @@
   height: 22px;
   color: $hiperion-gold;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
 
 .hiperion-footer__contact-icon svg {
@@ -124,6 +128,20 @@
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.hiperion-footer__location-link {
+  color: $hiperion-white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $hiperion-gold;
+  }
+
+  p {
+    color: inherit;
+  }
 }
 
 .hiperion-footer__locations {
@@ -183,11 +201,15 @@
 .hiperion-footer__developed-by span,
 .hiperion-footer__legal-links a {
   margin: 0;
-  color: $hiperion-navy;
-  font-size: 15px;
+  color: $hiperion-white;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.15;
   text-decoration: none;
+}
+
+.hiperion-footer__legal-links a {
+  color: $hiperion-navy;
 }
 
 .hiperion-footer__legal-links {

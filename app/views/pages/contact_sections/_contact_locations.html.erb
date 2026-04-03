@@ -4,7 +4,7 @@
     city: "Mogi Guaçu-SP",
     address: "Rua Eli Paulo Colombo, 1470 - Jardim Sakaida",
     complement: "Mogi Guaçu-SP | CEP: 13.849-702",
-    maps_url: "https://www.google.com/maps/search/?api=1&query=Rua+Eli+Paulo+Colombo,+1470+-+Jardim+Sakaida,+Mogi+Guaçu,+SP",
+    maps_url: "https://maps.app.goo.gl/3gC1ynHJ4doDNGnN9",
     embed_src: "https://maps.google.com/maps?q=Rua+Eli+Paulo+Colombo,+1470,+Jardim+Sakaida,+Mogi+Guaçu,+SP,+Brasil&output=embed"
   },
   {
@@ -12,7 +12,7 @@
     city: "Poá-SP",
     address: "Avenida Getúlio Vargas, 692 - Calmon Viana",
     complement: "Poá-SP | CEP: 08557-010",
-    maps_url: "https://www.google.com/maps/search/?api=1&query=Avenida+Getúlio+Vargas,+692,+Calmon+Viana,+Poá,+SP",
+    maps_url: "https://maps.app.goo.gl/DbPekvjr4ZcuSFGv5",
     embed_src: "https://maps.google.com/maps?q=Avenida+Getúlio+Vargas,+692,+Calmon+Viana,+Poá,+SP,+Brasil&output=embed"
   }
 ] %>
@@ -29,43 +29,47 @@
           itemscope
           itemtype="https://schema.org/LocalBusiness"
         >
-          <p class="contact-locations__label"><%= loc[:label].upcase %></p>
+          <div class="d-flex" style="height: 10%;">
+            <p class="contact-locations__label"><%= loc[:label].upcase %></p>
+          </div>
 
-          <p class="contact-locations__city">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-            <strong itemprop="name"><%= loc[:city] %></strong>
-          </p>
+          <div class="d-flex flex-column justify-content-end">
+            <p class="contact-locations__city">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <strong itemprop="name"><%= loc[:city] %></strong>
+            </p>
 
-          <address class="contact-locations__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="streetAddress"><%= loc[:address] %></span><br>
-            <span><%= loc[:complement] %></span>
-          </address>
+            <address class="contact-locations__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress"><%= loc[:address] %></span><br>
+              <span><%= loc[:complement] %></span>
+            </address>
 
-          <a
-            href="<%= loc[:maps_url] %>"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-locations__map-link"
-            aria-label="Abrir <%= loc[:city] %> no Google Maps"
-          >
-            <div class="contact-locations__map-wrapper">
-              <iframe
-                class="contact-locations__map"
-                src="<%= loc[:embed_src] %>"
-                loading="lazy"
-                allowfullscreen=""
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Mapa do endereço em <%= loc[:city] %>"
-                aria-label="Mapa interativo do endereço em <%= loc[:city] %>"
-              ></iframe>
-              <div class="contact-locations__map-overlay" aria-hidden="true">
-                <span class="contact-locations__map-cta">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                  Ver no Google Maps
-                </span>
+            <a
+              href="<%= loc[:maps_url] %>"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-locations__map-link"
+              aria-label="Abrir <%= loc[:city] %> no Google Maps"
+            >
+              <div class="contact-locations__map-wrapper">
+                <iframe
+                  class="contact-locations__map"
+                  src="<%= loc[:embed_src] %>"
+                  loading="lazy"
+                  allowfullscreen=""
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Mapa do endereço em <%= loc[:city] %>"
+                  aria-label="Mapa interativo do endereço em <%= loc[:city] %>"
+                ></iframe>
+                <div class="contact-locations__map-overlay" aria-hidden="true">
+                  <span class="contact-locations__map-cta">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Ver no Google Maps
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </article>
       <% end %>
     </div>
