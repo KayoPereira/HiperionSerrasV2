@@ -29,6 +29,7 @@ class Product < ApplicationRecord
   validate :thumbnail_presence
 
   before_validation :generate_slug, if: -> { slug.blank? || name_changed? }
+  before_create :assign_display_order
 
   def to_param
     slug
@@ -49,6 +50,15 @@ class Product < ApplicationRecord
       counter += 1
     end
     self.slug = slug_candidate
+  end
+
+  def assign_display_order
+    return if display_order.present?
+
+    max = Product
+      .where(product_type: product_type, application_type: application_type)
+      .maximum(:display_order) || 0
+    self.display_order = max + 1
   end
 
   def thumbnail_presence

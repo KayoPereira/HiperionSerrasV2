@@ -10,3 +10,4 @@ pin "@popperjs/core", to: "popper.js", preload: true
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 pin "trix_color"
+pin "sortablejs", to: "https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm"

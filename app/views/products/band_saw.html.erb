@@ -36,9 +36,9 @@
     <% end %>
 
     <% if @metals_products.any? %>
-      <div class="products-list__grid">
+      <div class="products-list__grid" <% if user_signed_in? %>data-controller="sortable" data-sortable-url-value="<%= reorder_secret_products_path %>"<% end %>>
         <% @metals_products.each do |product| %>
-          <article class="products-list__card">
+          <article class="products-list__card" data-product-id="<%= product.id %>">
             <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>
@@ -85,9 +85,9 @@
     <h2 id="wood-products-heading" class="visually-hidden">Lâminas de serra fita para madeira</h2>
 
     <% if @wood_products.any? %>
-      <div class="products-list__grid">
+      <div class="products-list__grid" <% if user_signed_in? %>data-controller="sortable" data-sortable-url-value="<%= reorder_secret_products_path %>"<% end %>>
         <% @wood_products.each do |product| %>
-          <article class="products-list__card">
+          <article class="products-list__card" data-product-id="<%= product.id %>">
             <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>

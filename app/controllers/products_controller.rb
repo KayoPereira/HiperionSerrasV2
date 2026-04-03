@@ -6,29 +6,40 @@ class ProductsController < ApplicationController
     @metals_products = Product
       .where(product_type: :circular_saw, application_type: :ferrous_and_non_ferrous_metals)
       .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
-      .order(created_at: :desc)
+      .order(Arel.sql("display_order ASC NULLS LAST, created_at ASC"))
     @wood_products = Product
       .where(product_type: :circular_saw, application_type: :wood)
       .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
-      .order(created_at: :desc)
+      .order(Arel.sql("display_order ASC NULLS LAST, created_at ASC"))
   end
 
   def band_saw
     @metals_products = Product
       .where(product_type: :band_saw, application_type: :ferrous_and_non_ferrous_metals)
       .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
-      .order(created_at: :desc)
+      .order(Arel.sql("display_order ASC NULLS LAST, created_at ASC"))
     @wood_products = Product
       .where(product_type: :band_saw, application_type: :wood)
       .includes(:product_faqs, :rich_text_description, images_attachments: :blob, gallery_attachments: :blob, image_detail_attachment: :blob)
-      .order(created_at: :desc)
+      .order(Arel.sql("display_order ASC NULLS LAST, created_at ASC"))
   end
 
   def show
     @other_products = Product
       .where.not(id: @product.id)
       .includes(images_attachments: :blob, gallery_attachments: :blob)
-      .order(created_at: :desc)
+      .order(Arel.sql("display_order ASC NULLS LAST, created_at ASC"))
+  end
+
+  def reorder
+    ids = Array(params[:ids]).map(&:to_i).select { |id| id > 0 }
+    return head :bad_request if ids.empty?
+
+    ids.each_with_index do |id, index|
+      Product.where(id: id).update_all(display_order: index + 1)
+    end
+
+    head :ok
   end
 
   def new

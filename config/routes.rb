@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 
   scope "painel-servicos-hiperion", as: :secret do
     resources :services, except: [ :index, :show ], path: "servicos"
-    resources :products, except: [ :index, :show ], path: "produtos"
+    resources :products, except: [ :index, :show ], path: "produtos" do
+      post :reorder, on: :collection
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
