@@ -1,14 +1,17 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="pt-BR">
 
   <head>
 
-    <title>The page you were looking for doesn’t exist (404 Not found)</title>
+    <title>Página não encontrada - Hiperion Serras</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="A página que você procura não foi encontrada. Volte para a página inicial da Hiperion Serras.">
+    <meta name="theme-color" content="#D2AC47">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
 
@@ -18,6 +21,7 @@
 
       * {
         margin: 0;
+        padding: 0;
       }
 
       html {
@@ -25,27 +29,110 @@
       }
 
       body {
-        background: #FFF;
-        color: #261B23;
-        display: grid;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Aptos, Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        font-size: clamp(1rem, 2.5vw, 2rem);
+        background: linear-gradient(135deg, #1D2331 0%, #2a3442 100%);
+        color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Aptos, Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1rem;
         -webkit-font-smoothing: antialiased;
         font-style: normal;
         font-weight: 400;
         letter-spacing: -0.0025em;
-        line-height: 1.4;
+        line-height: 1.6;
         min-height: 100vh;
-        place-items: center;
         text-rendering: optimizeLegibility;
         -webkit-text-size-adjust: 100%;
       }
 
       a {
-        color: inherit;
+        color: #D2AC47;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding-bottom: 2px;
+        border-bottom: 2px solid transparent;
+      }
+
+      a:hover,
+      a:focus {
+        color: #e8c869;
+        border-bottom-color: #D2AC47;
+        outline: none;
+      }
+
+      a:focus-visible {
+        outline: 3px solid #D2AC47;
+        outline-offset: 4px;
+      }
+
+      /* ── Navbar ────────────────────────────────────────────────────── */
+      .navbar-hiperion {
+        background-color: #1D2331;
+        border-bottom: 3px solid #D2AC47;
+        padding: 0 !important;
+      }
+
+      .navbar-hiperion__container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+      }
+
+      .navbar-logo {
+        height: 60px;
+        width: auto;
+        display: block;
+      }
+
+      .navbar-hiperion__nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        list-style: none;
+        margin: 0;
+      }
+
+      .navbar-hiperion__nav li {
+        padding: 0 16px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-link {
+        font-family: "Montserrat", sans-serif;
+        font-size: 13px;
         font-weight: 700;
-        text-decoration: underline;
-        text-underline-offset: 0.0925em;
+        letter-spacing: -0.05em;
+        color: #FFFFFF;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-link:hover {
+        color: #D2AC47;
+      }
+
+      .secondary-btn {
+        border: 2px solid #D2AC47;
+        color: #D2AC47;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .secondary-btn:hover {
+        background-color: #D2AC47;
+        color: #1D2331;
       }
 
       b, strong {
@@ -58,38 +145,249 @@
 
       main {
         display: grid;
-        gap: 1em;
-        padding: 2em;
+        gap: 2em;
+        padding: 6em 2em 2em;
         place-items: center;
         text-align: center;
+        flex: 1;
+        justify-content: center;
+        max-width: 900px;
+        margin: 0 auto;
       }
 
       main header {
-        width: min(100%, 12em);
+        width: min(100%, 200px);
+        margin-bottom: 1em;
       }
 
       main header svg {
         height: auto;
         max-width: 100%;
         width: 100%;
+        filter: drop-shadow(0 4px 12px rgba(230, 57, 70, 0.3));
+      }
+
+      .error-code {
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: 800;
+        color: #D2AC47;
+        line-height: 1;
+        margin: 0.2em 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
 
       main article {
-        width: min(100%, 30em);
+        width: min(100%, 40em);
+      }
+
+      main article h1 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        margin-bottom: 0.5em;
+        color: #FFFFFF;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
       }
 
       main article p {
-        font-size: 75%;
+        font-size: 1.1rem;
+        margin-bottom: 1em;
+        color: #e0e0e0;
+        line-height: 1.8;
       }
 
-      main article br {
+      .action-buttons {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2em;
+      }
 
-        display: none;
+      .btn {
+        display: inline-block;
+        padding: 0.875em 2em;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: -0.05em;
+      }
 
-        @media(min-width: 48em) {
-          display: inline;
+      .btn-primary {
+        background-color: #D2AC47;
+        color: #1D2331;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background-color: #e8c869;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(210, 172, 71, 0.4);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: #D2AC47;
+        border: 2px solid #D2AC47;
+      }
+
+      .btn-secondary:hover,
+      .btn-secondary:focus {
+        background-color: #D2AC47;
+        color: #1D2331;
+        transform: translateY(-2px);
+      }
+
+      /* ── Footer ────────────────────────────────────────────────── */
+      footer {
+        background-color: #1D2331;
+        color: #FFFFFF;
+        font-family: "Montserrat", sans-serif;
+        margin-top: auto;
+      }
+
+      .hiperion-footer__main {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+        column-gap: 48px;
+        padding: 48px 24px;
+        max-width: 1320px;
+        margin: 0 auto;
+      }
+
+      .hiperion-footer__brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: max-content;
+      }
+
+      .hiperion-footer__logo {
+        width: 160px;
+        height: auto;
+        display: block;
+        margin-bottom: 14px;
+      }
+
+      .hiperion-footer__tagline {
+        margin: 0 0 32px;
+        color: #FFFFFF;
+        font-size: 13px;
+        font-style: italic;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .hiperion-footer__title {
+        margin-bottom: 16px;
+        color: #D2AC47;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      .hiperion-footer__social {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .hiperion-footer__social a {
+        color: #FFFFFF;
+        font-size: 24px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .hiperion-footer__social a:hover {
+        color: #D2AC47;
+      }
+
+      .hiperion-footer__menu ul,
+      .hiperion-footer__contacts ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .hiperion-footer__menu li,
+      .hiperion-footer__contacts li {
+        margin-bottom: 14px;
+      }
+
+      .hiperion-footer__menu a,
+      .hiperion-footer__contacts a {
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.15;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .hiperion-footer__menu a:hover,
+      .hiperion-footer__contacts a:hover {
+        color: #D2AC47;
+      }
+
+      .hiperion-footer__bottom {
+        background-color: #D2AC47;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1D2331;
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      @media (max-width: 991px) {
+        main {
+          padding: 5em 1.5em 1.5em;
+          gap: 1.5em;
         }
 
+        .action-buttons {
+          flex-direction: column;
+          gap: 0.75em;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .hiperion-footer__main {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 32px 16px;
+        }
+
+        .navbar-hiperion__nav {
+          flex-direction: column;
+          gap: 16px;
+          padding: 16px 0;
+        }
+
+        .navbar-hiperion__nav li {
+          padding: 8px 0;
+        }
+
+        main article p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        a,
+        .btn {
+          transition: none;
+        }
       }
 
     </style>
@@ -98,14 +396,20 @@
 
   <body>
 
-    <!-- This file lives in public/404.html -->
 
+    <!-- Main content -->
     <main>
-      <header>
-        <svg height="172" viewBox="0 0 480 172" width="480" xmlns="http://www.w3.org/2000/svg"><path d="m124.48 3.00509-45.6889 100.02991h26.2239v-28.1168h38.119v28.1168h21.628v35.145h-21.628v30.82h-37.308v-30.82h-72.1833v-31.901l50.2851-103.27391zm115.583 168.69891c-40.822 0-64.884-35.146-64.884-85.7015 0-50.5554 24.062-85.700907 64.884-85.700907 40.823 0 64.884 35.145507 64.884 85.700907 0 50.5555-24.061 85.7015-64.884 85.7015zm0-133.2831c-17.572 0-22.709 21.8984-22.709 47.5816 0 25.6835 5.137 47.5815 22.709 47.5815 17.303 0 22.71-21.898 22.71-47.5815 0-25.6832-5.407-47.5816-22.71-47.5816zm165.328-35.41581-45.689 100.02991h26.224v-28.1168h38.119v28.1168h21.628v35.145h-21.628v30.82h-37.308v-30.82h-72.184v-31.901l50.285-103.27391z" fill="#f0eff0"/><path d="m157.758 68.9967v34.0033h-7.199l-14.233-19.8814v19.8814h-8.584v-34.0033h8.307l13.125 18.7184v-18.7184zm28.454 21.5428c0 7.6978-5.15 13.0145-12.737 13.0145-7.532 0-12.738-5.3167-12.738-13.0145s5.206-13.0143 12.738-13.0143c7.587 0 12.737 5.3165 12.737 13.0143zm-8.528 0c0-3.4336-1.496-5.8703-4.209-5.8703-2.659 0-4.154 2.4367-4.154 5.8703s1.495 5.8149 4.154 5.8149c2.713 0 4.209-2.3813 4.209-5.8149zm13.184 3.8766v-9.5807h-3.655v-6.7564h3.655v-6.8671h8.584v6.8671h5.205v6.7564h-5.205v8.307c0 1.9383.941 2.769 2.658 2.769.941 0 1.994-.2216 2.769-.5538v7.3654c-.997.443-2.88.775-4.818.775-5.87 0-9.193-2.769-9.193-9.0819zm37.027 8.5839h-8.806v-34.0033h23.924v7.6978h-15.118v6.7564h13.9v7.5316h-13.9zm41.876-12.4605c0 7.6978-5.15 13.0145-12.737 13.0145-7.532 0-12.738-5.3167-12.738-13.0145s5.206-13.0143 12.738-13.0143c7.587 0 12.737 5.3165 12.737 13.0143zm-8.529 0c0-3.4336-1.495-5.8703-4.208-5.8703-2.659 0-4.154 2.4367-4.154 5.8703s1.495 5.8149 4.154 5.8149c2.713 0 4.208-2.3813 4.208-5.8149zm35.337-12.4605v24.921h-8.695v-2.16c-1.329 1.551-3.821 2.714-6.646 2.714-5.482 0-8.75-3.5999-8.75-9.1379v-16.3371h8.64v14.288c0 2.1045.997 3.5997 3.212 3.5997 1.606 0 3.101-1.0522 3.544-2.769v-15.1187zm4.076 24.921v-24.921h8.694v2.1598c1.385-1.5506 3.822-2.7136 6.701-2.7136 5.538 0 8.806 3.5997 8.806 9.1377v16.3371h-8.639v-14.2327c0-2.049-1.053-3.5443-3.268-3.5443-1.717 0-3.156.9969-3.6 2.7136v15.0634zm44.113 0v-1.994c-1.163 1.329-3.6 2.548-6.147 2.548-7.2 0-11.132-5.8151-11.132-13.0145s3.932-13.0143 11.132-13.0143c2.547 0 4.984 1.2184 6.147 2.5475v-13.0697h8.695v35.997zm0-9.1931v-6.5902c-.665-1.3291-2.16-2.326-3.821-2.326-2.991 0-4.763 2.4368-4.763 5.6488s1.772 5.5934 4.763 5.5934c1.717 0 3.156-.9415 3.821-2.326z" fill="#d30001"/></svg>
+      <header role="banner">
+        <svg height="172" viewBox="0 0 480 172" width="480" xmlns="http://www.w3.org/2000/svg" aria-label="Hiperion Serras Logo"><path d="m124.48 3.00509-45.6889 100.02991h26.2239v-28.1168h38.119v28.1168h21.628v35.145h-21.628v30.82h-37.308v-30.82h-72.1833v-31.901l50.2851-103.27391zm115.583 168.69891c-40.822 0-64.884-35.146-64.884-85.7015 0-50.5554 24.062-85.700907 64.884-85.700907 40.823 0 64.884 35.145507 64.884 85.700907 0 50.5555-24.061 85.7015-64.884 85.7015zm0-133.2831c-17.572 0-22.709 21.8984-22.709 47.5816 0 25.6835 5.137 47.5815 22.709 47.5815 17.303 0 22.71-21.898 22.71-47.5815 0-25.6832-5.407-47.5816-22.71-47.5816zm165.328-35.41581-45.689 100.02991h26.224v-28.1168h38.119v28.1168h21.628v35.145h-21.628v30.82h-37.308v-30.82h-72.184v-31.901l50.285-103.27391z" fill="#f0eff0"/><path d="m157.758 68.9967v34.0033h-7.199l-14.233-19.8814v19.8814h-8.584v-34.0033h8.307l13.125 18.7184v-18.7184zm28.454 21.5428c0 7.6978-5.15 13.0145-12.737 13.0145-7.532 0-12.738-5.3167-12.738-13.0145s5.206-13.0143 12.738-13.0143c7.587 0 12.737 5.3165 12.737 13.0143zm-8.528 0c0-3.4336-1.496-5.8703-4.209-5.8703-2.659 0-4.154 2.4367-4.154 5.8703s1.495 5.8149 4.154 5.8149c2.713 0 4.209-2.3813 4.209-5.8149zm13.184 3.8766v-9.5807h-3.655v-6.7564h3.655v-6.8671h8.584v6.8671h5.205v6.7564h-5.205v8.307c0 1.9383.941 2.769 2.658 2.769.941 0 1.994-.2216 2.769-.5538v7.3654c-.997.443-2.88.775-4.818.775-5.87 0-9.193-2.769-9.193-9.0819zm37.027 8.5839h-8.806v-34.0033h23.924v7.6978h-15.118v6.7564h13.9v7.5316h-13.9zm41.876-12.4605c0 7.6978-5.15 13.0145-12.737 13.0145-7.532 0-12.738-5.3167-12.738-13.0145s5.206-13.0143 12.738-13.0143c7.587 0 12.737 5.3165 12.737 13.0143zm-8.529 0c0-3.4336-1.495-5.8703-4.208-5.8703-2.659 0-4.154 2.4367-4.154 5.8703s1.495 5.8149 4.154 5.8149c2.713 0 4.208-2.3813 4.208-5.8149zm35.337-12.4605v24.921h-8.695v-2.16c-1.329 1.551-3.821 2.714-6.646 2.714-5.482 0-8.75-3.5999-8.75-9.1379v-16.3371h8.64v14.288c0 2.1045.997 3.5997 3.212 3.5997 1.606 0 3.101-1.0522 3.544-2.769v-15.1187zm4.076 24.921v-24.921h8.694v2.1598c1.385-1.5506 3.822-2.7136 6.701-2.7136 5.538 0 8.806 3.5997 8.806 9.1377v16.3371h-8.639v-14.2327c0-2.049-1.053-3.5443-3.268-3.5443-1.717 0-3.156.9969-3.6 2.7136v15.0634zm44.113 0v-1.994c-1.163 1.329-3.6 2.548-6.147 2.548-7.2 0-11.132-5.8151-11.132-13.0145s3.932-13.0143 11.132-13.0143c2.547 0 4.984 1.2184 6.147 2.5475v-13.0697h8.695v35.997zm0-9.1931v-6.5902c-.665-1.3291-2.16-2.326-3.821-2.326-2.991 0-4.763 2.4368-4.763 5.6488s1.772 5.5934 4.763 5.5934c1.717 0 3.156-.9415 3.821-2.326z" fill="#E63946"/></svg>
       </header>
       <article>
-        <p><strong>The page you were looking for doesn’t exist.</strong> You may have mistyped the address or the page may have moved. If you’re the application owner check the logs for more information.</p>
+        <div class="error-code">404</div>
+        <h1>Página não encontrada</h1>
+        <p>Desculpe, a página que você está procurando não existe ou foi removida. Verifique o URL ou navegue de volta para nosso site usando os links abaixo.</p>
+
+        <div class="action-buttons">
+          <a href="/" class="btn btn-primary">Voltar para Home</a>
+        </div>
       </article>
     </main>
 

@@ -27,7 +27,12 @@ Rails.application.routes.draw do
   resources :services, only: [ :index, :show ], path: "servicos"
   get "produtos/serras-circulares", to: "products#circular_saw", as: :circular_saw_products
   get "produtos/laminas-de-serra-fita", to: "products#band_saw", as: :band_saw_products
+  get "serras-circulares", to: "products#circular_saw"
+  get "laminas-de-serra-fita", to: "products#band_saw"
   resources :products, only: [ :show ], path: "produtos"
+
+  # Allow direct access to products by slug at root level (primary route)
+  get ":slug", to: "products#show", as: :product_root
 
   scope "painel-servicos-hiperion", as: :secret do
     resources :services, except: [ :index, :show ], path: "servicos"

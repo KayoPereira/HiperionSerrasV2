@@ -8,6 +8,22 @@ module ProductsHelper
     "https://www.youtube.com/embed/#{video_id}?rel=0&modestbranding=1"
   end
 
+  def circular_saw_products_path(options = {})
+    "/serras-circulares"
+  end
+
+  def circular_saw_products_url(options = {})
+    "#{request.protocol}#{request.host_with_port}/serras-circulares"
+  end
+
+  def band_saw_products_path(options = {})
+    "/laminas-de-serra-fita"
+  end
+
+  def band_saw_products_url(options = {})
+    "#{request.protocol}#{request.host_with_port}/laminas-de-serra-fita"
+  end
+
   def render_product_description(description)
     allowed_tags = (Rails::HTML5::SafeListSanitizer.allowed_tags.to_a + [
       "action-text-attachment",

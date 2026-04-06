@@ -103,7 +103,7 @@ class ProductsController < ApplicationController
         thumbnail_attachment: :blob,
         image_detail_attachment: :blob
       )
-      .find_by!(slug: params[:id])
+      .find_by!(slug: params[:id] || params[:slug])
   end
 
   def product_params
