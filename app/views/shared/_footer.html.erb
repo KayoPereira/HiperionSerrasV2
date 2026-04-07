@@ -1,21 +1,8 @@
 <footer class="hiperion-footer">
-  <div class="hiperion-footer__main container">
+  <div class="hiperion-footer__main container" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;">
     <section class="hiperion-footer__brand">
       <%= image_tag "logo-nav-2x.png", class: "hiperion-footer__logo", alt: "Hiperion Serras" %>
       <p class="hiperion-footer__tagline">PRECISAO PARA CADA CORTE!</p>
-
-      <h3 class="hiperion-footer__title">SIGA A GENTE!</h3>
-      <div class="hiperion-footer__social">
-        <a href="https://www.linkedin.com/company/hiperion-serras/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.instagram.com/hiperionserras/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.facebook.com/hiperionserras/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-        </a>
-      </div>
     </section>
 
     <section class="hiperion-footer__menu">
@@ -36,7 +23,7 @@
       </ul>
     </section>
 
-    <section class="hiperion-footer__contacts">
+    <section class="hiperion-footer__contacts" style="width: 100%;">
       <h3 class="hiperion-footer__title">CONTATOS</h3>
       <ul>
         <li>
@@ -63,33 +50,118 @@
           <a href="mailto:contato@hiperionserras.com.br">contato@hiperionserras.com.br</a>
         </li>
       </ul>
+
+      <style>
+        @media (min-width: 1920px) {
+          .hiperion-footer__contacts {
+            width: 330px !important;
+          }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1919px) {
+          .hiperion-footer__contacts {
+            width: 280px !important;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+          .hiperion-footer__contacts {
+            width: 100% !important;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .hiperion-footer__contacts {
+            width: 100% !important;
+          }
+        }
+      </style>
     </section>
   </div>
 
-  <div class="hiperion-footer__locations container mb-4">
+  <div class="hiperion-footer__locations container mb-4" style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 10px;">
+    <section>
+      <h3 class="hiperion-footer__title">SIGA A GENTE!</h3>
+      <div class="hiperion-footer__social">
+        <a href="https://www.linkedin.com/company/hiperion-serras/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/hiperionserras/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/hiperionserras/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
     <section class="hiperion-footer__location hiperion-footer__location--left">
-      <h3 class="hiperion-footer__title">CENTRO DE DISTRIBUIÇÃO DE SERRAS CIRCULARES E SERVIÇO DE AFIAÇÃO</h3>
-      <p class="hiperion-footer__location-city">
-        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <h3 class="hiperion-footer__title">CENTRO DE DISTRIBUIÇÃO DE SERRAS<br> CIRCULARES E SERVIÇO DE AFIAÇÃO</h3>
+      <p class="hiperion-footer__location-city mb-2">
+        <%= image_tag "localização@2x.png", alt: "Localização", style: "width: 23px; height: 25px;" %>
         MOGI GUACU-SP
       </p>
       <a href="https://maps.app.goo.gl/3gC1ynHJ4doDNGnN9" target="_blank" rel="noopener noreferrer" class="hiperion-footer__location-link">
-        <p>Rua Eli Paulo Colombo, 1470 - Jardim Sakaida</p>
-        <p>Mogi Guaçu-SP | CEP: 13.849-702</p>
+        <p>Rua Eli Paulo Colombo, 1470 - Jardim Sakaida<br> Mogi Guaçu-SP | CEP: 13.849-702</p>
       </a>
+
+      <style>
+        .hiperion-footer__location-link p {
+          transition: color 0.3s ease;
+        }
+
+        .hiperion-footer__location-link:hover p {
+          color: #D2AC47;
+        }
+      </style>
     </section>
 
-    <section class="hiperion-footer__location hiperion-footer__location--right">
+    <section class="hiperion-footer__location hiperion-footer__location--right" style="width: 100%;">
       <h3 class="hiperion-footer__title">CENTRO DE DISTRIBUIÇÃO DE LÂMINAS DE SERRA FITA</h3>
-      <p class="hiperion-footer__location-city">
-        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <p class="hiperion-footer__location-city mb-2">
+        <%= image_tag "localização@2x.png", alt: "Localização", style: "width: 23px; height: 25px;" %>
         POA-SP
       </p>
       <a href="https://maps.app.goo.gl/DbPekvjr4ZcuSFGv5" target="_blank" rel="noopener noreferrer" class="hiperion-footer__location-link">
-        <p>Avenida Getulio Vargas, 692 - Calmon Viana</p>
-        <p>Poa-SP | CEP: 85.600-000</p>
+        <p>Avenida Getulio Vargas, 692 - Calmon Viana Poa-SP | CEP: 85.600-000</p>
       </a>
+
+      <style>
+        .hiperion-footer__location-link p {
+          transition: color 0.3s ease;
+        }
+
+        .hiperion-footer__location-link:hover p {
+          color: #D2AC47;
+        }
+      </style>
     </section>
+
+    <style>
+      @media (min-width: 1920px) {
+        .hiperion-footer__location--right {
+          width: 330px !important;
+        }
+      }
+
+      @media (min-width: 1200px) and (max-width: 1919px) {
+        .hiperion-footer__location--right {
+          width: 280px !important;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1199px) {
+        .hiperion-footer__location--right {
+          width: 100% !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hiperion-footer__location--right {
+          width: 100% !important;
+        }
+      }
+    </style>
   </div>
 
   <div class="hiperion-footer__bottom">
