@@ -1,20 +1,25 @@
 <section class="products-services-section" aria-labelledby="products-services-heading">
   <div class="products-services-section__container container">
-    <h2 id="products-services-heading" class="products-services-section__title">
-      Conheça nossos produtos e serviços
-    </h2>
+    <div style="margin-bottom: clamp(32px, 5vw, 60px);">
+      <h2 id="products-services-heading" class="products-services-section__title">
+        Conheça nossos produtos e serviços
+      </h2>
+      <p class="about-faq__subtitle text-center">Soluções completas em serras circulares, lâminas de serra fita e serviços técnicos especializados</p>
+    </div>
 
     <div class="products-services-section__grid">
       <% if !hide_serras_circulares %>
         <article class="products-services-section__card" role="img" aria-label="Serras Circulares para diferentes aplicações industriais">
           <div class="products-services-section__card-image" style="background-image: url('<%= asset_path('offers/serra_circular-2x.png') %>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <div class="products-services-section__card-content h-100">
-              <div class="h-50 d-flex align-items-end">
+          </div>
+          <div class="h-100">
+            <div class="h-100">
+              <div class="h-50 d-flex align-items-end justify-content-center">
                 <h3 class="products-services-section__card-title">SERRAS CIRCULARES</h3>
               </div>
-              <div class="h-50 d-flex align-items-end">
+              <div class="h-50 d-flex align-items-end justify-content-center">
                 <%= link_to "CONHEÇA NOSSAS SERRAS CIRCULARES", circular_saw_products_path,
-                      class: "secondary-btn",
+                      class: "secondary-btn mb-4",
                       aria: { label: "Saiba mais sobre as serras circulares da Hiperion Serras" },
                       style: "height: 55px;" %>
               </div>
@@ -26,13 +31,15 @@
       <% if !hide_servicos %>
         <article class="products-services-section__card" role="img" aria-label="Serviços técnicos especializados da Hiperion Serras">
           <div class="products-services-section__card-image" style="background-image: url('<%= asset_path('offers/servicos-2x.png') %>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <div class="products-services-section__card-content h-100">
-              <div class="h-50 d-flex align-items-end">
-                <h3 class="products-services-section__card-title">SERVIÇOS</h3>
+          </div>
+          <div class="h-100">
+            <div class="h-100">
+              <div class="h-50 d-flex align-items-end justify-content-center">
+                <h3 class="products-services-section__card-title text-center">SERVIÇOS</h3>
               </div>
-              <div class="h-50 d-flex align-items-end">
+              <div class="h-50 d-flex align-items-end justify-content-center">
                 <%= link_to "CONHEÇA NOSSOS SERVIÇOS", services_path,
-                      class: "secondary-btn",
+                      class: "secondary-btn mb-4",
                       aria: { label: "Saiba mais sobre os serviços técnicos da Hiperion Serras" },
                       style: "height: 55px;" %>
               </div>
@@ -44,13 +51,15 @@
       <% if !hide_serra_fita %>
         <article class="products-services-section__card" role="img" aria-label="Lâminas de Serra Fita para diferentes aplicações industriais">
           <div class="products-services-section__card-image" style="background-image: url('<%= asset_path('offers/serra_fita-2x.png') %>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-            <div class="products-services-section__card-content h-100">
-              <div class="h-50 d-flex align-items-end">
+          </div>
+          <div class="h-100">
+            <div class="h-100">
+              <div class="h-50 d-flex align-items-end justify-content-center">
                 <h3 class="products-services-section__card-title">LÂMINAS DE SERRA FITA</h3>
               </div>
-              <div class="h-50 d-flex align-items-end">
+              <div class="h-50 d-flex align-items-end justify-content-center">
                 <%= link_to "CONHEÇA NOSSAS LÂMINAS DE SERRA FITA", band_saw_products_path,
-                      class: "secondary-btn",
+                      class: "secondary-btn mb-4",
                       aria: { label: "Saiba mais sobre as lâminas de serra fita da Hiperion Serras" },
                       style: "height: 55px;" %>
               </div>

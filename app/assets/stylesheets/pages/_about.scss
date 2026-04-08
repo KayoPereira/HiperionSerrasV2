@@ -24,7 +24,6 @@
 .about-banner__content {
   text-align: center;
   padding: 0 24px;
-  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -458,7 +457,7 @@
 
 .about-team__title {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(30px, 2.7vw, 56px);
+  font-size: clamp(25px, 2.2vw, 40px);
   font-weight: 700;
   line-height: 1.1;
   color: $hiperion-navy;
@@ -467,7 +466,7 @@
 
 .about-team__description {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(15px, 1vw, 20px);
+  font-size: clamp(15px, 0.9vw, 20px);
   font-weight: 600;
   line-height: 1.45;
   color: $hiperion-navy;
@@ -543,13 +542,17 @@
 .about-highlights__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto);
   gap: clamp(30px, 4vw, 56px) clamp(36px, 5vw, 82px);
-  max-width: 920px;
   margin: 0 auto;
 }
 
 .about-highlights__item {
-  max-width: 380px;
+}
+
+.about-highlights__item:nth-child(3),
+.about-highlights__item:nth-child(4) {
+  align-self: end;
 }
 
 .about-highlights__icon {

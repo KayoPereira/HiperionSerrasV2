@@ -35,12 +35,10 @@
 
 <section class="about-highlights" aria-labelledby="about-highlights-heading">
   <div class="container">
-    <h2 id="about-highlights-heading" class="about-highlights__heading">Diferenciais da Hiperion Serras</h2>
-
     <div class="about-highlights__grid">
       <% highlights.each do |item| %>
         <article class="about-highlights__item">
-          <%= image_tag item[:icon], alt: item[:alt], class: "about-highlights__icon #{item[:icon_class]}", loading: "lazy", style: "width: #{item[:width]}" %>
+          <%= image_tag item[:icon], alt: item[:alt], class: "about-highlights__icon #{item[:icon_class]}", loading: "lazy", style: "width: #{item[:width]}; height: #{item[:width]}" %>
           <h3 class="about-highlights__title"><%= item[:title] %></h3>
           <p class="about-highlights__text"><%= item[:text] %></p>
         </article>
