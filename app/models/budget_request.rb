@@ -7,6 +7,8 @@ class BudgetRequest < ApplicationRecord
   validates :full_name, presence: true, length: { maximum: 120 }
   validates :phone, presence: true, length: { maximum: 30 }
   validates :email, presence: true, format: { with: EMAIL_REGEX }
+  validates :state, presence: true, length: { maximum: 50 }
+  validates :city, presence: true, length: { maximum: 80 }
   validates :referral_source, presence: true, length: { maximum: 80 }
   validates :message, presence: true, length: { maximum: 2000 }
 

@@ -26,6 +26,8 @@ class BudgetRequestsController < ApplicationController
       :full_name,
       :phone,
       :email,
+      :state,
+      :city,
       :referral_source,
       :message
     )

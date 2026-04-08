@@ -220,6 +220,60 @@
   }
 }
 
+.budget-form {
+  .custom-select--budget {
+    .custom-select__trigger {
+      background-color: rgba(255, 255, 255, 0.96);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      color: $hiperion-navy;
+
+      &:hover,
+      &:focus {
+        border-color: $hiperion-gold;
+        background-color: $hiperion-white;
+      }
+    }
+
+    .custom-select__label {
+      color: rgba($hiperion-navy, 0.55);
+    }
+
+    .custom-select__label--filled {
+      color: $hiperion-black;
+    }
+
+    .custom-select__arrow {
+      border-top-color: $hiperion-navy;
+    }
+
+    &.custom-select--filled > .custom-select__trigger,
+    &.custom-select--open > .custom-select__trigger {
+      border-color: $hiperion-gold;
+      background-color: $hiperion-white;
+    }
+
+    &.custom-select--open > .custom-select__trigger {
+      border-bottom-color: transparent;
+    }
+
+    .custom-select__dropdown {
+      background-color: $hiperion-white;
+      border-color: $hiperion-gold;
+      box-shadow: 0 12px 24px rgba(29, 35, 49, 0.12);
+    }
+
+    .custom-select__option {
+      color: $hiperion-navy;
+
+      &:hover,
+      &.custom-select__option--active {
+        color: $hiperion-gold;
+        background-color: rgba($hiperion-gold, 0.08);
+      }
+    }
+  }
+}
+
 @media (max-width: 1199.98px) {
   .budget-hero {
     grid-template-columns: minmax(0, 1fr) minmax(340px, 0.9fr);

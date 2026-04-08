@@ -113,12 +113,33 @@
           </div>
         </div>
 
+        <div class="budget-form__grid budget-form__grid--2 budget-form__grid--top-aligned">
+          <div class="budget-form__field">
+            <%= f.label :state, "*Estado" %>
+            <div class="custom-select custom-select--budget" data-controller="custom-select">
+              <%= f.select :state,
+                ["SP", "MG", "RJ", "ES", "PR", "SC", "RS", "BA", "GO", "DF", "Outro"],
+                { prompt: "Selecione" },
+                required: true,
+                data: { custom_select_target: "select" } %>
+            </div>
+          </div>
+
+          <div class="budget-form__field">
+            <%= f.label :city, "*Cidade" %>
+            <%= f.text_field :city, required: true, maxlength: 80 %>
+          </div>
+        </div>
+
         <div class="budget-form__field budget-form__field--full">
           <%= f.label :referral_source, "*Como nos encontrou?" %>
-          <%= f.select :referral_source,
-            ["Google", "Instagram", "LinkedIn", "Facebook", "Indicacao", "Cliente atual", "Outro"],
-            { prompt: "Selecione" },
-            required: true %>
+          <div class="custom-select custom-select--budget" data-controller="custom-select">
+            <%= f.select :referral_source,
+              ["Google", "Instagram", "LinkedIn", "Facebook", "Indicacao", "Cliente atual", "Outro"],
+              { prompt: "Selecione" },
+              required: true,
+              data: { custom_select_target: "select" } %>
+          </div>
         </div>
 
         <div class="budget-form__field budget-form__field--full">
