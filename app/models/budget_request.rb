@@ -3,12 +3,12 @@ class BudgetRequest < ApplicationRecord
   CNPJ_WEIGHTS = [ 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 ].freeze
 
   validates :company_tax_id, presence: true
-  validates :business_segment, presence: true, length: { minimum: 3, maximum: 120 }
-  validates :full_name, presence: true, length: { minimum: 3, maximum: 120 }
-  validates :phone, presence: true, length: { minimum: 8, maximum: 30 }
+  validates :business_segment, presence: true, length: { maximum: 120 }
+  validates :full_name, presence: true, length: { maximum: 120 }
+  validates :phone, presence: true, length: { maximum: 30 }
   validates :email, presence: true, format: { with: EMAIL_REGEX }
   validates :referral_source, presence: true, length: { maximum: 80 }
-  validates :message, presence: true, length: { minimum: 10, maximum: 2000 }
+  validates :message, presence: true, length: { maximum: 2000 }
 
   validate :company_tax_id_must_be_valid
 

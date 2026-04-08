@@ -51,20 +51,41 @@
   max-width: 180px;
   height: 42px;
   border: 2px solid $hiperion-gold;
-  background-color: transparent;
+  background: transparent;
   color: $hiperion-gold;
   font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
-.success-modal__button:hover,
-.success-modal__button:focus-visible {
-  background-color: $hiperion-gold;
-  color: $hiperion-white;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $hiperion-gold;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $hiperion-white;
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
 }
 
 @media (max-width: 767.98px) {

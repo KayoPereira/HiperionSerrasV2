@@ -1,0 +1,101 @@
+.custom-select {
+  position: relative;
+
+  &__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: $hiperion-navy;
+    background-color: $hiperion-white;
+    border: 2px solid $hiperion-navy;
+    min-height: 48px;
+    padding: 10px 12px;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    transition: border-color 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:hover,
+    &:focus {
+      border-color: $hiperion-gold;
+    }
+  }
+
+  &--filled > &__trigger {
+    border-color: $hiperion-gold;
+  }
+
+  &--open > &__trigger {
+    border-color: $hiperion-gold;
+    border-bottom-color: transparent;
+  }
+
+  &__label {
+    color: rgba($hiperion-navy, 0.45);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &--filled {
+      color: $hiperion-navy;
+    }
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    margin-left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid $hiperion-navy;
+    transition: transform 0.2s ease;
+  }
+
+  &--open > &__trigger > &__arrow {
+    transform: rotate(180deg);
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: $hiperion-white;
+    border: 2px solid $hiperion-gold;
+    border-top: none;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  &--open > &__dropdown {
+    display: block;
+  }
+
+  &__option {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: $hiperion-navy;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    list-style: none;
+
+    &:hover,
+    &--active {
+      color: $hiperion-gold;
+    }
+  }
+}

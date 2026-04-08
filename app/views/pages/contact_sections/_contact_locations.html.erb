@@ -1,6 +1,6 @@
 <% locations = [
   {
-    label: "Centro de distribuição de serras circulares e serviço de afiação",
+    label: "Centro de distribuição de serras<br> circulares e serviço de afiação",
     city: "Mogi Guaçu-SP",
     address: "Rua Eli Paulo Colombo, 1470 - Jardim Sakaida",
     complement: "Mogi Guaçu-SP | CEP: 13.849-702",
@@ -8,7 +8,7 @@
     embed_src: "https://maps.google.com/maps?q=Rua+Eli+Paulo+Colombo,+1470,+Jardim+Sakaida,+Mogi+Guaçu,+SP,+Brasil&output=embed"
   },
   {
-    label: "Centro de distribuição de lâminas de serra fita",
+    label: "Centro de distribuição<br> de lâminas de serra fita",
     city: "Poá-SP",
     address: "Avenida Getúlio Vargas, 692 - Calmon Viana",
     complement: "Poá-SP | CEP: 08557-010",
@@ -30,13 +30,13 @@
           itemtype="https://schema.org/LocalBusiness"
         >
           <div class="d-flex" style="height: 10%;">
-            <p class="contact-locations__label"><%= loc[:label].upcase %></p>
+            <p class="contact-locations__label"><%= loc[:label].upcase.html_safe %></p>
           </div>
 
           <div class="d-flex flex-column justify-content-end">
-            <p class="contact-locations__city">
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <strong itemprop="name"><%= loc[:city] %></strong>
+            <p class="contact-locations__city" style="font-weight: bold;">
+              <%= image_tag "localização@2x.png", alt: "Localização", style: "width: 42px; height: 46px;" %>
+              <%= loc[:city] %>
             </p>
 
             <address class="contact-locations__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">

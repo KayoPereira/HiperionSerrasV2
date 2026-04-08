@@ -297,19 +297,44 @@
 
 .contact-form__submit {
   min-width: clamp(140px, 14vw, 280px);
-  height: 55px;
-  background-color: transparent;
+  min-height: 55px;
+  background: transparent;
   border: 3px solid $hiperion-gold;
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: $hiperion-gold;
   letter-spacing: -0.05em;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  transition: color 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $hiperion-gold;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
 
   &:hover {
-    background-color: $hiperion-gold;
     color: $hiperion-white;
+
+    &::before {
+      transform: scaleX(1);
+    }
   }
 }
 
