@@ -144,6 +144,27 @@
     font-size: clamp(1.5rem, 2vw, 32px);
   }
 
+  .hiperion-footer__contact-icon {
+    width: 32px;
+    height: 32px;
+    color: $hiperion-gold;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hiperion-footer__contact-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   a {
     font-family: "Montserrat", sans-serif;
     font-size: 25px;
