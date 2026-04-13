@@ -69,14 +69,22 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.images_attachments.where(id: params[:remove_images]).each(&:purge) if params[:remove_images].present?
-    @product.gallery_attachments.where(id: params[:remove_gallery]).each(&:purge) if params[:remove_gallery].present?
-
     updated_params = product_params
     new_images = updated_params.delete(:images)
     new_gallery = updated_params.delete(:gallery)
+    remove_thumbnail = ActiveModel::Type::Boolean.new.cast(params[:remove_thumbnail])
+    remove_image_detail = ActiveModel::Type::Boolean.new.cast(params[:remove_image_detail])
+
+    if remove_thumbnail && updated_params[:thumbnail].blank?
+      @product.errors.add(:thumbnail, "deve ser enviada")
+      build_minimum_faq
+      return render :edit, status: :unprocessable_entity
+    end
 
     if @product.update(updated_params)
+      @product.images_attachments.where(id: params[:remove_images]).each(&:purge) if params[:remove_images].present?
+      @product.gallery_attachments.where(id: params[:remove_gallery]).each(&:purge) if params[:remove_gallery].present?
+      @product.image_detail.purge if remove_image_detail && updated_params[:image_detail].blank? && @product.image_detail.attached?
       @product.images.attach(new_images) if new_images.present?
       @product.gallery.attach(new_gallery) if new_gallery.present?
       redirect_to circular_saw_products_path, notice: "Produto atualizado com sucesso."

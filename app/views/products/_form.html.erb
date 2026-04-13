@@ -40,7 +40,13 @@
     <%= f.file_field :thumbnail, accept: "image/*", required: !@product.thumbnail.attached? %>
     <% if @product.thumbnail.attached? %>
       <div class="product-admin-form__image-preview">
-        <%= image_tag @product.thumbnail, alt: "Thumbnail do #{@product.name}" %>
+        <div class="product-admin-form__image-item product-admin-form__image-item--removable product-admin-form__image-item--single">
+          <%= image_tag @product.thumbnail, alt: "Thumbnail do #{@product.name}" %>
+          <label class="product-admin-form__image-remove product-admin-form__image-remove--overlay" aria-label="Remover thumbnail do banner">
+            <input type="checkbox" name="remove_thumbnail" value="1">
+            <span class="product-admin-form__image-remove-icon" aria-hidden="true">x</span>
+          </label>
+        </div>
       </div>
     <% end %>
   </div>
@@ -51,11 +57,11 @@
     <% if @product.images.attached? %>
       <div class="product-admin-form__images-preview">
         <% @product.images.each_with_index do |image, index| %>
-          <div class="product-admin-form__image-item">
+          <div class="product-admin-form__image-item product-admin-form__image-item--removable">
             <%= image_tag image, alt: "#{@product.name} - Imagem #{index + 1}" %>
-            <label class="product-admin-form__image-remove">
+            <label class="product-admin-form__image-remove product-admin-form__image-remove--overlay" aria-label="Remover imagem #{index + 1} do produto">
               <input type="checkbox" name="remove_images[]" value="<%= image.id %>">
-              Remover
+              <span class="product-admin-form__image-remove-icon" aria-hidden="true">x</span>
             </label>
           </div>
         <% end %>
@@ -69,7 +75,7 @@
     <% if @product.gallery.attached? %>
       <div class="product-admin-form__images-preview">
         <% @product.gallery.each_with_index do |image, index| %>
-          <div class="product-admin-form__image-item product-admin-form__image-item--gallery">
+          <div class="product-admin-form__image-item product-admin-form__image-item--gallery product-admin-form__image-item--removable">
             <%= image_tag image, alt: "#{@product.name} - Gallery #{index + 1}" %>
             <label class="product-admin-form__image-remove product-admin-form__image-remove--overlay" aria-label="Remover imagem #{index + 1} da gallery">
               <input type="checkbox" name="remove_gallery[]" value="<%= image.id %>">
@@ -86,7 +92,13 @@
     <%= f.file_field :image_detail, accept: "image/*" %>
     <% if @product.image_detail.attached? %>
       <div class="product-admin-form__image-preview">
-        <%= image_tag @product.image_detail, alt: "Detalhe do #{@product.name}" %>
+        <div class="product-admin-form__image-item product-admin-form__image-item--removable product-admin-form__image-item--single">
+          <%= image_tag @product.image_detail, alt: "Detalhe do #{@product.name}" %>
+          <label class="product-admin-form__image-remove product-admin-form__image-remove--overlay" aria-label="Remover imagem de detalhe do produto">
+            <input type="checkbox" name="remove_image_detail" value="1">
+            <span class="product-admin-form__image-remove-icon" aria-hidden="true">x</span>
+          </label>
+        </div>
       </div>
     <% end %>
   </div>
