@@ -1,7 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  app_host = ENV.fetch("APP_HOST", "staging.hiperionserras.com.br")
+  app_host = ENV.fetch("APP_HOST", "hiperionserras.com.br")
   app_protocol = ENV.fetch("APP_PROTOCOL", "https")
 
   config.action_mailer.default_url_options = { host: app_host, protocol: app_protocol }

@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: staging.hiperionserras.com.br
+  host: hiperionserras.com.br
 
 # Credentials for your image host.
 registry:
@@ -52,7 +52,7 @@ env:
     DB_PORT: 5432
     DB_USER: hiperion_serras_v2
     DB_NAME: hiperion_serras_v2_production
-    APP_HOST: staging.hiperionserras.com.br
+    APP_HOST: hiperionserras.com.br
     APP_PROTOCOL: https
     MAILER_FROM_ADDRESS: no-reply@hiperionserras.com.br
     MAILER_TO_ADDRESS: contato@hiperionserras.com.br
