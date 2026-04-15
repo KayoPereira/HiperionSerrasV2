@@ -42,9 +42,9 @@
             <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>
-                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name, style: "object-fit: contain;" %>
                 <% elsif product.gallery.attached? && product.gallery.first %>
-                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name %>
+                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name, style: "object-fit: contain;" %>
                 <% elsif product.image_detail.attached? %>
                   <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
                 <% else %>
@@ -91,11 +91,11 @@
             <%= link_to product_path(product), class: "products-list__link", aria: { label: "Ver detalhes do produto #{product.name}" } do %>
               <div class="products-list__image-wrapper">
                 <% if product.images.attached? && product.images.first %>
-                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name %>
+                  <%= image_tag product.images.first, class: "products-list__image", alt: product.name, style: "object-fit: contain;" %>
                 <% elsif product.gallery.attached? && product.gallery.first %>
-                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name %>
+                  <%= image_tag product.gallery.first, class: "products-list__image", alt: product.name, style: "object-fit: contain;" %>
                 <% elsif product.image_detail.attached? %>
-                  <%= image_tag product.image_detail, class: "products-list__image", alt: product.name %>
+                  <%= image_tag product.image_detail, class: "products-list__image", alt: product.name, style: "object-fit: contain;" %>
                 <% else %>
                   <div class="products-list__image products-list__image--placeholder" aria-hidden="true"></div>
                 <% end %>
