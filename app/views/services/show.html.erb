@@ -40,7 +40,7 @@ end %>
   <div class="container service-detail__container">
     <article class="service-detail__content">
       <h2 id="service-detail-heading" class="service-detail__title"><%= @service.name %></h2>
-      <p class="service-detail__description"><%= @service.description %></p>
+      <!--<p class="service-detail__description"><%# @service.description %></p>-->
       <div class="service-detail__rich-text trix-content"><%= render_service_details(@service.details) %></div>
     </article>
 
