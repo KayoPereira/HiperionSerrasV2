@@ -13,8 +13,6 @@ end %>
 end %>
 <% gallery_images = if @product.gallery.attached? && @product.gallery.any?
   @product.gallery
-elsif @product.images.attached? && @product.images.any?
-  @product.images
 end %>
 <section id="products-hero"
   class="<%= @product.circular_saw? ? 'circular-saw-banner' : 'band-saw-banner' %>"

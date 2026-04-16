@@ -2,7 +2,14 @@
 <% content_for :meta_description, @service.description %>
 <% content_for :body_class, "services-page" %>
 
-<section id="services-hero" class="services-banner" aria-label="Banner da pagina de servicos">
+<% banner_attachment = if @service.thumbnail.attached?
+  @service.thumbnail
+elsif @service.image.attached?
+  @service.image
+end %>
+<% banner_image = banner_attachment.present? ? url_for(banner_attachment) : nil %>
+
+<section id="services-hero" class="services-banner" aria-label="Banner da pagina de servicos"<% if banner_image %> style="background-image: linear-gradient(100deg, rgba(9, 19, 39, 0.82) 0%, rgba(9, 19, 39, 0.55) 45%, rgba(9, 19, 39, 0.3) 70%, rgba(9, 19, 39, 0.1) 100%), url('<%= banner_image %>');"<% end %>>
   <div class="services-banner__content">
     <h1 class="services-banner__title"><%= @service.name %></h1>
 
@@ -38,9 +45,13 @@
     </article>
 
     <aside class="service-detail__side">
-      <% if @service.image.attached? %>
+      <% if @service.thumbnail.attached? || @service.image.attached? %>
         <div class="service-detail__media">
-          <%= image_tag @service.image, alt: @service.name, class: "service-detail__image" %>
+          <% if @service.image.attached? %>
+            <%= image_tag @service.image, alt: @service.name, class: "service-detail__image" %>
+          <% elsif @service.thumbnail.attached? %>
+            <%= image_tag @service.thumbnail, alt: @service.name, class: "service-detail__image" %>
+          <% end %>
         </div>
       <% end %>
 

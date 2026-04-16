@@ -15,10 +15,12 @@
     <%= f.text_area :name, rows: 2, required: true %>
   </div>
 
+  <!--
   <div class="service-admin-form__field">
-    <%= f.label :description, "Descricao" %>
-    <%= f.text_area :description, rows: 3, required: true %>
+    <%# f.label :description, "Descricao" %>
+    <%# f.text_area :description, rows: 3 %>
   </div>
+  -->
 
   <div class="service-admin-form__field">
     <%= f.label :details, "Detalhes (texto rico)" %>
@@ -26,11 +28,33 @@
   </div>
 
   <div class="service-admin-form__field">
+    <%= f.label :thumbnail, "Thumbnail do banner" %>
+    <%= f.file_field :thumbnail, accept: "image/*", required: !@service.thumbnail.attached? %>
+    <% if @service.thumbnail.attached? %>
+      <div class="service-admin-form__image-preview">
+        <div class="service-admin-form__image-item service-admin-form__image-item--removable service-admin-form__image-item--single">
+          <%= image_tag @service.thumbnail, alt: "Thumbnail do #{@service.name}" %>
+          <label class="service-admin-form__image-remove service-admin-form__image-remove--overlay" aria-label="Remover thumbnail do banner">
+            <input type="checkbox" name="remove_thumbnail" value="1">
+            <span class="service-admin-form__image-remove-icon" aria-hidden="true">x</span>
+          </label>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="service-admin-form__field">
     <%= f.label :image, "Imagem" %>
     <%= f.file_field :image, accept: "image/*", required: !@service.persisted? || !@service.image.attached? %>
     <% if @service.image.attached? %>
       <div class="service-admin-form__image-preview">
-        <%= image_tag @service.image, alt: @service.name %>
+        <div class="service-admin-form__image-item service-admin-form__image-item--removable service-admin-form__image-item--single">
+          <%= image_tag @service.image, alt: @service.name %>
+          <label class="service-admin-form__image-remove service-admin-form__image-remove--overlay" aria-label="Remover imagem do serviço">
+            <input type="checkbox" name="remove_image" value="1">
+            <span class="service-admin-form__image-remove-icon" aria-hidden="true">x</span>
+          </label>
+        </div>
       </div>
     <% end %>
   </div>

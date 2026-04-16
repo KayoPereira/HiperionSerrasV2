@@ -4,15 +4,15 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service
-      .includes(:service_faqs, :rich_text_details, image_attachment: :blob)
-      .order(created_at: :desc)
+      .includes(:service_faqs, :rich_text_details, thumbnail_attachment: :blob, image_attachment: :blob)
+      .order(created_at: :asc)
   end
 
   def show
     @other_services = Service
       .where.not(id: @service.id)
-      .includes(image_attachment: :blob)
-      .order(created_at: :desc)
+      .includes(thumbnail_attachment: :blob, image_attachment: :blob)
+      .order(created_at: :asc)
   end
 
   def new
@@ -36,7 +36,18 @@ class ServicesController < ApplicationController
   end
 
   def update
+    remove_thumbnail = ActiveModel::Type::Boolean.new.cast(params[:remove_thumbnail])
+    remove_image = ActiveModel::Type::Boolean.new.cast(params[:remove_image])
+
+    if remove_thumbnail && service_params[:thumbnail].blank?
+      @service.errors.add(:thumbnail, "deve ser enviada")
+      build_minimum_faq
+      return render :edit, status: :unprocessable_entity
+    end
+
     if @service.update(service_params)
+      @service.thumbnail.purge if remove_thumbnail && service_params[:thumbnail].blank? && @service.thumbnail.attached?
+      @service.image.purge if remove_image && service_params[:image].blank? && @service.image.attached?
       redirect_to services_path, notice: "Servico atualizado com sucesso."
     else
       build_minimum_faq
@@ -52,7 +63,14 @@ class ServicesController < ApplicationController
   private
 
   def set_service
-    @service = Service.find(params[:id])
+    @service = Service
+      .includes(
+        :service_faqs,
+        :rich_text_details,
+        thumbnail_attachment: :blob,
+        image_attachment: :blob
+      )
+      .find(params[:id])
   end
 
   def service_params
@@ -62,6 +80,7 @@ class ServicesController < ApplicationController
       :name,
       :description,
       :details,
+      :thumbnail,
       :image,
       service_faqs_attributes: [ :id, :question, :answer, :_destroy ]
     )

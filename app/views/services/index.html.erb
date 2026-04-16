@@ -41,7 +41,9 @@
           <article class="services-list__card">
             <%= link_to service_path(service), class: "services-list__link", aria: { label: "Ver detalhes do serviço #{service.name}" } do %>
               <div class="services-list__image-wrapper">
-                <% if service.image.attached? %>
+                <% if service.thumbnail.attached? %>
+                  <%= image_tag service.thumbnail, class: "services-list__image", alt: service.name %>
+                <% elsif service.image.attached? %>
                   <%= image_tag service.image, class: "services-list__image", alt: service.name %>
                 <% else %>
                   <div class="services-list__image services-list__image--placeholder" aria-hidden="true"></div>

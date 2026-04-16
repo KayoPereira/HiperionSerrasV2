@@ -1,6 +1,7 @@
 class Service < ApplicationRecord
   has_rich_text :details
   has_one_attached :image
+  has_one_attached :thumbnail
 
   has_many :service_faqs, dependent: :destroy, inverse_of: :service
 
@@ -9,14 +10,15 @@ class Service < ApplicationRecord
     reject_if: ->(attributes) { attributes["question"].blank? && attributes["answer"].blank? }
 
   validates :name, presence: true
-  validates :description, presence: true
   validates :details, presence: true
-
-  validate :image_must_be_attached
+  validate :thumbnail_presence
 
   private
 
-  def image_must_be_attached
-    errors.add(:image, "deve ser enviada") unless image.attached?
+  def thumbnail_presence
+    return if thumbnail.attached?
+    return if attachment_changes["thumbnail"].present?
+
+    errors.add(:thumbnail, "deve ser enviada")
   end
 end
