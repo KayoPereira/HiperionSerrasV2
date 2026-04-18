@@ -82,7 +82,7 @@ end %>
                 </button>
 
                 <div
-                  class="service-faq__answer"
+                  class="service-faq__answer trix-content"
                   id="service-faq-answer-<%= @service.id %>-<%= index %>"
                   role="region"
                   aria-labelledby="service-faq-question-<%= @service.id %>-<%= index %>"
@@ -91,7 +91,7 @@ end %>
                   itemscope itemprop="acceptedAnswer"
                   itemtype="https://schema.org/Answer"
                 >
-                  <p class="service-faq__answer-text" itemprop="text"><%= faq.answer %></p>
+                  <div class="service-faq__answer-text" itemprop="text"><%= render_service_description(faq.answer) if faq.answer.present? %></div>
                 </div>
               </article>
             <% end %>

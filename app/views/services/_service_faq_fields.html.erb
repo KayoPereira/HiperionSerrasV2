@@ -6,7 +6,7 @@
 
   <div class="service-admin-form__field">
     <%= faq_fields.label :answer, "Resposta" %>
-    <%= faq_fields.text_area :answer, rows: 3 %>
+    <%= faq_fields.rich_text_area :answer %>
   </div>
 
   <%= faq_fields.hidden_field :_destroy %>

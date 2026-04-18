@@ -24,4 +24,6 @@ module ServicesHelper
 
     sanitize(details.body.to_html, tags: allowed_tags, attributes: allowed_attributes)
   end
+
+  alias_method :render_service_description, :render_service_details
 end

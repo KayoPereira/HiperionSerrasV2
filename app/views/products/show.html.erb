@@ -185,7 +185,7 @@ end %>
                 </button>
 
                 <div
-                  class="product-faq__answer"
+                  class="product-faq__answer trix-content"
                   id="product-faq-answer-<%= @product.id %>-<%= index %>"
                   role="region"
                   aria-labelledby="product-faq-question-<%= @product.id %>-<%= index %>"
@@ -194,7 +194,7 @@ end %>
                   itemscope itemprop="acceptedAnswer"
                   itemtype="https://schema.org/Answer"
                 >
-                  <p class="product-faq__answer-text" itemprop="text"><%= faq.answer %></p>
+                  <div class="product-faq__answer-text" itemprop="text"><%= render_product_description(faq.answer) if faq.answer.present? %></div>
                 </div>
               </article>
             <% end %>

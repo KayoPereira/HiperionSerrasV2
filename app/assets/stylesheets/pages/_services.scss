@@ -284,16 +284,35 @@
   overflow: hidden;
   opacity: 0;
   transition: height 0.34s ease, opacity 0.28s ease;
+  padding: 16px 20px;
+
+  &.trix-content ul,
+  &.trix-content ol {
+    margin: 0 0 0 1.5em;
+    padding: 0;
+  }
+
+  &.trix-content li {
+    margin: 6px 0;
+  }
+
+  &.trix-content p {
+    margin: 0;
+  }
+
+  &.trix-content strong {
+    font-weight: 700;
+  }
 }
 
 .service-faq__answer-text {
   font-family: "Montserrat", sans-serif;
   font-size: clamp(13px, 0.88vw, 16px);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.3;
   color: $hiperion-navy;
   margin: 0;
-  padding: 0 16px 14px;
+  padding: 0;
 }
 
 .service-faq__item.is-open {
