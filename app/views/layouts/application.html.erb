@@ -43,7 +43,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
 
-  <body class="<%= content_for(:body_class) %>"><%= render "shared/navbar" %>
+  <body class="<%= content_for(:body_class) %>">
+    <div class="navbar-hiperion-desktop-wrapper"><%= render "shared/navbar" %></div>
+    <div class="navbar-hiperion-mobile-wrapper"><%= render "shared/mobile_navbar" %></div>
 <%= render "shared/flashes" %>
 
     <%= yield %>

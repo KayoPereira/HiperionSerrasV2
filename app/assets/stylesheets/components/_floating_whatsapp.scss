@@ -35,6 +35,10 @@ body.cookie-banner-visible .floating-whatsapp {
   bottom: 130px;
 }
 
+body:has(.navbar-hiperion-mobile .navbar-collapse.show) .floating-whatsapp {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .floating-whatsapp {
     right: 14px;
@@ -51,5 +55,9 @@ body.cookie-banner-visible .floating-whatsapp {
 
   body.cookie-banner-visible .floating-whatsapp {
     bottom: 196px;
+  }
+
+  body:has(.navbar-hiperion-mobile .navbar-collapse.show) .floating-whatsapp {
+    display: none;
   }
 }

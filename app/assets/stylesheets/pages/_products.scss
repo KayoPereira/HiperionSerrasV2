@@ -8,6 +8,15 @@
     margin-top: 0;
     z-index: 20;
   }
+
+  @media (max-width: 991.98px) {
+    .navbar-hiperion-mobile {
+      position: fixed;
+      top: 25px;
+      left: 0;
+      right: 0;
+    }
+  }
 }
 
 .circular-saw-banner {
@@ -110,6 +119,15 @@
     right: 0;
     margin-top: 0;
     z-index: 20;
+  }
+
+  @media (max-width: 991.98px) {
+    .navbar-hiperion-mobile {
+      position: fixed;
+      top: 25px;
+      left: 0;
+      right: 0;
+    }
   }
 }
 

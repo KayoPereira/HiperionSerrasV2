@@ -7,6 +7,15 @@
     margin-top: 0;
     z-index: 20;
   }
+
+  @media (max-width: 991.98px) {
+    .navbar-hiperion-mobile {
+      position: fixed;
+      top: 25px;
+      left: 0;
+      right: 0;
+    }
+  }
 }
 
 .about-banner {
@@ -168,6 +177,7 @@
 
   .about-banner__title {
     font-size: clamp(16px, 5.5vw, 22px);
+    white-space: normal;
   }
 }
 
