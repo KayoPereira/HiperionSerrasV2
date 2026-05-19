@@ -101,6 +101,10 @@
 			gap: 24px;
 		}
 
+		&__content > .secondary-btn {
+			width: 100%;
+		}
+
 		&__image {
 			width: 100%;
 		}
@@ -126,11 +130,34 @@
 		padding: 32px 0;
 
 		&__inner {
-			padding: 0 16px;
+			padding: 0;
 		}
 
 		&__title {
-			font-size: 1.25rem;
+			font-size: 25px;
+			text-align: center;
+			padding: 0 16px;
+
+			br {
+				display: none;
+			}
+		}
+
+		&__description {
+			font-size: 17px;
+			text-align: center;
+			padding: 0 16px;
+
+			br {
+				display: none;
+			}
+		}
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 0 16px;
 		}
 	}
 }
@@ -408,17 +435,50 @@
 	@media (max-width: 479.98px) {
 		margin-top: 32px;
 
+		&__grid {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		&__intro {
+			order: 3;
+			text-align: center;
+			width: 100%;
+			padding: clamp(20px, 3vw, 32px) clamp(16px, 2vw, 24px);
+		}
+
 		&__card {
+			order: 1;
 			min-height: 260px;
 			padding: 16px;
+			width: 100%;
+		}
+
+		&__card:nth-child(3) {
+			order: 2;
+		}
+
+		&__title {
+			text-align: center;
+			font-size: 25px;
+		}
+
+		&__description {
+			text-align: center;
+			font-size: 17px;
 		}
 
 		&__card-title {
-			font-size: clamp(16px, 3vw, 20px);
+			font-size: 18px;
 		}
 
 		&__card-description {
-			font-size: clamp(12px, 2vw, 14px);
+			font-size: 14px;
+		}
+
+		&__cta {
+			justify-content: center;
+			align-self: center;
 		}
 	}
 }
@@ -566,16 +626,41 @@
 	@media (max-width: 479.98px) {
 		margin-top: 32px;
 
+		&__grid {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		&__media {
+			order: 1;
+			width: 100%;
+			max-width: 100%;
+		}
+
 		&__content {
-			padding: 16px 12px 0;
+			order: 2;
+			padding: clamp(20px, 3vw, 32px) clamp(16px, 2vw, 24px) 0;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
 		}
 
 		&__title {
-			font-size: clamp(18px, 3vw, 24px);
+			font-size: 25px;
+			text-align: center;
 		}
 
 		&__description {
-			font-size: clamp(12px, 2vw, 14px);
+			font-size: 17px;
+			text-align: center;
+		}
+
+		&__cta {
+			justify-content: center;
+			align-self: center;
+			width: 100%;
 		}
 	}
 }
@@ -692,19 +777,32 @@
 
 		&__hero {
 			padding: 0 12px;
-			min-height: clamp(200px, 44vw, 240px);
+			min-height: clamp(320px, 65vw, 380px);
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		&__content {
 			padding: 16px 0;
+			margin-left: 0;
+			margin: 0 auto;
+			width: 100%;
+			max-width: 100%;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
 		&__title {
-			font-size: clamp(18px, 3vw, 24px);
+			font-size: 25px;
+			text-align: center;
 		}
 
 		&__description {
-			font-size: clamp(12px, 2vw, 14px);
+			font-size: 17px;
+			text-align: center;
 		}
 	}
 }

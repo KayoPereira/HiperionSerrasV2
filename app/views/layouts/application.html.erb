@@ -58,7 +58,12 @@
       <%= render "shared/products_services_section", hide_serra_fita: hide_serra_fita, hide_serras_circulares: hide_serras_circulares, hide_servicos: hide_servicos %>
     <% end %>
 
-    <%= render "shared/footer" %>
+    <div class="footer-mobile-only">
+      <%= render "shared/footer_new" %>
+    </div>
+    <div class="footer-desktop-only">
+      <%= render "shared/footer" %>
+    </div>
     <%= render "shared/floating_whatsapp" %>
     <%= render "shared/cookie_banner" %>
     <%= render "shared/cookie_preferences_modal" %>
