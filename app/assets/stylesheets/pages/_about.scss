@@ -172,12 +172,42 @@
 
 @media (max-width: 767.98px) {
   .about-banner {
-    height: clamp(280px, 68vw, 420px);
+    height: clamp(320px, 110vw, 355px);
   }
 
   .about-banner__title {
     font-size: clamp(16px, 5.5vw, 22px);
     white-space: normal;
+  }
+
+  .about-banner__content {
+    margin-top: 40px;
+  }
+
+  .about-tabs-section__tab-wrapper li {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  .about-tabs-section__tab-wrapper.is-active::after {
+    display: none;
+  }
+
+  .about-tabs-section__tab {
+    font-size: 35px !important;
+  }
+
+  .about-tabs-section__panel-text {
+    font-size: 20px !important;
+    text-align: center;
+  }
+
+  .about-team__frame {
+    width: 100% !important;
+  }
+
+  .about-highlights__grid {
+    text-align: center;
   }
 }
 
@@ -219,6 +249,7 @@
 
   .about-intro__text {
     flex: 1 1 100%;
+    text-align: center;
   }
 
   .about-intro__callout-wrapper {
