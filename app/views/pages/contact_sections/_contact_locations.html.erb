@@ -29,11 +29,11 @@
           itemscope
           itemtype="https://schema.org/LocalBusiness"
         >
-          <div class="d-flex" style="height: 10%;">
+          <div class="d-flex contact-locations__label_content" style="height: 10%;">
             <p class="contact-locations__label"><%= loc[:label].upcase.html_safe %></p>
           </div>
 
-          <div class="d-flex flex-column justify-content-end">
+          <div class="d-flex flex-column justify-content-end content-location">
             <p class="contact-locations__city" style="font-weight: bold;">
               <%= image_tag "localização@2x.png", alt: "Localização", style: "width: 42px; height: 46px;" %>
               <%= loc[:city] %>
