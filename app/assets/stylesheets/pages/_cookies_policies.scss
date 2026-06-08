@@ -210,7 +210,11 @@
 
 @media (max-width: 767.98px) {
   .cookies-policies-banner {
-    height: clamp(280px, 68vw, 420px);
+    height: clamp(320px, 110vw, 355px);
+  }
+
+  .cookies-policies-banner__content {
+    margin-top: 40px;
   }
 
   .cookies-policies-banner__title {

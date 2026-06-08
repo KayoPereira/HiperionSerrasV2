@@ -1234,7 +1234,7 @@
 
 @media (max-width: 767.98px) {
   .circular-saw-banner, .band-saw-banner {
-    height: clamp(320px, 110vw, 355px);
+    height: clamp(320px, 110vw, 400px);
   }
 
   .circular-saw-banner__content, .band-saw-banner__content {
@@ -1286,5 +1286,11 @@
 
   .gallery-modal__image {
     max-height: 58vh;
+  }
+
+  .band-saw-banner__breadcrumb-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

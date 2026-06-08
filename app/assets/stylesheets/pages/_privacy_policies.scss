@@ -198,7 +198,11 @@
 
 @media (max-width: 767.98px) {
   .privacy-policies-banner {
-    height: clamp(280px, 68vw, 420px);
+    height: clamp(320px, 110vw, 355px);
+  }
+
+  .privacy-policies-banner__content {
+    margin-top: 40px;
   }
 
   .privacy-policies-banner__title {
