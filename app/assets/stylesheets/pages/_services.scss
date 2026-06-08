@@ -560,7 +560,11 @@
 
 @media (max-width: 767.98px) {
   .services-banner {
-    height: clamp(280px, 68vw, 420px);
+    height: clamp(320px, 110vw, 355px);
+  }
+
+  .services-banner__content {
+    margin-top: 40px;
   }
 
   .services-banner__title {

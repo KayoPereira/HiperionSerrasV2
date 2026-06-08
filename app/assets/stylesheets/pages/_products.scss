@@ -1233,6 +1233,14 @@
 }
 
 @media (max-width: 767.98px) {
+  .circular-saw-banner, .band-saw-banner {
+    height: clamp(320px, 110vw, 355px);
+  }
+
+  .circular-saw-banner__content, .band-saw-banner__content {
+    margin-top: 40px;
+  }
+
   .products-banner {
     height: clamp(280px, 68vw, 420px);
   }
