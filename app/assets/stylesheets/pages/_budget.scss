@@ -313,6 +313,19 @@
 }
 
 @media (max-width: 767.98px) {
+  .budget-hero {
+    height: clamp(320px, 110vw, 355px);
+  }
+
+  .budget-hero__content {
+    margin-top: 40px !important;
+    text-align: center;
+  }
+
+  .budget-hero__breadcrumb-list {
+    justify-content: center;
+  }
+
   .budget-hero__media {
     min-height: 360px;
   }
@@ -345,5 +358,9 @@
 
   .budget-form__submit {
     width: 100%;
+  }
+
+  .products-services-section {
+    margin-top: 125vh;
   }
 }
